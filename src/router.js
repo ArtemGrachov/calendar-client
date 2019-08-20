@@ -14,11 +14,18 @@ export default new Router({
         const isAuth = false;
 
         if (isAuth) {
-          return () => import(/* webpackChunkName: "user" */ './views/ViewUser.vue');           
+          return () => import(/* webpackChunkName: "user" */ './views/ViewUser.vue');
         } else {
           return () => import(/* webpackChunkName: "guest" */ './views/ViewGuest.vue');
         }
-      }
+      },
+      children: [
+        {
+          path: 'registration',
+          component: () => 
+            import(/* webpackChunkName: "registration" */ './views/ViewRegistration.vue')
+        }
+      ]
     }
   ]
 })
