@@ -13,13 +13,18 @@ import {
 export default function(httpClient) {
     return {
         [USER_ACTIONS_GET_STORAGE_TOKENS](context) {
-            context.dispatch(
-                USER_ACTIONS_SET_AUTH_TOKENS,
-                {
-                    token: localStorage.getItem('token'),
-                    refreshToken: localStorage.getItem('refreshToken')
-                }
-            )
+            const token = localStorage.getItem('token');
+            const refreshToken = localStorage.getItem('refreshToken');
+
+            if (token && refreshToken) {
+                context.dispatch(
+                    USER_ACTIONS_SET_AUTH_TOKENS,
+                    {
+                        token,
+                        refreshToken
+                    }
+                )
+            }
         },
         [USER_ACTIONS_SET_AUTH_TOKENS](context, payload) {
             context.commit(USER_MUTATIONS_SET_TOKENS, payload);
@@ -28,12 +33,19 @@ export default function(httpClient) {
             httpClient.setToken(payload.token);
         },
         [USER_ACTIONS_CLEAR](context) {
-            context.dispatch(USER_MUTATIONS_CLEAR);
+            context.commit(USER_MUTATIONS_CLEAR);
+            localStorage.removeItem('token');
+            localStorage.removeItem('refreshToken');
         },
         async [USER_ACTIONS_GET_OWN_DATA](context) {
-            const { data } = await httpClient.getOwnData();
-
-            context.commit(USER_MUTATIONS_SET_DATA, data);
+            try {
+                const { data } = await httpClient.getOwnData();
+    
+                context.commit(USER_MUTATIONS_SET_DATA, data);
+            } catch (err) {
+                context.dispatch(USER_ACTIONS_CLEAR);
+                throw err;
+            }
         }
     }
 }
