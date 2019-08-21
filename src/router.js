@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const isAuth = true;
+const isAuth = false;
 
 export default new Router({
   mode: 'history',
