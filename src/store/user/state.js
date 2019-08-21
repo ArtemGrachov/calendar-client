@@ -1,6 +1,7 @@
 export default function() {
     return {
         token: null,
-        refreshToken: null
+        refreshToken: null,
+        user: null
     }
 }

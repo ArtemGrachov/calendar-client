@@ -1,12 +1,16 @@
-import axios from 'axios';
-import { apiDomain } from '../config';
+import { HttpClient } from './client';
 
-export default {
-    path: apiDomain + 'auth/',
+export default class AuthClient extends HttpClient {
+    constructor(api, client) {
+        super(api, client);
+        this.path = this.api + 'auth/';
+    }
+
     async login(payload) {
-        return axios.post(this.path + 'login', payload)
-    },
+        return this.client.post(this.path + 'login', payload);
+    }
+
     async registration(payload) {
-        return axios.post(this.path + 'ragistration', payload);
+        return this.client.post(this.path + 'ragistration', payload);
     }
 }
