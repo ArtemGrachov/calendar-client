@@ -2,7 +2,9 @@
     <div>
         <UserHeader></UserHeader>
         <CalendarNav></CalendarNav>
-        <router-view></router-view>
+        <div class="container py-3">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 

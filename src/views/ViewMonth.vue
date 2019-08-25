@@ -1,40 +1,38 @@
 <template>
-    <div class="container py-3">
-        <table class="month-table">
-            <thead>
-                <tr>
-                    <th>
-                        Monday
-                    </th>
-                    <th>
-                        Tuesday
-                    </th>
-                    <th>
-                        Wednesday
-                    </th>
-                    <th>
-                        Thursday
-                    </th>
-                    <th>
-                        Friday
-                    </th>
-                    <th>
-                        Saturday
-                    </th>
-                    <th>
-                        Sunday
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="row in rows" :key="row">
-                    <td v-for="i in 7" :key="i">
-                        {{ grid[i * row - 1] }}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="month-table">
+        <thead>
+            <tr>
+                <th>
+                    Monday
+                </th>
+                <th>
+                    Tuesday
+                </th>
+                <th>
+                    Wednesday
+                </th>
+                <th>
+                    Thursday
+                </th>
+                <th>
+                    Friday
+                </th>
+                <th>
+                    Saturday
+                </th>
+                <th>
+                    Sunday
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="row in rows" :key="row">
+                <td v-for="i in 7" :key="i">
+                    {{ grid[i * row - 1] }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </template>
 
 <script>
