@@ -2,8 +2,20 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import RouterGuard from './router-guard';
 
 Vue.config.productionTip = false
+
+const guard = new RouterGuard(
+  router,
+  store,
+  {
+    'guest': '/auth/login',
+    'user': '/'
+  }
+)
+
+guard.init();
 
 new Vue({
   router,

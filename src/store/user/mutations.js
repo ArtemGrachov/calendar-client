@@ -12,7 +12,7 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     [USER_MUTATIONS_CLEAR](state) {
-        state = getInitialState();
+        Object.assign(state, getInitialState())
     },
     [USER_MUTATIONS_SET_DATA](state, payload) {
         state.user = payload.user;
