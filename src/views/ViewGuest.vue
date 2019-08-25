@@ -23,6 +23,7 @@
 
     .header {
         box-shadow: $shadow;
+        position: relative;
 
         .title {
             color: rgb(0, 119, 255);

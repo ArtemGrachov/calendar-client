@@ -37,6 +37,12 @@
         &:active {
             background: #6be0a9;
         }
+
+        &:disabled {
+            background: #c6ebda;
+            color: #405279;
+            box-shadow: none;
+        }
     }
 
     &-danger {
@@ -52,6 +58,12 @@
         &:active {
             background: #da0053;
         }
+
+        &:disabled {
+            background: #be6587;
+            color: #d6d6d6;
+            box-shadow: none;
+        }
     }
 
     &-grey {
@@ -66,6 +78,12 @@
     
         &:active {
             background: #cfcadf;
+        }
+
+        &:disabled {
+            background: #d0ced6;
+            color: #757f81;
+            box-shadow: none;
         }
     }
 }
@@ -87,4 +105,28 @@
     &-right {
         text-align: right;
     }
+}
+
+.form-message {
+    padding: $space * 2;
+    text-align: center;
+    color: #5b4d66;
+    letter-spacing: .075em;
+    background: #f7f5f8;
+    border-radius: $borderRadius * 2;
+}
+
+.required {
+    font-size: 12px;
+    vertical-align: .5em;
+    color: red;
+}
+
+.relative {
+    position: relative;
+}
+
+.form-preloader {
+    bottom: 0;
+    right: 0;
 }

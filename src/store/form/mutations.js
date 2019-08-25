@@ -9,7 +9,7 @@ import {
 export default {
     [FORM_MUTATIONS_CLEAR](state) {
         state.errors = [];
-        state.message = [];
+        state.message = '';
         state.processing = PROCESSING_INIT;
     },
     [FORM_MUTATIONS_SET_ERRORS](state, payload) {

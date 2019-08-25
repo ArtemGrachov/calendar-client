@@ -69,6 +69,12 @@ textarea {
     &:focus {
         color: black;
     }
+
+    &:disabled {
+        color: #494545;
+        box-shadow: inset 0 0 20px #f3f3f3;
+        cursor: not-allowed;
+    }
 }
 
 button,

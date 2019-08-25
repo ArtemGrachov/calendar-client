@@ -1,0 +1,82 @@
+@import './variables.scss';
+
+.preloader {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    animation-name: loader-rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background: lime;
+
+    &:before {
+        top: 0;
+        left: 0;
+        background: greenyellow;
+        animation-name: loader-before;
+    }
+
+    &:after {
+        bottom: 0;
+        right: 0;
+        background: lawngreen;
+        animation-name: loader-after;
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes loader-rotate {
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(-90deg);
+    }
+}
+
+@keyframes loader-before {
+    25% {
+        top: 100%;
+        left: 0%;
+    }
+    50% {
+        top: 100%;
+        left: 100%;
+    }
+    75% {
+        top: 0%;
+        left: 100%;
+    }
+    100% {
+        top: 0%;
+        left: 0%;
+    }
+}
+
+@keyframes loader-after {
+    25% {
+        bottom: 100%;
+        right: 0%;
+    }
+    50% {
+        bottom: 100%;
+        right: 100%;
+    }
+    75% {
+        bottom: 0%;
+        right: 100%;
+    }
+    100% {
+        bottom: 0%;
+        right: 0%;
+    }
+}
