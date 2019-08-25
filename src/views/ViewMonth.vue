@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import fillWeek from '../utils/fill-week';
 import fillMonth from '../utils/fill-month';
 
 export default {

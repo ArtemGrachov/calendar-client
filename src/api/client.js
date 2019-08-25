@@ -1,4 +1,4 @@
-export class HttpClient {
+export default class HttpClient {
     constructor(api, client) {
         this.api = api;
         this.client = client;

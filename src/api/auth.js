@@ -1,4 +1,4 @@
-import { HttpClient } from './client';
+import HttpClient from './client';
 
 export default class AuthClient extends HttpClient {
     constructor(api, client) {

@@ -1,6 +1,6 @@
-import { HttpClient } from './client';
+import HttpClient from './client';
 
-export class UserClient extends HttpClient {
+export default class UserClient extends HttpClient {
     constructor(api, client) {
         super(api, client);
         this.path = this.api + 'user/';
