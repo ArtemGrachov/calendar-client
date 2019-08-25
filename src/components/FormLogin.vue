@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="submit">
-        <div>
-            <label for="email">Email</label>
+        <div class="mb-3">
+            <label for="email" class="mb-2">Email</label>
             <input
                 type="email"
                 name="email"
@@ -9,8 +9,8 @@
                 v-model="email"
             >
         </div>
-        <div>
-            <label for="password">Password</label>
+        <div class="mb-3">
+            <label for="password" class="mb-2">Password</label>
             <input
                 type="password"
                 name="password"

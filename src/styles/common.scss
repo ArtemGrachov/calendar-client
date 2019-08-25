@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+%title {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    border-bottom: 3px double $violet;
+    letter-spacing: $letterSpacing;
+}
+
+%button {
+    padding: $space $space * 2;
+    border-radius: $space * 2;
+    text-transform: uppercase;
+    min-width: 120px;
+    background: #947fee;
+    color: #97e5f8;
+    font-weight: bold;
+    transition: $transition;
+    border: none;
+    letter-spacing: $letterSpacing;
+
+    &:hover,
+    &:focus {
+        background: #9684e5;
+        box-shadow: 0 5px 10px 0 rgba(#00ffc8, .5);
+    }
+
+    &:active {
+        background: #7961e2;
+    }
+}

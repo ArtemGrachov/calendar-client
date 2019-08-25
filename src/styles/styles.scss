@@ -1,0 +1,90 @@
+@import './variables.scss';
+@import './common.scss';
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.page {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.block {
+    padding: $space * 3;
+    border-radius: $borderRadius * 3;
+    box-shadow: $shadow;
+}
+
+.button {
+    @extend %button;
+
+    &-success {
+        background: #3ff5a0;
+        color: #0036ac;
+    
+        &:hover,
+        &:focus {
+            background: #60ffb5;
+            box-shadow: 0 5px 10px 0 rgba(#f08abd, .5);
+        }
+    
+        &:active {
+            background: #6be0a9;
+        }
+    }
+
+    &-danger {
+        background: #ff0022;
+        color: #ffffff;
+    
+        &:hover,
+        &:focus {
+            background: #ff1131;
+            box-shadow: 0 5px 10px 0 rgba(#ff950b, .5);
+        }
+    
+        &:active {
+            background: #da0053;
+        }
+    }
+
+    &-grey {
+        background: #d9d5eb;
+        color: #455053;
+    
+        &:hover,
+        &:focus {
+            background: #e0dcf1;
+            box-shadow: 0 5px 10px 0 rgba(#cddfda, .5);
+        }
+    
+        &:active {
+            background: #cfcadf;
+        }
+    }
+}
+
+.title {
+    @extend %title;
+    font-size: 2em;
+}
+
+.text {
+    &-left {
+        text-align: left;
+    }
+
+    &-center {
+        text-align: center;
+    }
+
+    &-right {
+        text-align: right;
+    }
+}
