@@ -6,10 +6,10 @@ export default class EventsClient extends HttpClient {
         this.path = this.api + 'events/';
     }
 
-    async getEvents(start, end) {
+    async getEvents(range) {
         return this.client.get(
             this.path,
-            { params: { start, end } }
+            { params: range }
         );
     }
 }

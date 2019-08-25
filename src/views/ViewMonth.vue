@@ -37,6 +37,7 @@
 
 <script>
 import fillMonth from '../utils/fill-month';
+import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 
 export default {
     data() {
@@ -52,6 +53,16 @@ export default {
     },
     created() {
         this.buildGrid();
+        const start = new Date(this.grid.slice(0, 1));
+        const end = new Date(this.grid.slice(-1));
+
+        this.$store.dispatch(
+            'events/' + EVENTS_ACTIONS_GET_EVENTS,
+            {
+                start: '2019-08-01',
+                end: '2019-08-31'
+            }
+        );
     },
     computed: {
         rows() {
