@@ -86,6 +86,25 @@
             box-shadow: none;
         }
     }
+
+    &-flat {
+        padding: 0;
+        min-width: 0;
+        border-radius: 0;
+        background: none;
+        color: #1548b6;
+
+        &:hover,
+        &:focus {
+            background: none;
+            box-shadow: none;
+            color: #5f92ff;
+        }
+
+        &:active {
+            color: #9900ff;
+        }
+    }
 }
 
 .title {
