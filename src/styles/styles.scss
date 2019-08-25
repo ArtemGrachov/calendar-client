@@ -23,6 +23,7 @@
 
 .button {
     @extend %button;
+    display: inline-block;
 
     &-success {
         background: #3ff5a0;
@@ -103,6 +104,19 @@
 
         &:active {
             color: #9900ff;
+        }
+    }
+
+    &-transparent {
+        background: transparent;
+        color: orange;
+        box-shadow: $shadow;
+
+        &:focus,
+        &:hover {
+            color: $violet;
+            background: none;
+            box-shadow: $shadow;
         }
     }
 }

@@ -1,16 +1,18 @@
 <template>
     <header class="header py-3 px-5">
-        <UserAvatar :avatarUrl="user.avatarUrl"></UserAvatar>
-        <div class="username ml-3">
-            {{ user.firstname }}
-            {{ user.lastname }}
-        </div>
-        <div class="controls ml-auto">
-            <button class="button-flat" @click="logout">
-                <i class="material-icons">
-                    exit_to_app
-                </i>
-            </button>
+        <div class="container d-flex align-items-center">
+            <UserAvatar :avatarUrl="user.avatarUrl"></UserAvatar>
+            <div class="username ml-3">
+                {{ user.firstname }}
+                {{ user.lastname }}
+            </div>
+            <div class="controls ml-auto">
+                <button class="button-flat" @click="logout">
+                    <i class="material-icons">
+                        exit_to_app
+                    </i>
+                </button>
+            </div>
         </div>
     </header>
 </template>
@@ -41,8 +43,6 @@ export default {
 
     .header {
         box-shadow: $shadow;
-        display: flex;
-        align-items: center;
     }
     .username {
         font-weight: bold;
