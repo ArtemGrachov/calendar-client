@@ -28,7 +28,7 @@
         <tbody>
             <tr v-for="row in rows" :key="row">
                 <td v-for="i in 7" :key="i">
-                    {{ grid[i * row - 1] }}
+                    <DayBlock :date="grid[i - 1 + (row - 1) * 7]"></DayBlock>
                 </td>
             </tr>
         </tbody>
@@ -39,7 +39,12 @@
 import fillMonth from '../utils/fill-month';
 import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 
+import DayBlock from '../components/DayBlock';
+
 export default {
+    components: {
+        DayBlock
+    },
     data() {
         return {
             grid: []
@@ -53,8 +58,6 @@ export default {
     },
     created() {
         this.buildGrid();
-        const start = new Date(this.grid.slice(0, 1));
-        const end = new Date(this.grid.slice(-1));
 
         this.$store.dispatch(
             'events/' + EVENTS_ACTIONS_GET_EVENTS,
@@ -84,6 +87,7 @@ export default {
 
         td {
             height: 150px;
+            vertical-align: top;
         }
     }
 </style>
