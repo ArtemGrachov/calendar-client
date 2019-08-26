@@ -16,7 +16,9 @@ export default {
         EventBlock
     },
     props: {
-        date: Date
+        date: {
+            validator: value => value.constructor.name === 'Moment'
+        }
     },
     computed: {
         strDate() {

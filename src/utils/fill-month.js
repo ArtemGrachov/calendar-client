@@ -1,14 +1,14 @@
 export default function(date) {
     const result = [];
-    const newDate = new Date(date);
-    newDate.setDate(1);
-    const month = newDate.getMonth();
+    const iDate = date.clone();
+    const month = iDate.month();
 
-    newDate.setDate(newDate.getDate() - (newDate.getDay() || 7));
+    iDate.date(1);
+    iDate.date(iDate.date() - (iDate.day() || 7));
 
-    while (newDate.getMonth() <= month || newDate.getDay() !== 0) {
-        newDate.setDate(newDate.getDate() + 1);
-        result.push(new Date(newDate));
+    while (iDate.month() <= month || iDate.day() !== 0) {
+        iDate.add(1, 'days');
+        result.push(iDate.clone());
     }
 
     return result;

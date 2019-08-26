@@ -1,11 +1,11 @@
 export default function(date) {
     const result = [];
-    const newDate = new Date(date);
-    newDate.setDate(newDate.getDate() - (newDate.getDay() || 7));
+    const iDate = date.clone();
+    iDate.date(iDate.date() - (iDate.day() || 7));
 
     for(let i = 1; i < 8; i++) {
-        newDate.setDate(newDate.getDate() + i);
-        result.push(new Date(newDate));
+        iDate.add(1, 'days');
+        result.push(iDate.clone());
     }
 
     return result;

@@ -4,7 +4,9 @@ export default {
     props: {
         start: Number,
         end: Number,
-        date: Date,
+        date: {
+            validator: value => value.constructor.name === 'Moment'
+        },
         stepMin: Number,
         stepHeightPx: Number
     },

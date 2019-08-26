@@ -1,9 +1,12 @@
+import moment from 'moment';
+
 export default {
     byRange: state => range => state.items.filter(
         (event) => {
-            const start = new Date(event.start);
-            const end = new Date(event.end);
-            return start < range.end && end > range.start;
+            const start = moment(event.start);
+            const end = moment(event.end);
+
+            return start.isBefore(range.end) && end.isAfter(range.start);
         }
     )
 }

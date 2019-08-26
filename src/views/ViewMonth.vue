@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import fillMonth from '../utils/fill-month';
 import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 
@@ -47,13 +48,13 @@ export default {
     },
     data() {
         return {
-            grid: []
+            grid: [],
+            date: moment()
         }
     },
     methods: {
         buildGrid() {
-            let date = new Date();
-            this.grid = fillMonth(date);
+            this.grid = fillMonth(this.date);
         }
     },
     created() {
