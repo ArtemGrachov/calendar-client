@@ -1,6 +1,7 @@
 <template>
     <div>
         <EventBlock
+            class="small"
             v-for="event in events"
             :key="event.id"
             :event="event"
