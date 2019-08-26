@@ -6,7 +6,6 @@
             v-for="step in steps"
             :key="step"
         >
-
         </div>
     </div>
 </template>
@@ -20,8 +19,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '../styles/variables.scss';
     .step {
-        border: 1px solid red;
-        margin: 1px;
+        $border: 1px solid #f0f0f0;
+        border-top: $border;
     }
 </style>

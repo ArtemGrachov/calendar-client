@@ -32,7 +32,10 @@ export default {
 
 <style lang="scss" scoped>
     .step {
-        border: 1px solid blue;
-        margin: 1px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #a1a1a1;
+        font-size: 12px;
     }
 </style>
