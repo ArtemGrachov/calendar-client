@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import VueMoment from 'vue-moment';
 import router from './router'
 import store from './store'
 import RouterGuard from './router-guard';
@@ -17,6 +18,8 @@ const guard = new RouterGuard(
 )
 
 guard.init();
+
+Vue.use(VueMoment);
 
 new Vue({
   router,

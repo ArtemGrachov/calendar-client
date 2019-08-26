@@ -2,6 +2,7 @@
     <table class="week-table">
         <thead>
             <tr>
+                <th class="hours"></th>
                 <th>
                     Monday
                 </th>
@@ -27,8 +28,23 @@
         </thead>
         <tbody>
             <tr>
+                <td class="hours">
+                    <DayHours
+                        :start="start"
+                        :end="end"
+                        :stepMin="stepMin"
+                        :stepHeightPx="stepHeightPx"
+                        :date="date"
+                    ></DayHours>
+                </td>
                 <td v-for="i in 7" :key="i">
-                    {{ grid[i - 1] }}
+                    <DayGrid
+                        :start="start"
+                        :end="end"
+                        :stepMin="stepMin"
+                        :stepHeightPx="stepHeightPx"
+                        :date="grid[i]"
+                    ></DayGrid>
                 </td>
             </tr>
         </tbody>
@@ -37,20 +53,30 @@
 
 <script>
 import fillWeek from '../utils/fill-week';
+import DayGrid from '../components/DayGrid';
+import DayHours from '../components/DayHours';
 
 export default {
+    components: {
+        DayGrid,
+        DayHours
+    },
     data() {
         return {
-            grid: []
+            grid: [],
+            start: 6,
+            end: 22,
+            stepMin: 15,
+            stepHeightPx: 32,
+            date: new Date()
         }
     },
     methods: {
         buildGrid() {
-            let date = new Date();
-            this.grid = fillWeek(date);
+            this.grid = fillWeek(this.date);
         }
     },
-    created() {
+    beforeMount() {
         this.buildGrid();
     }
 }
@@ -69,5 +95,9 @@ export default {
         td {
             height: 150px;
         }
+    }
+
+    .hours {
+        width: 70px;
     }
 </style>
