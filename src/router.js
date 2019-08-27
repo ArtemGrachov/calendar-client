@@ -42,26 +42,26 @@ const router = new Router({
                             name: 'year',
                             path: 'year',
                             component: () =>
-                                import(/* webpackChunkName: "year" */ './views/ViewYear.vue')
+                                import(/* webpackChunkName: "year" */ './components/CalendarYear.vue')
                         },
                         {
                             name: 'month',
                             path: 'month',
                             component: () =>
-                                import(/* webpackChunkName: "month" */ './views/ViewMonth.vue')
+                                import(/* webpackChunkName: "month" */ './components/CalendarMonth.vue')
                         },
                         {
                             name: 'day',
                             path: 'day',
                             component: () =>
-                                import(/* webpackChunkName: "day" */ './views/ViewDay.vue')
+                                import(/* webpackChunkName: "day" */ './components/CalendarDay.vue')
                         },
                         {
                             name: 'week',
                             path: '',
                             alias: 'week',
                             component: () =>
-                                import(/* webpackChunkName: "week" */ './views/ViewWeek.vue')
+                                import(/* webpackChunkName: "week" */ './components/CalendarWeek.vue')
                         }
                     ]
                 }

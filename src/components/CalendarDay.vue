@@ -34,9 +34,9 @@
 <script>
 import moment from 'moment';
 import fillWeek from '../utils/fill-week';
-import DayGrid from '../components/DayGrid';
-import DayHours from '../components/DayHours';
-import EventBlock from '../components/EventBlock';
+import DayGrid from './DayGrid';
+import DayHours from './DayHours';
+import EventBlock from './EventBlock';
 import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 import calendarWithHoursMixin from '../mixins/calendar-view-hours-mixin';
@@ -59,12 +59,12 @@ export default {
         }
     },
     methods: {
-        getEventsByRange(range) {
+        _getEventsByRange(range) {
             return this
                 .$store
                 .getters['events/byRange'](range);
         },
-        loadEventsByRange(range) {
+        _loadEventsByRange(range) {
             const { start, end } = range;
             this.$store.dispatch('events/' + EVENTS_ACTIONS_GET_EVENTS, {
                 start: start.toJSON(),

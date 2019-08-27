@@ -1,8 +1,11 @@
+import moment from 'moment';
+
 export default {
     props: {
         date: {
             validator: value => value.constructor.name === 'Moment'
-        }
+        },
+        events: Array
     },
     watch: {
         grid() {
@@ -28,10 +31,19 @@ export default {
             return { start, end }
         },
         getDateEvents(date) {
-            return this.getEventsByRange(this.dateRange(date));
+            const range = this.dateRange(date);
+            return this
+                .events
+                .filter(
+                    (event) => {
+                        const start = moment(event.start);
+                        const end = moment(event.end);
+
+                        return start.isBefore(range.end) && end.isAfter(range.start);
+                    })
         },
         loadEvents() {
-            this.loadEventsByRange(this.gridRange());
+            this.$emit('loadEvents', this.gridRange());
         }
     },
     beforeMount() {

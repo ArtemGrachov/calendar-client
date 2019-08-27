@@ -49,7 +49,7 @@ import fillMonth from '../utils/fill-month';
 import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 
-import EventBlock from '../components/EventBlock';
+import EventBlock from './EventBlock';
 
 export default {
     components: {
@@ -65,12 +65,12 @@ export default {
         }
     },
     methods: {
-        getEventsByRange(range) {
+        _getEventsByRange(range) {
             return this
                 .$store
                 .getters['events/byRange'](range);
         },
-        loadEventsByRange(range) {
+        _loadEventsByRange(range) {
             const { start, end } = range;
             this.$store.dispatch('events/' + EVENTS_ACTIONS_GET_EVENTS, {
                 start: start.toJSON(),
