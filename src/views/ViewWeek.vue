@@ -66,7 +66,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 import fillWeek from '../utils/fill-week';
 import DayGrid from '../components/DayGrid';
 import DayHours from '../components/DayHours';
@@ -120,7 +119,6 @@ export default {
         }
 
         td {
-            height: 150px;
             position: relative;
         }
     }
