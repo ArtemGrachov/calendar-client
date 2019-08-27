@@ -24,8 +24,13 @@ export default {
         },
         gridRange() {
             const start = this.grid[0]
+                .startOf('day')
                 .clone();
             const end = this.grid.slice(-1)[0]
+                .hours(23)
+                .minutes(59)
+                .seconds(59)
+                .milliseconds(999)
                 .clone();
 
             return { start, end }
