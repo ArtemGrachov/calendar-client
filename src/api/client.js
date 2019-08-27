@@ -9,6 +9,7 @@ export default class HttpClient {
             .client
             .defaults
             .headers
-            .common['Authorization'] = `Bearer ${token}`;
+            .common
+            .Authorization = `Bearer ${token}`;
     }
 }
