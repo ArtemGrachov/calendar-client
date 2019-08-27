@@ -119,6 +119,15 @@
             box-shadow: $shadow;
         }
     }
+
+    &-round {
+        padding: 0;
+        width: 2.5em;
+        height: 2.5em;
+        min-width: auto;
+        border-radius: 50%;
+        padding-top: 6px;
+    }
 }
 
 .title {

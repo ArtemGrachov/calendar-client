@@ -1,12 +1,68 @@
 <template>
     <nav class="nav py-2 px-3">
-        <div class="container d-flex">
-            <button class="button button-success mr-auto">Go today</button>
-            <router-link to="day" class="button button-transparent mx-1">Day</router-link>
-            <router-link to="week" class="button button-transparent mx-1">Week</router-link>
-            <router-link to="month" class="button button-transparent mx-1">Month</router-link>
-            <router-link to="year" class="button button-transparent mx-1">Year</router-link>
+        <div class="container d-flex align-items-center">
+            <div class="mr-auto">
+                <button
+                    class="button-transparent button-round nav-button"
+                    @click="prev"
+                >
+                    <i class="material-icons">
+                        keyboard_arrow_left
+                    </i>
+                </button>
+                <button
+                    class="button button-transparent nav-button mx-3"
+                    @click="today"
+                >
+                    Go today
+                </button>
+                <button
+                    class="button-transparent button-round nav-button"
+                    @click="next"
+                >
+                    <i class="material-icons">
+                        keyboard_arrow_right
+                    </i>
+                </button>
+            </div>
+            <button class="button-transparent mx-1" @click="changeMode('day')">
+                Day
+            </button>
+            <button class="button-transparent mx-1" @click="changeMode('week')">
+                Week
+            </button>
+            <button class="button-transparent mx-1" @click="changeMode('month')">
+                Month
+            </button>
+            <button class="button-transparent mx-1" @click="changeMode('year')">
+                Year
+            </button>
         </div>
     </nav>
 </template>
 
+<script>
+export default {
+    methods: {
+        changeMode(mode) {
+            this.$emit('mode', mode);
+        },
+        next() {
+            this.$emit('next');
+        },
+        prev() {
+            this.$emit('prev');
+        },
+        today() {
+            this.$emit('today');
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+    .nav-button {
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>

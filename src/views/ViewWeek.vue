@@ -5,24 +5,31 @@
                 <th class="hours"></th>
                 <th>
                     Monday
+                    {{grid[0] | moment('DD.MM')}}
                 </th>
                 <th>
                     Tuesday
+                    {{grid[1] | moment('DD.MM')}}
                 </th>
                 <th>
                     Wednesday
+                    {{grid[2] | moment('DD.MM')}}
                 </th>
                 <th>
                     Thursday
+                    {{grid[3] | moment('DD.MM')}}
                 </th>
                 <th>
                     Friday
+                    {{grid[4] | moment('DD.MM')}}
                 </th>
                 <th>
                     Saturday
+                    {{grid[5] | moment('DD.MM')}}
                 </th>
                 <th>
                     Sunday
+                    {{grid[6] | moment('DD.MM')}}
                 </th>
             </tr>
         </thead>
@@ -50,7 +57,7 @@
                         :end="end"
                         :stepMin="stepMin"
                         :stepHeightPx="stepHeightPx"
-                        :date="grid[i + 1]"
+                        :date="grid[i - 1]"
                     ></DayGrid>
                 </td>
             </tr>
@@ -65,88 +72,39 @@ import DayGrid from '../components/DayGrid';
 import DayHours from '../components/DayHours';
 import EventBlock from '../components/EventBlock';
 import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
+import calendarViewMixin from '../mixins/calendar-view-mixin';
+import calendarWithHoursMixin from '../mixins/calendar-view-hours-mixin';
 
 export default {
+    mixins: [calendarViewMixin, calendarWithHoursMixin],
     components: {
         DayGrid,
         DayHours,
         EventBlock
     },
-    data() {
-        return {
-            grid: [],
-            start: 6,
-            end: 22,
-            stepMin: 15,
-            stepHeightPx: 32,
-            date: moment()
+    props: {
+        date: {
+            validator: value => value.constructor.name === 'Moment'
         }
     },
     computed: {
-        minutePx() {
-            return this.stepHeightPx / this.stepMin;
+        grid() {
+            return fillWeek(this.date);
         }
     },
     methods: {
-        buildGrid() {
-            this.grid = fillWeek(this.date);
+        getEventsByRange(range) {
+            return this
+                .$store
+                .getters['events/byRange'](range);
         },
-        getDateEvents(date) {
-            const start = date
-                .clone()
-                .startOf('day')
-                .hours(this.start);
-            const end = date
-                .clone()
-                .startOf('day')
-                .hours(this.end);
-            return this.$store.getters['events/byRange']({
-                start, end
-            });
-        },
-        getEventPos(date, event) {
-            const start = date.clone()
-                .startOf('day')
-                .hours(this.start);
-
-            const eventStart = moment(event.start);
-            const eventEnd = moment(event.end);
-
-            const diffM = moment.duration(
-                eventStart.diff(start)
-            ).asMinutes();
-
-            const lengthM = moment.duration(
-                eventEnd.diff(eventStart)
-            ).asMinutes();
-
-            const topPx = diffM * this.minutePx;
-            const heightPx = lengthM * this.minutePx;
-
-            return {
-                top: topPx + 'px',
-                height: heightPx + 'px'
-            }
-        },
-        loadEvents() {
-            const start = this.grid[0]
-                .clone()
-                .startOf('day')
-                .hours(this.start);
-            const end = this.grid.slice(-1)[0]
-                .clone()
-                .startOf('day')
-                .hours(this.end);
-
+        loadEventsByRange(range) {
+            const { start, end } = range;
             this.$store.dispatch('events/' + EVENTS_ACTIONS_GET_EVENTS, {
                 start: start.toJSON(),
                 end: end.toJSON()
             });
         }
-    },
-    beforeMount() {
-        this.buildGrid();
-        this.loadEvents();
     }
 }
 </script>

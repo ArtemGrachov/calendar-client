@@ -7,6 +7,10 @@
 
 <script>
 export default {
-
+    props: {
+        date: {
+            validator: value => value.constructor.name === 'Moment'
+        }
+    },
 }
 </script>

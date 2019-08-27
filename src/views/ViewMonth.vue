@@ -46,10 +46,14 @@ export default {
     components: {
         DayBlock
     },
+    props: {
+        date: {
+            validator: value => value.constructor.name === 'Moment'
+        }
+    },
     data() {
         return {
-            grid: [],
-            date: moment()
+            grid: []
         }
     },
     methods: {

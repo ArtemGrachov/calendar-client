@@ -1,7 +1,6 @@
 <template>
     <div>
         <UserHeader></UserHeader>
-        <CalendarNav></CalendarNav>
         <div class="container py-3">
             <router-view></router-view>
         </div>
@@ -10,12 +9,10 @@
 
 <script>
 import UserHeader from '../components/UserHeader';
-import CalendarNav from '../components/CalendarNav';
 
 export default {
     components: {
-        UserHeader,
-        CalendarNav
+        UserHeader
     }
 }
 </script>

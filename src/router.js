@@ -29,36 +29,41 @@ const router = new Router({
         },
         {
             path: '/',
-            name: 'user',
             component: () => import(/* webpackChunkName: "user" */ './views/ViewUser.vue'),
             meta: {
                 allow: ['user']
             },
             children: [
                 {
-                    name: 'year',
-                    path: 'year',
-                    component: () =>
-                        import(/* webpackChunkName: "year" */ './views/ViewYear.vue')
-                },
-                {
-                    name: 'month',
-                    path: 'month',
-                    component: () =>
-                        import(/* webpackChunkName: "month" */ './views/ViewMonth.vue')
-                },
-                {
-                    name: 'day',
-                    path: 'day',
-                    component: () =>
-                        import(/* webpackChunkName: "day" */ './views/ViewDay.vue')
-                },
-                {
-                    name: 'week',
                     path: '',
-                    alias: 'week',
-                    component: () =>
-                        import(/* webpackChunkName: "week" */ './views/ViewWeek.vue')
+                    component: () => import(/* webpackChunkName: "user" */ './views/ViewCalendar.vue'),
+                    children: [
+                        {
+                            name: 'year',
+                            path: 'year',
+                            component: () =>
+                                import(/* webpackChunkName: "year" */ './views/ViewYear.vue')
+                        },
+                        {
+                            name: 'month',
+                            path: 'month',
+                            component: () =>
+                                import(/* webpackChunkName: "month" */ './views/ViewMonth.vue')
+                        },
+                        {
+                            name: 'day',
+                            path: 'day',
+                            component: () =>
+                                import(/* webpackChunkName: "day" */ './views/ViewDay.vue')
+                        },
+                        {
+                            name: 'week',
+                            path: '',
+                            alias: 'week',
+                            component: () =>
+                                import(/* webpackChunkName: "week" */ './views/ViewWeek.vue')
+                        }
+                    ]
                 }
             ]
         }
