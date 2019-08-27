@@ -44,15 +44,5 @@ export default {
             text-align: center;
             font-weight: bold;
         }
-
-        &.small {
-            font-size: 12px;
-
-            .event {
-                &-time {
-                    margin-bottom: 0;
-                }
-            }
-        }
     }
 </style>

@@ -172,3 +172,15 @@
     bottom: 0;
     right: 0;
 }
+
+.calendar-header {
+    padding: $space;
+
+    &-date {
+        font-size: 24px;
+    }
+
+    &-day {
+        font-size: 18px;
+    }
+}

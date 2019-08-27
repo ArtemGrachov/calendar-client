@@ -1,34 +1,44 @@
 <template>
-    <table class="day-table">
-        <tr>
-            <td class="hours">
-                <DayHours
-                    :start="start"
-                    :end="end"
-                    :stepMin="stepMin"
-                    :stepHeightPx="stepHeightPx"
-                    :date="date"
-                ></DayHours>
+    <div class="calendar">
+        <div class="calendar-header mb-3">
+            <div class="calendar-header-date">
+                {{ date | moment('MMMM Do YYYY') }}
+            </div>
+            <div class="calendar-header-day">
+                {{ date | moment('dddd') }}
+            </div>
+        </div>
+        <table class="day-table">
+            <tr>
+                <td class="hours">
+                    <DayHours
+                        :start="start"
+                        :end="end"
+                        :stepMin="stepMin"
+                        :stepHeightPx="stepHeightPx"
+                        :date="date"
+                    ></DayHours>
 
-            </td>
-            <td>
-                <EventBlock
-                    class="event"
-                    :style="getEventPos(date, event)"
-                    v-for="event in getDateEvents(date)"
-                    :key="event.id"
-                    :event="event"
-                ></EventBlock>
-                <DayGrid
-                    :start="start"
-                    :end="end"
-                    :stepMin="stepMin"
-                    :stepHeightPx="stepHeightPx"
-                    :date="date"
-                ></DayGrid>
-            </td>
-        </tr>
-    </table>
+                </td>
+                <td>
+                    <EventBlock
+                        class="event"
+                        :style="getEventPos(date, event)"
+                        v-for="event in getDateEvents(date)"
+                        :key="event.id"
+                        :event="event"
+                    ></EventBlock>
+                    <DayGrid
+                        :start="start"
+                        :end="end"
+                        :stepMin="stepMin"
+                        :stepHeightPx="stepHeightPx"
+                        :date="date"
+                    ></DayGrid>
+                </td>
+            </tr>
+        </table>
+    </div>
 </template>
 
 <script>
