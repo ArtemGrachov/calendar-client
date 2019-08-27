@@ -4,8 +4,6 @@ export default {
             validator: value => value.constructor.name === 'Moment'
         }
     },
-    data() {
-    },
     watch: {
         grid() {
             this.loadEvents();

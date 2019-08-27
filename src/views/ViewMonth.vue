@@ -28,7 +28,15 @@
         <tbody>
             <tr v-for="row in rows" :key="row">
                 <td v-for="i in 7" :key="i">
-                    <DayBlock :date="grid[i - 1 + (row - 1) * 7]"></DayBlock>
+                    <div class="date">
+                        {{ grid[i - 1 + (row - 1) * 7] | moment('DD') }}
+                    </div>
+                    <EventBlock
+                        class="small"
+                        v-for="event in getDateEvents(grid[i - 1 + (row - 1) * 7])"
+                        :key="event.id"
+                        :event="event"
+                    ></EventBlock>
                 </td>
             </tr>
         </tbody>
@@ -39,48 +47,43 @@
 import moment from 'moment';
 import fillMonth from '../utils/fill-month';
 import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
+import calendarViewMixin from '../mixins/calendar-view-mixin';
 
-import DayBlock from '../components/DayBlock';
+import EventBlock from '../components/EventBlock';
 
 export default {
     components: {
-        DayBlock
+        EventBlock
     },
-    props: {
-        date: {
-            validator: value => value.constructor.name === 'Moment'
-        }
-    },
-    data() {
-        return {
-            grid: []
+    mixins: [calendarViewMixin],
+    computed: {
+        grid() {
+            return fillMonth(this.date);
+        },
+        rows() {
+            return this.grid.length / 7;
         }
     },
     methods: {
-        buildGrid() {
-            this.grid = fillMonth(this.date);
-        }
-    },
-    created() {
-        this.buildGrid();
-
-        this.$store.dispatch(
-            'events/' + EVENTS_ACTIONS_GET_EVENTS,
-            {
-                start: '2019-08-01',
-                end: '2019-08-31'
-            }
-        );
-    },
-    computed: {
-        rows() {
-            return this.grid.length / 7;
+        getEventsByRange(range) {
+            return this
+                .$store
+                .getters['events/byRange'](range);
+        },
+        loadEventsByRange(range) {
+            const { start, end } = range;
+            this.$store.dispatch('events/' + EVENTS_ACTIONS_GET_EVENTS, {
+                start: start.toJSON(),
+                end: end.toJSON()
+            });
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+    @import '../styles/variables';
+
     .month-table {
         width: 100%;
         table-layout: fixed;
@@ -94,5 +97,12 @@ export default {
             height: 150px;
             vertical-align: top;
         }
+    }
+
+    .date {
+        padding: $space;
+        font-size: 18px;
+        color: #ccc;
+        text-align: right;
     }
 </style>
