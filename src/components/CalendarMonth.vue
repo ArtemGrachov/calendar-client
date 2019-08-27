@@ -44,9 +44,7 @@
 </template>
 
 <script>
-import moment from 'moment';
 import fillMonth from '../utils/fill-month';
-import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 
 import EventBlock from './EventBlock';
@@ -62,20 +60,6 @@ export default {
         },
         rows() {
             return this.grid.length / 7;
-        }
-    },
-    methods: {
-        _getEventsByRange(range) {
-            return this
-                .$store
-                .getters['events/byRange'](range);
-        },
-        _loadEventsByRange(range) {
-            const { start, end } = range;
-            this.$store.dispatch('events/' + EVENTS_ACTIONS_GET_EVENTS, {
-                start: start.toJSON(),
-                end: end.toJSON()
-            });
         }
     }
 }

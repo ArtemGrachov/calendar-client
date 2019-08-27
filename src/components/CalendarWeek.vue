@@ -70,7 +70,6 @@ import fillWeek from '../utils/fill-week';
 import DayGrid from './DayGrid';
 import DayHours from './DayHours';
 import EventBlock from './EventBlock';
-import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 import calendarWithHoursMixin from '../mixins/calendar-view-hours-mixin';
 
@@ -81,28 +80,9 @@ export default {
         DayHours,
         EventBlock
     },
-    props: {
-        date: {
-            validator: value => value.constructor.name === 'Moment'
-        }
-    },
     computed: {
         grid() {
             return fillWeek(this.date);
-        }
-    },
-    methods: {
-        _getEventsByRange(range) {
-            return this
-                .$store
-                .getters['events/byRange'](range);
-        },
-        _loadEventsByRange(range) {
-            const { start, end } = range;
-            this.$store.dispatch('events/' + EVENTS_ACTIONS_GET_EVENTS, {
-                start: start.toJSON(),
-                end: end.toJSON()
-            });
         }
     }
 }
