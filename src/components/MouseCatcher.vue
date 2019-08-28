@@ -5,7 +5,6 @@
         @mousemove="mousemove($event)"
         @mousedown="mousedown($event)"
     >
-        {{mode}}
     </div>
 </template>
 
@@ -31,7 +30,7 @@ export default {
         mousemove(event) {
             if (this.mode === 'watch') {
                 this.selectionController.event({
-                    type: 'mousemove',
+                    type: 'newPosition',
                     y: event.offsetY,
                     date: this.date
                 });
@@ -39,7 +38,7 @@ export default {
         },
         mousedown(event) {
             this.selectionController.event({
-                type: 'mousedown',
+                type: 'create',
                 y: event.offsetY,
                 date: this.date
             });
@@ -66,10 +65,11 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(yellow, .3);
+        z-index: 1;
+        user-select: none;
 
         &.keep-on-top {
-            z-index: 3;
+            z-index: 4;
         }
     }
 </style>

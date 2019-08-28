@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export default class SelectionController {
     mode = 'idle';
 
@@ -22,35 +24,56 @@ export default class SelectionController {
     }
 
     event(event) {
-        this.mode = event.type;
-
         switch(event.type) {
-            case 'mousedown': {
+            case 'create': {
                 const minutes = this.minutesToGrid(this.posToMinutes(event.y)); 
                 this.selection = this.createSelection(event.date, minutes);
                 this.sendSelection(this.selection);
-                this.watchers.forEach(watcher => watcher('watch'));
                 this.mode = 'updateEnd';
-
-                const listener = () => {
-                    this.listenMouseUp();
-                    document.removeEventListener('mouseup', listener);
-                };
-
-                document.addEventListener('mouseup', listener);
-
+                this.watchPosition();
                 break;
             }
-            case 'mousemove': {
-                const minutes = this.minutesToGrid(this.posToMinutes(event.y)); 
-                this.selection = this.updateSelectionEnd(event.date, minutes);
-                this.sendSelection(this.selection);
+            case 'newPosition': {
+                this.newPosition(event);
+                break;
+            }
+            case 'changeEnd': {
+                this.watchPosition();
+                this.mode = 'updateEnd';
+                break;
+            }
+            case 'moveTop': {
+                this.watchPosition();
+                this.mode = 'updatePos';
                 break;
             }
         }
-        // create
-        // changeEnd
-        // moveStart
+    }
+
+    watchPosition() {
+        this.watchers.forEach(watcher => watcher('watch'));
+
+        const listener = () => {
+            this.listenMouseUp();
+            document.removeEventListener('mouseup', listener);
+        };
+
+        document.addEventListener('mouseup', listener);
+    }
+
+    newPosition(event) {
+        const minutes = this.minutesToGrid(this.posToMinutes(event.y));
+        switch (this.mode) {
+            case 'updateEnd': {
+                this.selection = this.updateSelectionEnd(event.date, minutes);
+                break;
+            }
+            case 'updatePos': {
+                this.selection = this.updateSelectionPos(event.date, minutes);
+                break;
+            }
+        }
+        this.sendSelection(this.selection);
     }
 
     createSelection(date, min) {
@@ -91,6 +114,25 @@ export default class SelectionController {
             ...this.selection,
             end
         }
+    }
+
+    updateSelectionPos(date, min) {
+        const length = moment.duration(
+            this.selection.end.diff(this.selection.start)
+        ).asMinutes();
+
+        const start = date
+            .clone()
+            .startOf('day');
+
+        start.hours(this.startHour);
+        start.add(min, 'minutes');
+
+        const end = start
+            .clone()
+            .add(length, 'minutes')
+
+        return { start, end };
     }
 
     posToMinutes(pos) {
