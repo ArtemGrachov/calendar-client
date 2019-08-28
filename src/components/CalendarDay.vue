@@ -35,6 +35,20 @@
                         :stepHeightPx="stepHeightPx"
                         :date="date"
                     ></DayGrid>
+                    <MouseCatcher
+                        :date="date"
+                        :selectionController="selectionController"
+                    ></MouseCatcher>
+                    <CalendarSelection
+                        v-if="selection && isSelectionInRange(date, selection)"
+                        :style="getEventPos(date, selection)"
+                        :selectionController="selectionController"
+                        :date="date"
+                        :selection="selection"
+                        :start="start"
+                        :end="end"
+                    >
+                    </CalendarSelection>
                 </td>
             </tr>
         </table>
@@ -45,15 +59,24 @@
 import DayGrid from './DayGrid';
 import DayHours from './DayHours';
 import EventBlock from './EventBlock';
+import MouseCatcher from './MouseCatcher';
+import CalendarSelection from './CalendarSelection'
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 import calendarWithHoursMixin from '../mixins/calendar-view-hours-mixin';
+import calendarViewSelectionMixin from '../mixins/calendar-view-selection-mixin';
 
 export default {
-    mixins: [calendarViewMixin, calendarWithHoursMixin],
+    mixins: [
+        calendarViewMixin,
+        calendarWithHoursMixin,
+        calendarViewSelectionMixin
+    ],
     components: {
         DayGrid,
         DayHours,
-        EventBlock
+        EventBlock,
+        MouseCatcher,
+        CalendarSelection
     },
     computed: {
         grid() {
