@@ -16,6 +16,7 @@ export default {
     },
     methods: {
         getEventPos(date, event) {
+            const range = this.dateRange(date);
             const start = date.clone()
                 .startOf('day')
                 .hours(this.start);
@@ -23,21 +24,30 @@ export default {
             const eventStart = moment(event.start);
             const eventEnd = moment(event.end);
 
+            const posStart = eventStart.isSameOrAfter(range.start) ?
+                eventStart :
+                range.start;
+            const posEnd = eventEnd.isSameOrBefore(range.end) ?
+                eventEnd :
+                range.end;
+
             const diffM = moment.duration(
-                eventStart.diff(start)
+                posStart.diff(start)
             ).asMinutes();
 
             const lengthM = moment.duration(
-                eventEnd.diff(eventStart)
+                posEnd.diff(posStart)
             ).asMinutes();
 
             const topPx = diffM * this.minutePx;
             const heightPx = lengthM * this.minutePx;
 
-            return {
+            const result = {
                 top: topPx + 'px',
                 height: heightPx + 'px'
             }
+
+            return result;
         },
         dateRange(date) {
             const start = date

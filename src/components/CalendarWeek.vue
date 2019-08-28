@@ -32,6 +32,10 @@
                         ></DayHours>
                     </td>
                     <td v-for="i in 7" :key="i">
+                        <MouseCatcher
+                            :date="grid[i - 1]"
+                            :selectionController="selectionController"
+                        ></MouseCatcher>
                         <EventBlock
                             class="event"
                             :style="getEventPos(grid[i - 1], event)"
@@ -46,6 +50,12 @@
                             :stepHeightPx="stepHeightPx"
                             :date="grid[i - 1]"
                         ></DayGrid>
+                        <div
+                            v-if="selection && isSelectionInRange(grid[i - 1], selection)"
+                            class="selection"
+                            :style="getEventPos(grid[i - 1], selection)"
+                        >
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -58,15 +68,22 @@ import fillWeek from '../utils/fill-week';
 import DayGrid from './DayGrid';
 import DayHours from './DayHours';
 import EventBlock from './EventBlock';
+import MouseCatcher from './MouseCatcher';
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 import calendarWithHoursMixin from '../mixins/calendar-view-hours-mixin';
+import calendarViewSelectionMixin from '../mixins/calendar-view-selection-mixin';
 
 export default {
-    mixins: [calendarViewMixin, calendarWithHoursMixin],
+    mixins: [
+        calendarViewMixin,
+        calendarWithHoursMixin,
+        calendarViewSelectionMixin
+    ],
     components: {
         DayGrid,
         DayHours,
-        EventBlock
+        EventBlock,
+        MouseCatcher
     },
     computed: {
         grid() {
@@ -114,5 +131,12 @@ export default {
     .day-date {
         font-size: 20px;
         font-weight: bold;
+    }
+
+    .selection {
+        position: absolute;
+        background: rgba(blue, .35);
+        width: 100%;
+        left: 0;
     }
 </style>
