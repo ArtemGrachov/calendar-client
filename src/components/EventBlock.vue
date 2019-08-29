@@ -32,7 +32,7 @@ export default {
         openDetails() {
             Modal.openModal({
                 component: ModalEventDetails,
-                data: this.event
+                data: this.event.id
             });
         }
     }

@@ -1,11 +1,11 @@
 import {
     EVENTS_ACTIONS_GET_EVENTS,
-    EVENTS_ACTIONS_ADD_EVENT
+    EVENTS_ACTIONS_UPSERT_EVENT
 } from './action-types';
 import {
     LIST_MUTATIONS_SET_PROCESSING,
     LIST_MUTATIONS_SET_ITEMS,
-    LIST_MUTATIONS_ADD_ITEM
+    LIST_MUTATIONS_UPSERT_ITEM
 } from '../list/mutation-types';
 import {
     PROCESSING_PENDING,
@@ -39,8 +39,8 @@ export default function (httpClient) {
                 );
             }
         },
-        [EVENTS_ACTIONS_ADD_EVENT](context, payload) {
-            context.commit(LIST_MUTATIONS_ADD_ITEM, payload);
+        [EVENTS_ACTIONS_UPSERT_EVENT](context, payload) {
+            context.commit(LIST_MUTATIONS_UPSERT_ITEM, payload);
         }
     }
 }

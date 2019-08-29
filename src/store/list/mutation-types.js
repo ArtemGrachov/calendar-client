@@ -1,5 +1,6 @@
 export const LIST_MUTATIONS_SET_ITEMS = '[List mutations] Set items';
 export const LIST_MUTATIONS_UPSERT_ITEMS = '[List mutations] Upsert items';
+export const LIST_MUTATIONS_UPSERT_ITEM = '[List mutations] Upsert item';
 export const LIST_MUTATIONS_ADD_ITEMS = '[List mutations] Add items';
 export const LIST_MUTATIONS_ADD_ITEM = '[List mutations] Add item';
 export const LIST_MUTATIONS_UPDATE_ITEM = '[List mutations] Update item';

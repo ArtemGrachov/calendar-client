@@ -19,4 +19,11 @@ export default class EventsClient extends HttpClient {
             event
         );
     }
+
+    async updateEvent(event) {
+        return this.client.patch(
+            this.path + `/${event.id}`,
+            event
+        )
+    }
 }

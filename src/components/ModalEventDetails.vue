@@ -12,7 +12,7 @@
                 </button>
             </div>
             <div class="modal-content">
-                <EventDetails :event="data"></EventDetails>
+                <EventDetails :event="event"></EventDetails>
             </div>
         </div>
     </div>
@@ -26,6 +26,11 @@ export default {
     mixins: [modalWindowMixin],
     components: {
         EventDetails
+    },
+    computed: {
+        event() {
+            return this.$store.getters['events/byId'](this.data);
+        }
     }
 }
 </script>

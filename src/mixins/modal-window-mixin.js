@@ -1,7 +1,5 @@
 export default {
-    props: {
-        data: Object
-    },
+    props: ['data'],
     methods: {
         close() {
             this.$emit('close');

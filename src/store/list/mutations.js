@@ -7,7 +7,8 @@ import {
     LIST_MUTATIONS_REMOVE_ITEM,
     LIST_MUTATIONS_SET_ITEM_PROCESSING,
     LIST_MUTATIONS_SET_PROCESSING,
-    LIST_MUTATIONS_CLEAR
+    LIST_MUTATIONS_CLEAR,
+    LIST_MUTATIONS_UPSERT_ITEM
 } from './mutation-types';
 
 function findAndUpdate(items, id, update, arg) {
@@ -31,6 +32,12 @@ export default {
     },
     [LIST_MUTATIONS_ADD_ITEM](state, payload) {
         state.items = [...state.items, payload.item];
+    },
+    [LIST_MUTATIONS_UPSERT_ITEM](state, payload) {
+        state.items = [
+            ...state.items.filter(item => item.id !== payload.item.id),
+            payload.item
+        ];
     },
     [LIST_MUTATIONS_UPSERT_ITEMS](state, payload) {
         const map = {};

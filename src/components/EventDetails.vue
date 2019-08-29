@@ -54,7 +54,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-12 text-right">
-                <button class="button-flat mr-4">
+                <button class="button-flat mr-4" @click="edit">
                     Edit
                 </button>
                 <button class="button-flat">
@@ -68,6 +68,8 @@
 <script>
 import moment from 'moment';
 import icons from '../config/icons';
+import Modal from '../modal';
+import ModalEventForm from './ModalEventForm';
 
 export default {
     props: {
@@ -80,6 +82,16 @@ export default {
         },
         icon() {
             return icons.find(icon => icon.name === this.event.icon);
+        }
+    },
+    methods: {
+        edit() {
+            Modal.openModal({
+                component: ModalEventForm,
+                data: {
+                    ...this.event
+                }
+            });
         }
     }
 }

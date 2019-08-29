@@ -81,6 +81,7 @@
 import { FORM_ACTIONS_SUBMIT } from '../store/form/action-types';
 import Multiselect from 'vue-multiselect'
 import icons from '../config/icons';
+import moment from 'moment';
 
 export default {
     props: {
@@ -116,8 +117,14 @@ export default {
         }
     },
     created() {
-        this.form.start = this.event.start.format('YYYY-MM-DDTHH:mm');
-        this.form.end = this.event.end.format('YYYY-MM-DDTHH:mm');
+        Object.assign(
+            this.form,
+            {
+                ...this.event,
+                start: moment(this.event.start).format('YYYY-MM-DDTHH:mm'),
+                end: moment(this.event.end).format('YYYY-MM-DDTHH:mm')
+            }
+        );
     }
 }
 </script>
