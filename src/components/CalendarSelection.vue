@@ -7,6 +7,18 @@
         >
             <div class="decoration"></div>
         </div>
+        <div class="controls">
+            <button class="button-round button-transparent mr-2">
+                <i class="material-icons">
+                    add
+                </i>
+            </button>
+            <button class="button-round button-transparent">
+                <i class="material-icons">
+                    clear
+                </i>
+            </button>
+        </div>
         <div
             v-if="includeEnd"
             class="change-end"
@@ -105,5 +117,12 @@ export default {
         bottom: 7px;
         background: rgba(black, .25);
         border-radius: $borderRadius;
+    }
+
+    .controls {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        margin-bottom: $space;
     }
 </style>
