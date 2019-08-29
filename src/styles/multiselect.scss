@@ -1,0 +1,59 @@
+@import './common.scss';
+
+.multiselect {
+    @extend %input;
+    transition: none;
+    position: relative;
+
+    &--active {
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+
+        .multiselect {
+            &__input {
+                display: block;
+            }
+        }
+    }
+
+    &__input {
+        display: none;
+        transition: none;
+    }
+
+    &__content {
+        @extend %list;
+        width: 100%;
+        
+        &-wrapper {
+            overflow-y: auto;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: $shadow;
+            border-radius: $borderRadius;
+            border: 1px solid #ededed;
+        }
+    }
+
+    &__option {
+        display: block;
+        padding: $space;
+
+        &--highlight {
+            background: #f7f7f7;
+        }
+
+        &--selected {
+            background: $violet;
+            color: white;
+        }
+    }
+
+    .em {
+        margin-top: -.5em;
+    }
+}

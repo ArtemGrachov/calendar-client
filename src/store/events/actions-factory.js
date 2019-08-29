@@ -1,5 +1,12 @@
-import { EVENTS_ACTIONS_GET_EVENTS } from './action-types';
-import { LIST_MUTATIONS_SET_PROCESSING, LIST_MUTATIONS_SET_ITEMS } from '../list/mutation-types';
+import {
+    EVENTS_ACTIONS_GET_EVENTS,
+    EVENTS_ACTIONS_ADD_EVENT
+} from './action-types';
+import {
+    LIST_MUTATIONS_SET_PROCESSING,
+    LIST_MUTATIONS_SET_ITEMS,
+    LIST_MUTATIONS_ADD_ITEM
+} from '../list/mutation-types';
 import {
     PROCESSING_PENDING,
     PROCESSING_SUCCESS,
@@ -31,6 +38,9 @@ export default function (httpClient) {
                     PROCESSING_FAIL
                 );
             }
+        },
+        [EVENTS_ACTIONS_ADD_EVENT](context, payload) {
+            context.commit(LIST_MUTATIONS_ADD_ITEM, payload);
         }
     }
 }

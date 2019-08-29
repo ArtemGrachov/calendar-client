@@ -173,6 +173,14 @@
     right: 0;
 }
 
+.preloader-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(white, .5);
+}
+
 .calendar-header {
     padding: $space;
 

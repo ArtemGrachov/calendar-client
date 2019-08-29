@@ -46,7 +46,7 @@ export default function(httpClient, methodSelector) {
                     FORM_MUTATIONS_SET_PROCESSING,
                     { processing: processing.PROCESSING_FAIL }
                 );
-                if (response.data) {
+                if (response && response.data) {
                     if (response.data.message) {
                         context.commit(
                             FORM_MUTATIONS_SET_MESSAGE,

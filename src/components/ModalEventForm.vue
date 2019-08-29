@@ -1,8 +1,8 @@
 <template>
     <div class="modal-backdrop" @click.self="close">
         <div class="modal">
-            <div class="modal-content mb-3 d-flex justify-content-between">
-                <div class="title">Create event</div>
+            <div class="modal-content d-flex justify-content-between">
+                <div class="title">New event</div>
                 <button
                     @click="close"
                     class="button-round"
@@ -13,7 +13,9 @@
                 </button>
             </div>
             <div class="modal-content">
-                <FormEvent></FormEvent>
+                <FormEvent
+                    :event="data"
+                ></FormEvent>
             </div>
         </div>
     </div>

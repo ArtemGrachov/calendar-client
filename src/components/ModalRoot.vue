@@ -4,6 +4,7 @@
             v-for="modal in modals"
             :key="modal.id"
             :is="modal.component"
+            :data="modal.data"
             @resolve="modal.resolve($event)"
             @reject="modal.reject($event)"
             @close="modal.close(modal.id)"

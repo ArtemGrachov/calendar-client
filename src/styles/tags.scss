@@ -49,38 +49,20 @@ h6 {
 
 input,
 textarea {
-    display: block;
-    width: 100%;
-    padding: $space * 2;
-    border: none;
-    border-radius: $borderRadius;
-    background: white;
-    box-shadow: inset 0 0 10px #efefef;
-    border: 1px solid #ededed;
-    letter-spacing: $letterSpacing;
-    transition: $transition;
-    color: #252525;
-
-    &:hover,
-    &:focus {
-        box-shadow: inset 0 0 2px #efefef;
-    }
-    
-    &:focus {
-        color: black;
-    }
-
-    &:disabled {
-        color: #494545;
-        box-shadow: inset 0 0 20px #f3f3f3;
-        cursor: not-allowed;
-    }
+    @extend %input;
 }
 
 button,
 input[type="submit"],
 input[type="button"] {
     @extend %button;
+}
+
+input[type="color"] {
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    height: 48px;
 }
 
 label {

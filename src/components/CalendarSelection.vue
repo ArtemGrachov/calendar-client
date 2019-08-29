@@ -82,7 +82,10 @@ export default {
         },
         openCreateEventModal() {
             Modal.openModal({
-                component: ModalEventForm
+                component: ModalEventForm,
+                data: {
+                    ...this.selection
+                }
             });
         }
     }
