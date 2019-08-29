@@ -27,11 +27,11 @@ export default {
                 .startOf('day')
                 .clone();
             const end = this.grid.slice(-1)[0]
+                .clone()
                 .hours(23)
                 .minutes(59)
                 .seconds(59)
-                .milliseconds(999)
-                .clone();
+                .milliseconds(999);
 
             return { start, end }
         },

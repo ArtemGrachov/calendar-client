@@ -50,7 +50,8 @@
                             :stepHeightPx="stepHeightPx"
                             :date="grid[i - 1]"
                         ></DayGrid>
-                        <CalendarSelection
+                        <component
+                            :is="selectionComponent"
                             v-if="selection && isSelectionInRange(grid[i - 1], selection)"
                             :style="getEventPos(grid[i - 1], selection)"
                             :selectionController="selectionController"
@@ -59,7 +60,7 @@
                             :start="start"
                             :end="end"
                         >
-                        </CalendarSelection>
+                        </component>
                     </td>
                 </tr>
             </tbody>
@@ -73,7 +74,6 @@ import DayGrid from './DayGrid';
 import DayHours from './DayHours';
 import EventBlock from './EventBlock';
 import MouseCatcher from './MouseCatcher';
-import CalendarSelection from './CalendarSelection';
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 import calendarWithHoursMixin from '../mixins/calendar-view-hours-mixin';
 import calendarViewSelectionMixin from '../mixins/calendar-view-selection-mixin';
@@ -88,8 +88,7 @@ export default {
         DayGrid,
         DayHours,
         EventBlock,
-        MouseCatcher,
-        CalendarSelection
+        MouseCatcher
     },
     computed: {
         grid() {

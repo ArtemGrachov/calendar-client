@@ -10,6 +10,7 @@
         <router-view
             :date="date"
             :events="events"
+            :selectionComponent="selectionComponent"
             @loadEvents="loadEvents($event)"
         ></router-view>
     </div>
@@ -19,9 +20,15 @@
 import CalendarNav from '../components/CalendarNav';
 import { EVENTS_ACTIONS_GET_EVENTS } from '../store/events/action-types';
 import calendarRootMixin from '../mixins/calendar-root-mixin';
+import CalendarSelection from '../components/CalendarSelection';
 
 export default {
     mixins: [calendarRootMixin],
+    data() {
+        return {
+            selectionComponent: CalendarSelection
+        }
+    },
     components: {
         CalendarNav
     },

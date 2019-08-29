@@ -1,6 +1,9 @@
 import SelectionController from '../utils/selection-controller';
 
 export default {
+    props: {
+        selectionComponent: Object
+    },
     data() {
         return {
             selection: null

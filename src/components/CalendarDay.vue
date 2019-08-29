@@ -40,6 +40,7 @@
                         :selectionController="selectionController"
                     ></MouseCatcher>
                     <CalendarSelection
+                        :is="selectionComponent"
                         v-if="selection && isSelectionInRange(date, selection)"
                         :style="getEventPos(date, selection)"
                         :selectionController="selectionController"
@@ -60,7 +61,6 @@ import DayGrid from './DayGrid';
 import DayHours from './DayHours';
 import EventBlock from './EventBlock';
 import MouseCatcher from './MouseCatcher';
-import CalendarSelection from './CalendarSelection'
 import calendarViewMixin from '../mixins/calendar-view-mixin';
 import calendarWithHoursMixin from '../mixins/calendar-view-hours-mixin';
 import calendarViewSelectionMixin from '../mixins/calendar-view-selection-mixin';
@@ -75,8 +75,7 @@ export default {
         DayGrid,
         DayHours,
         EventBlock,
-        MouseCatcher,
-        CalendarSelection
+        MouseCatcher
     },
     computed: {
         grid() {
