@@ -3,20 +3,38 @@
         class="event"
         :style="{ borderColor: event.color }"
     >
-        <div class="event-time">
-            {{ event.start | moment('HH:mm') }}
-            {{ event.end | moment('HH:mm') }}
-        </div>
-        <div class="event-title">
-            {{ event.title }}
-        </div>
+        <a
+            class="details-link"
+            href="#"
+            @click.prevent="openDetails"
+        >
+            <div class="event-time">
+                {{ event.start | moment('HH:mm') }}
+                {{ event.end | moment('HH:mm') }}
+            </div>
+            <div class="event-title">
+                {{ event.title }}
+            </div>
+
+        </a>
     </div>
 </template>
 
 <script>
+import Modal from '../modal';
+import ModalEventDetails from './ModalEventDetails';
+
 export default {
     props: {
         event: Object
+    },
+    methods: {
+        openDetails() {
+            Modal.openModal({
+                component: ModalEventDetails,
+                data: this.event
+            });
+        }
     }
 }
 </script>
@@ -44,5 +62,9 @@ export default {
             text-align: center;
             font-weight: bold;
         }
+    }
+
+    .details-link {
+        color: black;
     }
 </style>

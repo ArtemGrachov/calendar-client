@@ -80,6 +80,7 @@
 <script>
 import { FORM_ACTIONS_SUBMIT } from '../store/form/action-types';
 import Multiselect from 'vue-multiselect'
+import icons from '../config/icons';
 
 export default {
     props: {
@@ -87,6 +88,8 @@ export default {
     },
     components: {
         Multiselect
+    },
+    computed: {
     },
     data() {
         return {
@@ -98,16 +101,7 @@ export default {
                 icon: '',
                 color: ''
             },
-            icons: [
-                { name: '', label: 'None' },
-                { name: 'question', class: 'em-question', label: 'Question' },
-                { name: 'warning', class: 'em-warning', label: 'Warning' },
-                { name: 'cat', class: 'em-cat', label: 'Cat' },
-                { name: 'dog', class: 'em-dog', label: 'Dog' },
-                { name: 'car', class: 'em-car', label: 'Car' },
-                { name: 'plane', class: 'em-airplane', label: 'Plane' },
-                { name: 'train', class: 'em-train', label: 'Train' },
-            ]
+            icons
         }
     },
     methods: {
