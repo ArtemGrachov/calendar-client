@@ -8,7 +8,10 @@
             <div class="decoration"></div>
         </div>
         <div class="controls">
-            <button class="button-round button-transparent mr-2">
+            <button
+                class="button-round button-transparent mr-2"
+                @click="openCreateEventModal"
+            >
                 <i class="material-icons">
                     add
                 </i>
@@ -30,6 +33,9 @@
 </template>
 
 <script>
+import Modal from '../modal';
+import ModalEventForm from './ModalEventForm';
+
 export default {
     props: {
         selectionController: Object,
@@ -74,6 +80,11 @@ export default {
                 .hours(this.end);
             return { start, end };
         },
+        openCreateEventModal() {
+            Modal.openModal({
+                component: ModalEventForm
+            });
+        }
     }
 }
 </script>

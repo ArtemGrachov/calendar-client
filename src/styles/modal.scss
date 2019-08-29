@@ -1,0 +1,24 @@
+@import './variables';
+
+.modal {
+    background: white;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: $borderRadius * 3;
+    box-shadow: $shadow;
+
+    &-content {
+        padding: $space * 2;
+    }
+
+    &-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(black, .25);
+        padding: $space * 3;
+        z-index: 100;
+    }
+}
