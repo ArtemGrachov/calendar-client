@@ -12,4 +12,11 @@ export default class EventsClient extends HttpClient {
             { params: range }
         );
     }
+
+    async createEvent(event) {
+        return this.client.post(
+            this.path,
+            event
+        );
+    }
 }
