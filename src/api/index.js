@@ -13,13 +13,14 @@ const events = new EventsClient(apiDomain, axios);
 axios.interceptors.response.use(
     null,
     (error) => {
-        if (error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
             delete axios
                 .defaults
                 .headers
                 .common
                 .Authorization;
         }
+        throw error;
     }
 )
 

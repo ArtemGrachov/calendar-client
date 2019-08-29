@@ -73,6 +73,17 @@
                 >
             </div>
         </div>
+        <div
+            class="form-message mb-2"
+            v-if="message"
+        >
+            {{ message }}
+        </div>
+        <FormErrors
+            :errors="errors"
+            v-if="errors.length"
+            class="mb-3"
+        ></FormErrors>
         <button type="submit" class="button-success">Submit</button>
     </form>
 </template>
@@ -80,6 +91,7 @@
 <script>
 import { FORM_ACTIONS_SUBMIT } from '../store/form/action-types';
 import Multiselect from 'vue-multiselect'
+import FormErrors from './FormErrors';
 import icons from '../config/icons';
 import moment from 'moment';
 
@@ -88,9 +100,19 @@ export default {
         event: Object,
     },
     components: {
-        Multiselect
+        Multiselect,
+        FormErrors
     },
     computed: {
+        errors() {
+            return this.$store.state.editEvent.errors;
+        },
+        message() {
+            return this.$store.state.editEvent.message;
+        },
+        pending() {
+            return this.$store.getters['editEvent/pending'];
+        }
     },
     data() {
         return {

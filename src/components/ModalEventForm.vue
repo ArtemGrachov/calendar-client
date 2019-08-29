@@ -24,11 +24,24 @@
 <script>
 import FormEvent from './FormEvent';
 import modalWindowMixin from '../mixins/modal-window-mixin';
+import { FORM_ACTIONS_SUCCESS } from '../store/form/action-types';
 
 export default {
     mixins: [modalWindowMixin],
     components: {
         FormEvent
+    },
+    created() {
+        this.$options.actionSub = this.$store.subscribeAction(
+            (action, state) => {
+                if (action.type === 'editEvent/' + FORM_ACTIONS_SUCCESS) {
+                    this.close();
+                }
+            }
+        );
+    },
+    destroyed() {
+        this.$options.actionSub();
     }
 }
 </script>

@@ -6,8 +6,8 @@ export default {
     namespaced: true,
     state,
     actions: {
-        ...actions,
-        ...actionsFactory(auth, () => 'login')
+        ...actionsFactory(auth, () => 'login'),
+        ...actions
     },
     mutations,
     getters

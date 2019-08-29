@@ -24,6 +24,6 @@ export default class EventsClient extends HttpClient {
         return this.client.patch(
             this.path + `/${event.id}`,
             event
-        )
+        );
     }
 }

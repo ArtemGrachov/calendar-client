@@ -1,7 +1,8 @@
 import {
     FORM_ACTIONS_SUBMIT,
     FORM_ACTIONS_SUCCESS,
-    FORM_ACTIONS_CLEAR
+    FORM_ACTIONS_CLEAR,
+    FORM_ACTIONS_FAIL
 } from './action-types';
 import {
     FORM_MUTATIONS_SET_PROCESSING,
@@ -41,32 +42,37 @@ export default function(httpClient, methodSelector) {
                 );
             } catch (error) {
                 const response = error.response;
+                const data = response && response.data ? response.data : null;
 
                 context.commit(
                     FORM_MUTATIONS_SET_PROCESSING,
                     { processing: processing.PROCESSING_FAIL }
                 );
-                if (response && response.data) {
-                    if (response.data.message) {
+                if (data) {
+                    if (data.message) {
                         context.commit(
                             FORM_MUTATIONS_SET_MESSAGE,
-                            { message: response.data.message }
+                            { message: data.message }
                         );
                     }
 
-                    if (response.data.data) {
+                    if (data.data) {
                         context.commit(
                             FORM_MUTATIONS_SET_ERRORS,
-                            { errors: response.data.data }
+                            { errors: data.data }
                         )
                     }
                 }
+
+                context.dispatch(FORM_ACTIONS_FAIL, data);
 
                 throw error;
             }
         },
         [FORM_ACTIONS_CLEAR](context) {
             context.commit(FORM_MUTATIONS_CLEAR);
-        }
+        },
+        [FORM_ACTIONS_SUCCESS]() { },
+        [FORM_ACTIONS_FAIL]() { }
     }
 }
