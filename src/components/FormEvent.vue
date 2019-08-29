@@ -89,7 +89,10 @@
 </template>
 
 <script>
-import { FORM_ACTIONS_SUBMIT } from '../store/form/action-types';
+import {
+    FORM_ACTIONS_SUBMIT,
+    FORM_ACTIONS_CLEAR
+} from '../store/form/action-types';
 import Multiselect from 'vue-multiselect'
 import FormErrors from './FormErrors';
 import icons from '../config/icons';
@@ -139,6 +142,7 @@ export default {
         }
     },
     created() {
+        this.$store.dispatch('editEvent/' + FORM_ACTIONS_CLEAR);
         Object.assign(
             this.form,
             {

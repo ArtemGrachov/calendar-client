@@ -33,7 +33,7 @@ export default {
     },
     created() {
         this.$options.actionSub = this.$store.subscribeAction((action) => {
-            if (action.type + 'editEvent/' + FORM_ACTIONS_SUCCESS) {
+            if (action.type === 'editEvent/' + FORM_ACTIONS_SUCCESS) {
                 this.close();
             }
         });
