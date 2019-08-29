@@ -48,6 +48,7 @@
                         :selection="selection"
                         :start="start"
                         :end="end"
+                        @close="closeSelection"
                     >
                     </CalendarSelection>
                 </td>

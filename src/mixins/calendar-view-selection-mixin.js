@@ -32,6 +32,9 @@ export default {
             const { start, end } = this.dateRange(date);
 
             return selection.start.isBefore(end) && selection.end.isAfter(start);
+        },
+        closeSelection() {
+            this.selection = null;
         }
     }
 }

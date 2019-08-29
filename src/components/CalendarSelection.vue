@@ -16,7 +16,10 @@
                     add
                 </i>
             </button>
-            <button class="button-round button-transparent">
+            <button
+                class="button-round button-transparent"
+                @click="close"
+            >
                 <i class="material-icons">
                     clear
                 </i>
@@ -35,6 +38,7 @@
 <script>
 import Modal from '../modal';
 import ModalEventForm from './ModalEventForm';
+import { FORM_ACTIONS_SUCCESS } from '../store/form/action-types';
 
 export default {
     props: {
@@ -87,7 +91,20 @@ export default {
                     ...this.selection
                 }
             });
+        },
+        close() {
+            this.$emit('close');
         }
+    },
+    created() {
+        this.$options.actionSub = this.$store.subscribeAction(action => {
+            if (action.type === 'editEvent/' + FORM_ACTIONS_SUCCESS) {
+                this.close();
+            }
+        })
+    },
+    destroyed() {
+
     }
 }
 </script>

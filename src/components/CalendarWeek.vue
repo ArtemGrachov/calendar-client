@@ -59,6 +59,7 @@
                             :selection="selection"
                             :start="start"
                             :end="end"
+                            @close="closeSelection"
                         >
                         </component>
                     </td>
