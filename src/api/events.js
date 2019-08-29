@@ -26,4 +26,8 @@ export default class EventsClient extends HttpClient {
             event
         );
     }
+
+    async deleteEvent(eventId) {
+        return this.client.delete(this.path + `/${eventId}`);
+    }
 }

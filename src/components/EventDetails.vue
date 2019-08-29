@@ -57,7 +57,7 @@
                 <button class="button-flat mr-4" @click="edit">
                     Edit
                 </button>
-                <button class="button-flat">
+                <button class="button-flat" @click="deleteEvent">
                     Delete
                 </button>
             </div>
@@ -70,6 +70,7 @@ import moment from 'moment';
 import icons from '../config/icons';
 import Modal from '../modal';
 import ModalEventForm from './ModalEventForm';
+import { EVENTS_ACTIONS_DELETE_EVENT } from '../store/events/action-types';
 
 export default {
     props: {
@@ -92,6 +93,12 @@ export default {
                     ...this.event
                 }
             });
+        },
+        deleteEvent() {
+            this.$store.dispatch(
+                'events/' + EVENTS_ACTIONS_DELETE_EVENT,
+                this.event
+            );
         }
     }
 }

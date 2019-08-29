@@ -32,13 +32,11 @@ export default {
         FormEvent
     },
     created() {
-        this.$options.actionSub = this.$store.subscribeAction(
-            (action, state) => {
-                if (action.type === 'editEvent/' + FORM_ACTIONS_SUCCESS) {
-                    this.close();
-                }
+        this.$options.actionSub = this.$store.subscribeAction((action) => {
+            if (action.type + 'editEvent/' + FORM_ACTIONS_SUCCESS) {
+                this.close();
             }
-        );
+        });
     },
     destroyed() {
         this.$options.actionSub();

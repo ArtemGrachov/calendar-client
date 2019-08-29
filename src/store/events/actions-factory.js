@@ -1,11 +1,14 @@
 import {
     EVENTS_ACTIONS_GET_EVENTS,
-    EVENTS_ACTIONS_UPSERT_EVENT
+    EVENTS_ACTIONS_UPSERT_EVENT,
+    EVENTS_ACTIONS_DELETE_EVENT
 } from './action-types';
 import {
     LIST_MUTATIONS_SET_PROCESSING,
     LIST_MUTATIONS_SET_ITEMS,
-    LIST_MUTATIONS_UPSERT_ITEM
+    LIST_MUTATIONS_UPSERT_ITEM,
+    LIST_MUTATIONS_SET_ITEM_PROCESSING,
+    LIST_MUTATIONS_REMOVE_ITEM
 } from '../list/mutation-types';
 import {
     PROCESSING_PENDING,
@@ -41,6 +44,28 @@ export default function (httpClient) {
         },
         [EVENTS_ACTIONS_UPSERT_EVENT](context, payload) {
             context.commit(LIST_MUTATIONS_UPSERT_ITEM, payload);
+        },
+        async [EVENTS_ACTIONS_DELETE_EVENT](context, payload) {
+            context.commit(
+                LIST_MUTATIONS_SET_ITEM_PROCESSING,
+                {
+                    id: payload.id,
+                    processing: PROCESSING_PENDING
+                }
+            )
+            try {
+                await httpClient.deleteEvent(payload.id);
+
+                context.commit(LIST_MUTATIONS_REMOVE_ITEM, payload);
+            } catch {
+                context.commit(
+                    LIST_MUTATIONS_SET_ITEM_PROCESSING,
+                    {
+                        id: payload.id,
+                        processing: PROCESSING_FAIL
+                    }
+                )
+            }
         }
     }
 }

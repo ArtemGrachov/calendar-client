@@ -21,6 +21,7 @@
 <script>
 import EventDetails from './EventDetails';
 import modalWindowMixin from '../mixins/modal-window-mixin';
+import { EVENTS_ACTIONS_DELETE_EVENT } from '../store/events/action-types';
 
 export default {
     mixins: [modalWindowMixin],
@@ -31,6 +32,16 @@ export default {
         event() {
             return this.$store.getters['events/byId'](this.data);
         }
+    },
+    created() {
+        this.$options.actionSub = this.$store.subscribeAction((action) => {
+            if (action.type === 'events/' + EVENTS_ACTIONS_DELETE_EVENT) {
+                this.close();
+            }
+        });
+    },
+    destroyed() {
+        this.$options.actionSub();
     }
 }
 </script>
