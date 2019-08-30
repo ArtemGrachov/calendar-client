@@ -88,6 +88,13 @@
             <div class="col-12 text-right">
                 <button
                     class="button-flat mr-4"
+                    @click="leave"
+                    v-if="!iAmOnwer"
+                >
+                    Leave
+                </button>
+                <button
+                    class="button-flat mr-4"
                     @click="edit"
                     v-if="iAmOnwer"
                 >
@@ -112,7 +119,10 @@ import Modal from '../modal';
 import ModalEventForm from './ModalEventForm';
 import SearchUser from './SearchUser';
 import UserBlock from './UserBlock';
-import { EVENTS_ACTIONS_DELETE_EVENT } from '../store/events/action-types';
+import {
+    EVENTS_ACTIONS_DELETE_EVENT,
+    EVENTS_ACTIONS_LEAVE_EVENT
+} from '../store/events/action-types';
 
 export default {
     components: {
@@ -152,6 +162,12 @@ export default {
         deleteEvent() {
             this.$store.dispatch(
                 'events/' + EVENTS_ACTIONS_DELETE_EVENT,
+                this.event
+            );
+        },
+        leave() {
+            this.$store.dispatch(
+                'events/' + EVENTS_ACTIONS_LEAVE_EVENT,
                 this.event
             );
         }

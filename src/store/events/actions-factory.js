@@ -1,7 +1,8 @@
 import {
     EVENTS_ACTIONS_GET_EVENTS,
     EVENTS_ACTIONS_UPSERT_EVENT,
-    EVENTS_ACTIONS_DELETE_EVENT
+    EVENTS_ACTIONS_DELETE_EVENT,
+    EVENTS_ACTIONS_LEAVE_EVENT
 } from './action-types';
 import {
     LIST_MUTATIONS_SET_PROCESSING,
@@ -62,15 +63,51 @@ export default function (httpClient) {
             context.commit(LIST_MUTATIONS_UPSERT_ITEM, payload);
         },
         async [EVENTS_ACTIONS_DELETE_EVENT](context, payload) {
-            context.commit(
-                LIST_MUTATIONS_SET_ITEM_PROCESSING,
-                {
-                    id: payload.id,
-                    processing: PROCESSING_PENDING
-                }
-            );
             try {
-                await httpClient.deleteEvent(payload.id);
+                context.commit(
+                    LIST_MUTATIONS_SET_ITEM_PROCESSING,
+                    {
+                        id: payload.id,
+                        processing: PROCESSING_PENDING
+                    }
+                );
+
+                const { data } = await httpClient.deleteEvent(payload.id);
+
+                context.commit(LIST_MUTATIONS_REMOVE_ITEM, payload);
+
+                context.dispatch(
+                    'alerts/' + ALERTS_ACTIONS_SUCCESS,
+                    { description: data.message },
+                    { root: true }
+                );
+            } catch (err) {
+                context.commit(
+                    LIST_MUTATIONS_SET_ITEM_PROCESSING,
+                    {
+                        id: payload.id,
+                        processing: PROCESSING_FAIL
+                    }
+                );
+
+                context.dispatch(
+                    'alerts/' + ALERTS_ACTIONS_DANGER,
+                    { description: err.message },
+                    { root: true }
+                );
+            }
+        },
+        async [EVENTS_ACTIONS_LEAVE_EVENT](context, payload) {
+            try {
+                context.commit(
+                    LIST_MUTATIONS_SET_ITEM_PROCESSING,
+                    {
+                        id: payload.id,
+                        processing: PROCESSING_PENDING
+                    }
+                );
+
+                await httpClient.leaveEvent(payload.id);
 
                 context.commit(LIST_MUTATIONS_REMOVE_ITEM, payload);
 
@@ -79,7 +116,7 @@ export default function (httpClient) {
                     { description: payload.message },
                     { root: true }
                 );
-            } catch (err) {
+            } catch(err) {
                 context.commit(
                     LIST_MUTATIONS_SET_ITEM_PROCESSING,
                     {
