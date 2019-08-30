@@ -31,7 +31,7 @@ export default function(httpClient) {
                 context.commit(LIST_MUTATIONS_SET_PROCESSING, PROCESSING_FAIL);
                 context.dispatch(
                     'alerts/' + ALERTS_ACTIONS_DANGER,
-                    { description: payload.message },
+                    { description: err.message },
                     { root: true }
                 );
             }
