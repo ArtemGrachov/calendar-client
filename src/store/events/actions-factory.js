@@ -15,6 +15,10 @@ import {
     PROCESSING_SUCCESS,
     PROCESSING_FAIL
 } from '../../config/processing';
+import {
+    ALERTS_ACTIONS_SUCCESS,
+    ALERTS_ACTIONS_DANGER
+} from '../alerts/action-types';
 
 export default function (httpClient) {
     return {
@@ -40,6 +44,12 @@ export default function (httpClient) {
                     LIST_MUTATIONS_SET_PROCESSING,
                     PROCESSING_FAIL
                 );
+
+                context.dispatch(
+                    'alerts/' + ALERTS_ACTIONS_DANGER,
+                    { description: err.message },
+                    { root: true }
+                );
             }
         },
         [EVENTS_ACTIONS_UPSERT_EVENT](context, payload) {
@@ -52,19 +62,31 @@ export default function (httpClient) {
                     id: payload.id,
                     processing: PROCESSING_PENDING
                 }
-            )
+            );
             try {
                 await httpClient.deleteEvent(payload.id);
 
                 context.commit(LIST_MUTATIONS_REMOVE_ITEM, payload);
-            } catch {
+
+                context.dispatch(
+                    'alerts/' + ALERTS_ACTIONS_SUCCESS,
+                    { description: payload.message },
+                    { root: true }
+                );
+            } catch (err) {
                 context.commit(
                     LIST_MUTATIONS_SET_ITEM_PROCESSING,
                     {
                         id: payload.id,
                         processing: PROCESSING_FAIL
                     }
-                )
+                );
+
+                context.dispatch(
+                    'alerts/' + ALERTS_ACTIONS_DANGER,
+                    { description: err.message },
+                    { root: true }
+                );
             }
         }
     }
