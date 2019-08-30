@@ -6,6 +6,7 @@ import registration from './registration/store';
 import events from './events/store';
 import editEvent from './edit-event/store';
 import alerts from './alerts/store';
+import notifications from './notifications/store';
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
         registration,
         events,
         editEvent,
-        alerts
+        alerts,
+        notifications
     }
 })

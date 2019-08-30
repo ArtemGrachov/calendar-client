@@ -1,14 +1,16 @@
 import Axios from 'axios';
-import AuthClient from "./auth";
-import UserClient from "./user";
-import EventsClient from "./events";
-import { apiDomain } from "../config";
+import AuthClient from './auth';
+import UserClient from './user';
+import EventsClient from './events';
+import NotificationsClient from './notifications';
+import { apiDomain } from '../config';
 
 const axios = Axios.create();
 
 const auth = new AuthClient(apiDomain, axios);
 const user = new UserClient(apiDomain, axios);
 const events = new EventsClient(apiDomain, axios);
+const notifications = new NotificationsClient(apiDomain, axios);
 
 axios.interceptors.response.use(
     null,
@@ -27,3 +29,4 @@ axios.interceptors.response.use(
 export { auth };
 export { user };
 export { events };
+export { notifications };

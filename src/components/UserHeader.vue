@@ -7,7 +7,18 @@
                 {{ user.lastname }}
             </div>
             <div class="controls ml-auto">
-                <button class="button-flat" @click="logout">
+                <popper
+                    trigger="click"
+                    :boundaries-selector="'body'"
+                >
+                    <NotificationsList></NotificationsList>
+                    <button class="button-flat" slot="reference">
+                        <i class="material-icons">
+                            notifications_none
+                        </i>
+                    </button>
+                </popper>
+                <button class="button-flat ml-4" @click="logout">
                     <i class="material-icons">
                         exit_to_app
                     </i>
@@ -19,11 +30,20 @@
 
 <script>
 import { USER_ACTIONS_CLEAR } from '../store/user/action-types';
-import UserAvatar from '../components/UserAvatar';
+import Popper from 'vue-popperjs';
+import UserAvatar from './UserAvatar';
+import NotificationsList from './NotificationsList';
 
 export default {
     components: {
-        UserAvatar
+        UserAvatar,
+        NotificationsList,
+        Popper
+    },
+    data() {
+        return {
+            showNotifications: false
+        }
     },
     computed: {
         user() {

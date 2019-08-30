@@ -24,7 +24,7 @@ export default {
         }
     },
     methods: {
-        close(alertId) {console.log(alertId)
+        close(alertId) {
             this.$store.dispatch('alerts/' + ALERTS_ACITONS_DELETE_ALERT, { id: alertId });
         }
     }
