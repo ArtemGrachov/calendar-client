@@ -45,11 +45,29 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-4">
+        <div class="row mb-3">
             <div class="col-12">
                 <div class="description py-4 px-5">
                     {{ event.description }}
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <strong>Owner:</strong> 
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <SearchUser>
+                    <template v-slot:controls="data">
+                        <button class="button-flat">
+                            Invite
+                        </button>
+                    </template>
+                </SearchUser>
             </div>
         </div>
         <div class="row mb-3">
@@ -70,9 +88,13 @@ import moment from 'moment';
 import icons from '../config/icons';
 import Modal from '../modal';
 import ModalEventForm from './ModalEventForm';
+import SearchUser from './SearchUser';
 import { EVENTS_ACTIONS_DELETE_EVENT } from '../store/events/action-types';
 
 export default {
+    components: {
+        SearchUser
+    },
     props: {
         event: Object
     },
@@ -105,7 +127,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import '../styles/variables';
+  @import '../styles/variables';
 
     .date {
         &-lg {

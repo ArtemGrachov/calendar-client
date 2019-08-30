@@ -9,11 +9,11 @@
 <script>
 export default {
     props: {
-        avatarUrl: String
+        user: Object
     },
     computed: {
         avatarStyle() {
-            return `url(${this.avatarUrl})`;
+            return `url(${this.user.avatarUrl})`;
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <header class="header py-3 px-5">
         <div class="container d-flex align-items-center" v-if="user">
-            <UserAvatar :avatarUrl="user.avatarUrl"></UserAvatar>
+            <UserAvatar :user="user"></UserAvatar>
             <div class="username ml-3">
                 {{ user.firstname }}
                 {{ user.lastname }}
