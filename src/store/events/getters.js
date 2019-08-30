@@ -8,5 +8,7 @@ export default {
 
             return start.isBefore(range.end) && end.isAfter(range.start);
         }
-    )
+    ),
+    iAmOwner: (state, getters, rootState) => event =>
+        rootState.user.user.id === event.owner
 }

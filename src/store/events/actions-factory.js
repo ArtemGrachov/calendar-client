@@ -19,6 +19,7 @@ import {
     ALERTS_ACTIONS_SUCCESS,
     ALERTS_ACTIONS_DANGER
 } from '../alerts/action-types';
+import { USERS_ACTIONS_UPSERT_USERS } from '../users/action-types';
 
 export default function (httpClient) {
     return {
@@ -38,7 +39,12 @@ export default function (httpClient) {
                 context.commit(
                     LIST_MUTATIONS_SET_ITEMS,
                     { items: data.events }
-                )
+                );
+                context.dispatch(
+                    'users/' + USERS_ACTIONS_UPSERT_USERS,
+                    { items: data.users },
+                    { root: true }
+                );
             } catch (err) {
                 context.commit(
                     LIST_MUTATIONS_SET_PROCESSING,

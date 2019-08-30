@@ -8,6 +8,7 @@ import editEvent from './edit-event/store';
 import alerts from './alerts/store';
 import notifications from './notifications/store';
 import usersSearch from './users-search/store';
+import users from './users/store';
 
 Vue.use(Vuex)
 
@@ -20,6 +21,7 @@ export default new Vuex.Store({
         editEvent,
         alerts,
         notifications,
-        usersSearch
+        usersSearch,
+        users
     }
 })

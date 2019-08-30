@@ -52,14 +52,28 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="mb-3">
-                    <strong>Owner:</strong> 
-                </div>
+        <div class="row align-items-center mb-4">
+            <div class="col-4 col-sm-3 col-md-2">
+                <strong>Owner:</strong> 
+            </div>
+            <div class="col-8 col-sm-9 col-md-10">
+                <UserBlock :user="owner"></UserBlock>
             </div>
         </div>
-        <div class="row mb-4">
+        <div class="row mb-4" v-if="users.length">
+            <div class="col-12">
+                <strong class="d-block mb-2">
+                    Members:
+                </strong>
+                <UserBlock
+                    class="mb-3"
+                    v-for="user in users"
+                    :key="user.id"
+                    :user="user"
+                ></UserBlock>
+            </div>
+        </div>
+        <div class="row mb-4" v-if="iAmOnwer">
             <div class="col-12">
                 <SearchUser>
                     <template v-slot:controls="data">
@@ -72,10 +86,18 @@
         </div>
         <div class="row mb-3">
             <div class="col-12 text-right">
-                <button class="button-flat mr-4" @click="edit">
+                <button
+                    class="button-flat mr-4"
+                    @click="edit"
+                    v-if="iAmOnwer"
+                >
                     Edit
                 </button>
-                <button class="button-flat" @click="deleteEvent">
+                <button
+                    class="button-flat"
+                    @click="deleteEvent"
+                    v-if="iAmOnwer"
+                >
                     Delete
                 </button>
             </div>
@@ -89,11 +111,13 @@ import icons from '../config/icons';
 import Modal from '../modal';
 import ModalEventForm from './ModalEventForm';
 import SearchUser from './SearchUser';
+import UserBlock from './UserBlock';
 import { EVENTS_ACTIONS_DELETE_EVENT } from '../store/events/action-types';
 
 export default {
     components: {
-        SearchUser
+        SearchUser,
+        UserBlock
     },
     props: {
         event: Object
@@ -105,6 +129,15 @@ export default {
         },
         icon() {
             return icons.find(icon => icon.name === this.event.icon);
+        },
+        users() {
+            return this.$store.getters['users/byIds'](this.event.users);
+        },
+        owner() {
+            return this.$store.getters['users/byId'](this.event.owner);
+        },
+        iAmOnwer() {
+            return this.$store.getters['events/iAmOwner'](this.event);
         }
     },
     methods: {
