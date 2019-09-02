@@ -111,14 +111,7 @@
 <script>
 import moment from 'moment';
 import icons from '../config/icons';
-import Modal from '../modal';
-import ModalEventForm from './ModalEventForm';
-import ModalInvite from './ModalInvite';
 import UserBlock from './UserBlock';
-import {
-    EVENTS_ACTIONS_DELETE_EVENT,
-    EVENTS_ACTIONS_LEAVE_EVENT
-} from '../store/events/action-types';
 
 export default {
     components: {
@@ -147,32 +140,16 @@ export default {
     },
     methods: {
         edit() {
-            Modal.openModal({
-                component: ModalEventForm,
-                data: {
-                    ...this.event
-                }
-            });
+            this.$emit('edit');
         },
         deleteEvent() {
-            this.$store.dispatch(
-                'events/' + EVENTS_ACTIONS_DELETE_EVENT,
-                this.event
-            );
+            this.$emit('delete');
         },
         leave() {
-            this.$store.dispatch(
-                'events/' + EVENTS_ACTIONS_LEAVE_EVENT,
-                this.event
-            );
+            this.$emit('leave');
         },
         invite() {
-            Modal.openModal({
-                component: ModalInvite,
-                data: {
-                    ...this.event
-                }
-            });
+            this.$emit('invite');
         }
     }
 }

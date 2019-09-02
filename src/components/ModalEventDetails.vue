@@ -12,7 +12,13 @@
                 </button>
             </div>
             <div class="modal-content">
-                <EventDetails :event="event"></EventDetails>
+                <EventDetails
+                    :event="event"
+                    @edit="edit(event.id)"
+                    @delete="deleteEvent(event.id)"
+                    @leave="leave(event.id)"
+                    @invite="invite(event.id)"
+                ></EventDetails>
             </div>
         </div>
     </div>
@@ -20,6 +26,9 @@
 
 <script>
 import EventDetails from './EventDetails';
+import Modal from '../modal';
+import ModalEventForm from './ModalEventForm';
+import ModalInvite from './ModalInvite';
 import modalWindowMixin from '../mixins/modal-window-mixin';
 import {
     EVENTS_ACTIONS_DELETE_EVENT,
@@ -34,6 +43,36 @@ export default {
     computed: {
         event() {
             return this.$store.getters['events/byId'](this.data);
+        }
+    },
+    methods: {
+        edit() {
+            Modal.openModal({
+                component: ModalEventForm,
+                data: {
+                    ...this.event
+                }
+            });
+        },
+        deleteEvent() {
+            this.$store.dispatch(
+                'events/' + EVENTS_ACTIONS_DELETE_EVENT,
+                this.event
+            );
+        },
+        leave() {
+            this.$store.dispatch(
+                'events/' + EVENTS_ACTIONS_LEAVE_EVENT,
+                this.event
+            );
+        },
+        invite() {
+            Modal.openModal({
+                component: ModalInvite,
+                data: {
+                    eventId: this.event.id
+                }
+            });
         }
     },
     created() {

@@ -17,7 +17,7 @@
                     <template v-slot:default="slotProps">
                         <UserInviteControls
                             :user="slotProps.user"
-                            :event="data"
+                            :event="event"
                             @invite="invite(slotProps.user.id)"
                             @remove="remove(slotProps.user.id)"
                         ></UserInviteControls>
@@ -43,13 +43,18 @@ export default {
         SearchUser,
         UserInviteControls
     },
+    computed: {
+        event() {
+            return this.$store.getters['events/byId'](this.data.eventId)
+        }
+    },
     methods: {
         invite(userId) {
             this.$store.dispatch(
                 'events/' + EVENTS_ACTIONS_INVITE_USER_TO_EVENT,
                 {
                     userId,
-                    eventId: this.data.id
+                    eventId: this.event.id
                 }
             );
         },
@@ -58,7 +63,7 @@ export default {
                 'events/' + EVENTS_ACTIONS_REMOVE_USER_FROM_EVENT,
                 {
                     userId,
-                    eventId: this.data.id
+                    eventId: this.event.id
                 }
             );
         }
