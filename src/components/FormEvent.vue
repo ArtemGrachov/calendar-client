@@ -51,7 +51,7 @@
                     :options="icons"
                     :trackBy="'label'"
                     :label="'label'"
-                    v-model="form.icon"
+                    v-model="formIcon"
                 >
                     <template slot="singleLabel" slot-scope="props">
                         <i class="em" :class="props.option.class" v-if="props.option.class"></i>
@@ -127,6 +127,7 @@ export default {
                 icon: '',
                 color: ''
             },
+            formIcon: null,
             icons
         }
     },
@@ -136,7 +137,7 @@ export default {
                 'editEvent/' + FORM_ACTIONS_SUBMIT,
                 {
                     ...this.form,
-                    icon: this.form.icon ? this.form.icon.name : ''
+                    icon: this.formIcon ? this.formIcon.name : ''
                 }
             );
         }
@@ -151,6 +152,10 @@ export default {
                 end: moment(this.event.end).format('YYYY-MM-DDTHH:mm')
             }
         );
+
+        if (this.event.icon) {
+            this.formIcon = icons.find(icon => icon.name === this.event.icon);
+        }
     }
 }
 </script>
