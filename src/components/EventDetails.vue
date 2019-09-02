@@ -73,17 +73,6 @@
                 ></UserBlock>
             </div>
         </div>
-        <div class="row mb-4" v-if="iAmOnwer">
-            <div class="col-12">
-                <SearchUser>
-                    <template v-slot:controls="data">
-                        <button class="button-flat">
-                            Invite
-                        </button>
-                    </template>
-                </SearchUser>
-            </div>
-        </div>
         <div class="row mb-3">
             <div class="col-12 text-right">
                 <button
@@ -92,6 +81,13 @@
                     v-if="!iAmOnwer"
                 >
                     Leave
+                </button>
+                <button
+                    class="button-flat mr-4"
+                    @click="invite"
+                    v-if="iAmOnwer"
+                >
+                    Invite
                 </button>
                 <button
                     class="button-flat mr-4"
@@ -117,7 +113,7 @@ import moment from 'moment';
 import icons from '../config/icons';
 import Modal from '../modal';
 import ModalEventForm from './ModalEventForm';
-import SearchUser from './SearchUser';
+import ModalInvite from './ModalInvite';
 import UserBlock from './UserBlock';
 import {
     EVENTS_ACTIONS_DELETE_EVENT,
@@ -126,7 +122,6 @@ import {
 
 export default {
     components: {
-        SearchUser,
         UserBlock
     },
     props: {
@@ -170,6 +165,14 @@ export default {
                 'events/' + EVENTS_ACTIONS_LEAVE_EVENT,
                 this.event
             );
+        },
+        invite() {
+            Modal.openModal({
+                component: ModalInvite,
+                data: {
+                    ...this.event
+                }
+            });
         }
     }
 }
