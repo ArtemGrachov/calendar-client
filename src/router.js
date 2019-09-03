@@ -35,6 +35,10 @@ const router = new Router({
             },
             children: [
                 {
+                    path: 'profile/edit',
+                    component: () => import(/* webpackChunkName: "user" */ './views/ViewEditProfile.vue')
+                },
+                {
                     path: 'profile',
                     component: () => import(/* webpackChunkName: "user" */ './views/ViewProfile.vue')
                 },

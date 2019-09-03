@@ -10,7 +10,6 @@ export default {
         state.token = payload.token;
         state.refreshToken = payload.refreshToken;
     },
-    // eslint-disable-next-line no-unused-vars
     [USER_MUTATIONS_CLEAR](state) {
         Object.assign(state, getInitialState())
     },

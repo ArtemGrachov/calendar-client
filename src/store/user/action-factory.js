@@ -2,7 +2,8 @@ import {
     USER_ACTIONS_SET_AUTH_TOKENS,
     USER_ACTIONS_CLEAR,
     USER_ACTIONS_GET_OWN_DATA,
-    USER_ACTIONS_GET_STORAGE_TOKENS
+    USER_ACTIONS_GET_STORAGE_TOKENS,
+    USER_ACTIONS_SET_DATA
 } from './action-types';
 import {
     USER_MUTATIONS_SET_TOKENS,
@@ -46,6 +47,9 @@ export default function(httpClient) {
                 context.dispatch(USER_ACTIONS_CLEAR);
                 throw err;
             }
+        },
+        [USER_ACTIONS_SET_DATA](context, payload) {
+            context.commit(USER_MUTATIONS_SET_DATA, payload);
         }
     }
 }
