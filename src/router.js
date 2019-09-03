@@ -35,6 +35,10 @@ const router = new Router({
             },
             children: [
                 {
+                    path: 'profile',
+                    component: () => import(/* webpackChunkName: "user" */ './views/ViewProfile.vue')
+                },
+                {
                     path: '',
                     component: () => import(/* webpackChunkName: "user" */ './views/ViewCalendar.vue'),
                     children: [

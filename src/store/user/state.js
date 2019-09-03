@@ -1,7 +1,7 @@
 export default function() {
     return {
-        token: null,// localStorage.getItem('token'),
-        refreshToken: null, //localStorage.getItem('refreshToken'),
+        token: null,
+        refreshToken: null,
         user: null
     }
 }

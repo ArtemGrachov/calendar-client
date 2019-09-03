@@ -19,7 +19,6 @@
 
 <script>
 import calendarViewMixin from '../mixins/calendar-view-mixin';
-import moment from 'moment';
 import MonthBlock from './MonthBlock';
 
 export default {
