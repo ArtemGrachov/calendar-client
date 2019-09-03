@@ -1,14 +1,20 @@
 export default function(date) {
+    const start = date
+        .clone()
+        .startOf('month')
+        .startOf('isoWeek');
+    const end = date
+        .clone()
+        .endOf('month')
+        .endOf('isoWeek');
+
     const result = [];
-    const iDate = date.clone();
-    const month = iDate.month();
 
-    iDate.date(1);
-    iDate.date(iDate.date() - (iDate.day() || 7));
+    const iDate = start.clone();
 
-    while (iDate.month() <= month || iDate.day() !== 0) {
-        iDate.add(1, 'days');
+    while (iDate.isSameOrBefore(end, 'day')) {
         result.push(iDate.clone());
+        iDate.add(1, 'day');
     }
 
     return result;

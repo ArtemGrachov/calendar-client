@@ -1,5 +1,5 @@
 <template>
-    <div class="calenda">
+    <div class="calendar">
         <div class="calendar-header mb-3">
             <div class="calendar-header-date">
                 {{ grid[0] | moment('MMMM Do YYYY') }} -
