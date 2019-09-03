@@ -24,7 +24,6 @@ export default {
     .errors {
         @extend %list;
         background: #faf6f7;
-        padding: $space * 2;
         border-radius: $borderRadius * 2;
         letter-spacing: .05em;
 

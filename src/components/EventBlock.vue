@@ -45,7 +45,6 @@ export default {
     .event {
         border-top: 4px solid black;
         border-bottom: 4px solid black;
-        padding: $space;
         border-radius: $borderRadius;
         box-shadow: $shadow;
         text-align: center;
@@ -54,7 +53,6 @@ export default {
         &-time {
             font-size: 12px;
             color: #8e8e8e;
-            margin-bottom: $space;
         }
 
         &-title {

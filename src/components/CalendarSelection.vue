@@ -154,6 +154,5 @@ export default {
         position: absolute;
         bottom: 100%;
         left: 0;
-        margin-bottom: $space;
     }
 </style>

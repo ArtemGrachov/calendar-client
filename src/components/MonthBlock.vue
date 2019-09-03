@@ -65,7 +65,6 @@ export default {
     }
 
     .date {
-        padding: $space / 2;
         color: #ccc;
         text-align: right;
     }

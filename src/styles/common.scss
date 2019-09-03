@@ -1,5 +1,66 @@
 @import './variables.scss';
 
+@mixin buttonStyle($bgColor, $textColor, $shadowColor) {
+    background: $bgColor;
+    color: $textColor;
+    box-shadow: 0 3px 5px 0 rgba($shadowColor, .25);
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 5px 5px 0 rgba($shadowColor, .3);
+    }
+
+    &:focus {
+        background: lighten($color: $bgColor, $amount: 5);
+    }
+
+    &:active {
+        background: darken($color: $bgColor, $amount: 5);
+    }
+
+    &:disabled {
+        background: lighten($color: $bgColor, $amount: 10);
+        box-shadow: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            box-shadow: none;
+        }
+    }
+}
+
+@mixin buttonFlat($textColor) {
+    background: none;
+    color: $textColor;
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:hover {
+        color: lighten($color: $textColor, $amount: 10);
+    }
+
+    &:focus {
+        background: none;
+        color: lighten($color: $textColor, $amount: 15);
+    }
+
+    &:active {
+        background: none;
+        color: darken($color: $textColor, $amount: 15);
+    }
+
+    &:disabled {
+        background: none;
+        box-shadow: none;
+        color: lighten($color: $textColor, $amount: 20);
+    }
+}
+
 %title {
     font-family: 'Comfortaa', cursive;
     text-align: center;
@@ -7,50 +68,38 @@
 }
 
 %button {
-    padding: $space $space * 2;
-    border-radius: $space * 2;
+    padding: $space;
+    border-radius: $borderRadius;
     text-transform: uppercase;
     min-width: 120px;
-    background: #947fee;
-    color: #97e5f8;
     font-weight: bold;
     transition: $transition;
     border: none;
     letter-spacing: $letterSpacing;
     text-align: center;
-
-    &:hover,
-    &:focus {
-        background: #9684e5;
-        box-shadow: 0 5px 10px 0 rgba(#00ffc8, .5);
-    }
-
-    &:active {
-        background: #7961e2;
-    }
-
-    &:disabled {
-        background: #c1b9e2;
-        box-shadow: none;
-        cursor: not-allowed;
-    }
+    cursor: pointer;
+    @include buttonStyle($blue, white, $blue);
 }
 
 %input {
+    padding: $space;
     display: block;
     width: 100%;
-    padding: $space * 2;
     border-radius: $borderRadius;
+    box-shadow: 0 5px 5px -3px rgba(black, .05);
     background: white;
-    box-shadow: inset 0 0 10px #efefef;
-    border: 1px solid #ededed;
+    border: 1px solid $lightgrey;
     letter-spacing: $letterSpacing;
     transition: $transition;
-    color: #252525;
+    color: $grey;
 
     &:hover,
     &:focus {
-        box-shadow: inset 0 0 2px #efefef;
+        color: black;
+    }
+
+    &:focus {
+        box-shadow: 0 3px 5px 0px rgba(black, .1);
     }
     
     &:focus {
@@ -58,8 +107,8 @@
     }
 
     &:disabled {
-        color: #494545;
-        box-shadow: inset 0 0 20px #f3f3f3;
+        color: $lightgrey;
+        box-shadow: none;
         cursor: not-allowed;
     }
 }

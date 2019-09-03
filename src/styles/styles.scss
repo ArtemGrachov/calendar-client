@@ -16,7 +16,6 @@
 }
 
 .block {
-    padding: $space * 3;
     border-radius: $borderRadius * 3;
     box-shadow: $shadow;
 }
@@ -25,108 +24,65 @@
     @extend %button;
     display: inline-block;
 
-    &-success {
-        background: #3ff5a0;
-        color: #0036ac;
-    
-        &:hover,
-        &:focus {
-            background: #60ffb5;
-            box-shadow: 0 5px 10px 0 rgba(#f08abd, .5);
-        }
-    
-        &:active {
-            background: #6be0a9;
-        }
+    &-green {
+        @include buttonStyle($green, black, $green);
 
-        &:disabled {
-            background: #c6ebda;
-            color: #405279;
-            box-shadow: none;
+        &.button-flat {
+            @include buttonFlat($green);
         }
     }
 
-    &-danger {
-        background: #ff0022;
-        color: #ffffff;
-    
-        &:hover,
-        &:focus {
-            background: #ff1131;
-            box-shadow: 0 5px 10px 0 rgba(#ff950b, .5);
-        }
-    
-        &:active {
-            background: #da0053;
-        }
+    &-red {
+        @include buttonStyle($red, white, $orange);
 
-        &:disabled {
-            background: #be6587;
-            color: #d6d6d6;
-            box-shadow: none;
+        &.button-flat {
+            @include buttonFlat($red);
+        }
+    }
+
+    &-orange {
+        @include buttonStyle($orange, black, $yellow);
+
+        &.button-flat {
+            @include buttonFlat($orange);
+        }
+    }
+
+    &-yellow {
+        @include buttonStyle($yellow, black, $orange);
+
+        &.button-flat {
+            @include buttonFlat($yellow);
+        }
+    }
+
+    &-violet {
+        @include buttonStyle($violet, white, $violet);
+
+        &.button-flat {
+            @include buttonFlat($violet);
         }
     }
 
     &-grey {
-        background: #d9d5eb;
-        color: #455053;
-    
-        &:hover,
-        &:focus {
-            background: #e0dcf1;
-            box-shadow: 0 5px 10px 0 rgba(#cddfda, .5);
-        }
-    
-        &:active {
-            background: #cfcadf;
-        }
+        @include buttonStyle($lightgrey, black, $grey);
 
-        &:disabled {
-            background: #d0ced6;
-            color: #757f81;
-            box-shadow: none;
+        &.button-flat {
+            @include buttonFlat($grey);
         }
     }
 
     &-flat {
-        padding: 0;
-        min-width: 0;
-        border-radius: 0;
-        background: none;
-        color: #1548b6;
-
-        &:hover,
-        &:focus {
-            background: none;
-            box-shadow: none;
-            color: #5f92ff;
-        }
-
-        &:active {
-            color: #9900ff;
-        }
-    }
-
-    &-transparent {
-        background: transparent;
-        color: orange;
-        box-shadow: $shadow;
-
-        &:focus,
-        &:hover {
-            color: $violet;
-            background: none;
-            box-shadow: $shadow;
-        }
+        @include buttonFlat($blue);
     }
 
     &-round {
-        padding: 0;
+        min-width: auto;
         width: 2.5em;
         height: 2.5em;
-        min-width: auto;
+        line-height: .1em;
         border-radius: 50%;
-        padding-top: 6px;
+        padding: 0;
     }
 }
 
@@ -150,7 +106,6 @@
 }
 
 .form-message {
-    padding: $space * 2;
     text-align: center;
     color: #5b4d66;
     letter-spacing: .075em;
@@ -182,8 +137,6 @@
 }
 
 .calendar-header {
-    padding: $space;
-
     &-date {
         font-size: 24px;
     }
