@@ -1,23 +1,21 @@
 <template>
-    <div class="modal-backdrop">
-        <div class="modal">
-            <div class="modal-content d-flex justify-content-between">
-                <div class="mb-3">
-                    {{ data.question }}
-                </div>
-                <button
-                    class="button-success"
-                    @click="confirm"
-                >
-                    Yes
-                </button>
-                <button
-                    class="button-danger"
-                    @click="reject"
-                >
-                    No
-                </button>
+    <div class="modal-backdrop p-5">
+        <div class="modal modal-small text-center px-4 py-3">
+            <div class="mb-3">
+                {{ data.question }}
             </div>
+            <button
+                class="button-green mr-1"
+                @click="confirm"
+            >
+                Yes
+            </button>
+            <button
+                class="button-red"
+                @click="reject"
+            >
+                No
+            </button>
         </div>
     </div>
 </template>

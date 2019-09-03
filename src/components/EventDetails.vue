@@ -1,31 +1,27 @@
 <template>
     <div class="event-details">
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="title">
-                    <span
-                        class="em"
-                        :class="icon.class"
-                        v-if="event.icon"
-                    >
-                        
-                    </span>
-                    {{ event.title }}
-                </div>
+        <div class="mb-5 px-3">
+            <div class="title">
+                <span
+                    class="em"
+                    :class="icon.class"
+                    v-if="event.icon"
+                >
+                    
+                </span>
+                {{ event.title }}
             </div>
         </div>
-        <div class="row mb-3" v-if="!diffDates">
-            <div class="col-12">
-                <div class="date-lg">
-                    <span class="date-inner">
-                        {{ event.start | moment('MMMM Do, YYYY') }}
-                    </span>
-                </div>
+        <div class="mb-3 px-3" v-if="!diffDates">
+            <div class="date date-lg">
+                <span class="date-inner">
+                    {{ event.start | moment('MMMM Do, YYYY') }}
+                </span>
             </div>
         </div>
-        <div class="row mb-4">
+        <div class="row mb-5">
             <div class="col-12 col-sm-6">
-                <div class="date-sm" v-if="diffDates">
+                <div class="date px-3" v-if="diffDates">
                     <span class="date-inner">
                         {{ event.start | moment('MMMM, DD') }}
                     </span>
@@ -35,7 +31,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6">
-                <div class="date-sm" v-if="diffDates">
+                <div class="date px-3" v-if="diffDates">
                     <span class="date-inner">
                         {{ event.end | moment('MMMM, DD') }}
                     </span>
@@ -45,65 +41,62 @@
                 </div>
             </div>
         </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="description py-4 px-5">
-                    {{ event.description }}
+        <div class="mb-3 px-3 py-4 border-y description content" v-if="event.description">
+            {{ event.description }}
+        </div>
+        <div class="mb-4" v-if="users.length">
+            <div class="mb-2 px-3 title-sm">
+                Participants:
+            </div>
+            <div class="px-2">
+                <div class="participant m-1 p-2">
+                    <UserBlock :user="owner"></UserBlock>
+                    <div class="participant-label">
+                        <div class="participant-label-wrap">
+                            owner
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="participant m-1 p-2"
+                    v-for="user in users"
+                    :key="user.id"
+                >
+                    <UserBlock
+                        :user="user"
+                    ></UserBlock>
                 </div>
             </div>
         </div>
-        <div class="row align-items-center mb-4">
-            <div class="col-4 col-sm-3 col-md-2">
-                <strong>Owner:</strong> 
-            </div>
-            <div class="col-8 col-sm-9 col-md-10">
-                <UserBlock :user="owner"></UserBlock>
-            </div>
-        </div>
-        <div class="row mb-4" v-if="users.length">
-            <div class="col-12">
-                <strong class="d-block mb-2">
-                    Members:
-                </strong>
-                <UserBlock
-                    class="mb-3"
-                    v-for="user in users"
-                    :key="user.id"
-                    :user="user"
-                ></UserBlock>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-12 text-right">
-                <button
-                    class="button-flat mr-4"
-                    @click="leave"
-                    v-if="!iAmOnwer"
-                >
-                    Leave
-                </button>
-                <button
-                    class="button-flat mr-4"
-                    @click="invite"
-                    v-if="iAmOnwer"
-                >
-                    Invite
-                </button>
-                <button
-                    class="button-flat mr-4"
-                    @click="edit"
-                    v-if="iAmOnwer"
-                >
-                    Edit
-                </button>
-                <button
-                    class="button-flat"
-                    @click="deleteEvent"
-                    v-if="iAmOnwer"
-                >
-                    Delete
-                </button>
-            </div>
+        <div class="mt-5 text-right border-top px-3 py-2">
+            <button
+                class="button-red mx-1"
+                @click="leave"
+                v-if="!iAmOnwer"
+            >
+                Leave
+            </button>
+            <button
+                class="mx-1"
+                @click="invite"
+                v-if="iAmOnwer"
+            >
+                Invite
+            </button>
+            <button
+                class="button-yellow mx-1"
+                @click="edit"
+                v-if="iAmOnwer"
+            >
+                Edit
+            </button>
+            <button
+                class="button-red mx-1"
+                @click="deleteEvent"
+                v-if="iAmOnwer"
+            >
+                Delete
+            </button>
         </div>
     </div>
 </template>
@@ -170,30 +163,54 @@ export default {
   @import '../styles/variables';
 
     .date {
+        color: $grey;
+        text-align: center;
+        letter-spacing: $letterSpacing;
+        font-weight: bold;
+
         &-lg {
             font-size: 20px;
-            text-align: center;
-            color: $orange;
-        }
-
-        &-sm {
-            text-align: center;
-            color: $orange;
         }
 
         &-inner {
-            border-bottom: 1px dotted $violet;
+            border-bottom: 1px dotted $lightgrey;
         }
     }
 
     .time {
         text-align: center;
-        color: $violet;
+        color: $blue;
         font-size: 18px;
     }
 
     .description {
-        border-radius: $borderRadius * 2;
-        border: 1px solid #f4f4f4;
+        background: $background;
+    }
+
+    .participant {
+        background: $background;
+        border-radius: $borderRadius;
+        position: relative;
+        display: inline-block;
+
+        &-label {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: $grey;
+            margin-top: -6px;
+
+            &-wrap {
+                padding: 2px 10px;
+                line-height: 1;
+                border-radius: 5px;
+                display: inline-block;
+                background: white;
+                border: 1px solid $lightgrey;
+            }
+        }
     }
 </style>

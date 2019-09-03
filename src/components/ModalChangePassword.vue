@@ -1,32 +1,32 @@
 <template>
-    <div class="modal-backdrop" @click.self="close">
+    <div class="modal-backdrop px-5 py-4" @click.self="close">
         <div class="modal">
-            <div class="modal-content text-right">
+            <div class="text-right">
                 <button
                     @click="close"
-                    class="button-round"
+                    class="button-round button-transparent button-grey button-small"
                 >
                     <i class="material-icons">
                         clear
                     </i>
                 </button>
             </div>
-            <div class="modal-content">
-                <ChangePasswordForm></ChangePasswordForm>
+            <div class="px-4 py-3">
+                <FormChangePassword></FormChangePassword>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import ChangePasswordForm from './ChangePasswordForm';
+import FormChangePassword from './FormChangePassword';
 import modalWindowMixin from '../mixins/modal-window-mixin';
 import { FORM_ACTIONS_SUCCESS } from '../store/form/action-types';
 
 export default {
     mixins: [modalWindowMixin],
     components: {
-        ChangePasswordForm
+        FormChangePassword
     },
     created() {
         this.$options.actionSub = this.$store.subscribeAction((action) => {

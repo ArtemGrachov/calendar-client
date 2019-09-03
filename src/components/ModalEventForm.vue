@@ -1,18 +1,18 @@
 <template>
-    <div class="modal-backdrop" @click.self="closeConfirmation">
+    <div class="modal-backdrop px-5 py-4" @click.self="closeConfirmation">
         <div class="modal">
-            <div class="modal-content d-flex justify-content-between">
-                <div class="title">New event</div>
+            <div class="mb-3 d-flex justify-content-between">
+                <div class="title px-4 py-3">New event</div>
                 <button
                     @click="closeConfirmation"
-                    class="button-round"
+                    class="button-round button-transparent button-grey button-small"
                 >
                     <i class="material-icons">
                         clear
                     </i>
                 </button>
             </div>
-            <div class="modal-content">
+            <div class="px-4 py-3">
                 <FormEvent
                     :event="data"
                 ></FormEvent>

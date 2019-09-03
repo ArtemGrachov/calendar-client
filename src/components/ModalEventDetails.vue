@@ -1,25 +1,23 @@
 <template>
-    <div class="modal-backdrop" @click.self="close">
+    <div class="modal-backdrop px-5 py-4" @click.self="close">
         <div class="modal">
-            <div class="modal-content text-right">
+            <div class="text-right mb-3">
                 <button
                     @click="close"
-                    class="button-round"
+                    class="button-round button-transparent button-grey button-small"
                 >
                     <i class="material-icons">
                         clear
                     </i>
                 </button>
             </div>
-            <div class="modal-content">
-                <EventDetails
-                    :event="event"
-                    @edit="edit(event.id)"
-                    @delete="deleteEvent(event.id)"
-                    @leave="leave(event.id)"
-                    @invite="invite(event.id)"
-                ></EventDetails>
-            </div>
+            <EventDetails
+                :event="event"
+                @edit="edit(event.id)"
+                @delete="deleteEvent(event.id)"
+                @leave="leave(event.id)"
+                @invite="invite(event.id)"
+            ></EventDetails>
         </div>
     </div>
 </template>

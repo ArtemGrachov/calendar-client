@@ -4,11 +4,8 @@
     background: white;
     max-width: 600px;
     margin: 0 auto;
-    border-radius: $borderRadius * 3;
+    border-radius: $borderRadius;
     box-shadow: $shadow;
-
-    &-content {
-    }
 
     &-backdrop {
         position: fixed;
@@ -19,5 +16,9 @@
         background: rgba(black, .25);
         z-index: 100;
         overflow-y: auto;
+    }
+
+    &-small {
+        max-width: 400px;
     }
 }

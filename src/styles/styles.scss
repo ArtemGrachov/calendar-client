@@ -25,70 +25,87 @@
     display: inline-block;
 
     &-green {
-        @include buttonStyle($green, black, $green);
+        @include buttonStyle($green, white, $green);
 
-        &.button-flat {
-            @include buttonFlat($green);
+        &.button-transparent {
+            @include buttonTransparent($green);
         }
     }
 
     &-red {
         @include buttonStyle($red, white, $orange);
 
-        &.button-flat {
-            @include buttonFlat($red);
+        &.button-transparent {
+            @include buttonTransparent($red);
         }
     }
 
     &-orange {
         @include buttonStyle($orange, black, $yellow);
 
-        &.button-flat {
-            @include buttonFlat($orange);
+        &.button-transparent {
+            @include buttonTransparent($orange);
         }
     }
 
     &-yellow {
         @include buttonStyle($yellow, black, $orange);
 
-        &.button-flat {
-            @include buttonFlat($yellow);
+        &.button-transparent {
+            @include buttonTransparent($yellow);
         }
     }
 
     &-violet {
         @include buttonStyle($violet, white, $violet);
 
-        &.button-flat {
-            @include buttonFlat($violet);
+        &.button-transparent {
+            @include buttonTransparent($violet);
         }
     }
 
     &-grey {
         @include buttonStyle($lightgrey, black, $grey);
 
-        &.button-flat {
-            @include buttonFlat($grey);
+        &.button-transparent {
+            @include buttonTransparent($grey);
         }
     }
 
-    &-flat {
-        @include buttonFlat($blue);
+    &-transparent {
+        @include buttonTransparent($blue);
     }
 
     &-round {
         min-width: auto;
         width: 2.5em;
         height: 2.5em;
-        line-height: .1em;
+        line-height: 1;
         border-radius: 50%;
         padding: 0;
+    }
+
+    &-flat {
+        padding: 0;
+        min-width: 0;
     }
 }
 
 .title {
     @extend %title;
-    font-size: 2em;
+    font-size: 1.2em;
+
+    &-sm {
+        font-weight: bold;
+        color: $grey;
+        letter-spacing: $letterSpacing;
+    }
+}
+
+.important {
+    text-transform: uppercase;
+    letter-spacing: $letterSpacing;
+    font-weight: bold;
 }
 
 .text {
@@ -144,4 +161,33 @@
     &-day {
         font-size: 18px;
     }
+}
+
+.border {
+    border: 1px solid $lightgrey;
+
+    &-top,
+    &-y {
+        border-top: 1px solid $lightgrey;
+    }
+
+    &-bottom,
+    &-y {
+        border-bottom: 1px solid $lightgrey;
+    }
+
+    &-left,
+    &-x {
+        border-left: 1px solid $lightgrey;
+    }
+
+    &-right,
+    &-x {
+        border-right: 1px solid $lightgrey;
+    }
+}
+
+.content {
+    line-height: $contentLineHeight;
+    color: $grey;
 }

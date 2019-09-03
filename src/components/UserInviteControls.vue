@@ -1,20 +1,20 @@
 <template>
     <div class="controls">
         <button
-            class="button-flat"
+            class="button-transparent button-green button-flat px-0"
             @click="invite()"
             v-if="role === 'user'"
         >
             Invite
         </button>
         <button
-            class="button-flat"
+            class="button-transparent button-red button-flat px-0"
             @click="remove()"
             v-else-if="role === 'member'"
         >
             Remove
         </button>
-        <div v-else-if="role === 'owner'">
+        <div v-else-if="role === 'owner'" class="important">
             Owner
         </div>
     </div>

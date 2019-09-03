@@ -22,6 +22,7 @@
         </div>
         <button
             type="submit"
+            class="button-yellow"
             :disabled="pending"
         >
             Update

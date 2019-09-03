@@ -2,7 +2,7 @@
     <div class="profile-view">
         <div class="mb-3">
             <router-link
-                class="button button-flat"
+                class="button button-transparent"
                 to="/profile/edit"
             >
                 Edit

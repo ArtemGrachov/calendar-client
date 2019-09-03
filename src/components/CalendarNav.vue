@@ -1,9 +1,9 @@
 <template>
-    <nav class="nav py-2 px-3">
+    <nav class="py-2 px-3">
         <div class="container d-flex align-items-center">
             <div class="mr-auto">
                 <button
-                    class="button-transparent button-round nav-button"
+                    class="button-transparent button-round"
                     @click="prev"
                 >
                     <i class="material-icons">
@@ -11,13 +11,13 @@
                     </i>
                 </button>
                 <button
-                    class="button button-transparent nav-button mx-3"
+                    class="button-transparent mx-3"
                     @click="today"
                 >
                     Go today
                 </button>
                 <button
-                    class="button-transparent button-round nav-button"
+                    class="button-transparent button-round"
                     @click="next"
                 >
                     <i class="material-icons">
@@ -59,10 +59,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-    .nav-button {
-        display: inline-block;
-        vertical-align: middle;
-    }
-</style>

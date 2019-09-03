@@ -1,6 +1,6 @@
 <template>
     <div class="search-user">
-        <form class="search-us" @submit.prevent="submit()">
+        <form class="px-4" @submit.prevent="submit()">
             <label for="email" class="mb-2">Email:</label>
             <div class="d-flex align-items-stretch mb-3">
                 <input
@@ -14,7 +14,7 @@
             </div>
         </form>
         <div
-            class="user d-flex align-items-center mb-2"
+            class="user-block py-2 px-3 d-flex align-items-center mb-2"
             v-for="user in users"
             :key="user.id"
         >
@@ -57,3 +57,13 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    @import '../styles/variables.scss';
+
+    .user-block {
+        &:nth-child(even) {
+            background: $background;
+        }
+    }
+</style>

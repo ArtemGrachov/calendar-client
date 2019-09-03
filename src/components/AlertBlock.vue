@@ -3,7 +3,7 @@
         <div class="alert-title mb-3">
             {{ alert.title }}
             <button
-                class="button-flat alert-close mt-n1"
+                class="button-transparent alert-close mt-n1"
                 @click="close"
             >
                 <i class="material-icons">

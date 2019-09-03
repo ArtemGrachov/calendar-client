@@ -14,13 +14,13 @@
                     :boundaries-selector="'body'"
                 >
                     <NotificationsList></NotificationsList>
-                    <button class="button-flat" slot="reference">
+                    <button class="button-transparent button-round" slot="reference">
                         <i class="material-icons">
                             notifications_none
                         </i>
                     </button>
                 </popper>
-                <button class="button-flat ml-4" @click="logout">
+                <button class="button-transparent button-round ml-4" @click="logout">
                     <i class="material-icons">
                         exit_to_app
                     </i>
