@@ -10,6 +10,7 @@ import notifications from './notifications/store';
 import usersSearch from './users-search/store';
 import users from './users/store';
 import editProfile from './edit-profile/store';
+import changePassword from './change-password/store';
 
 Vue.use(Vuex)
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
         notifications,
         usersSearch,
         users,
-        editProfile
+        editProfile,
+        changePassword
     }
 })

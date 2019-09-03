@@ -13,4 +13,8 @@ export default class AuthClient extends HttpClient {
     async registration(payload) {
         return this.client.post(this.path + 'registration', payload);
     }
+
+    async changePassword(payload) {
+        return this.client.patch(this.path + 'password', payload);
+    }
 }

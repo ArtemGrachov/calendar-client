@@ -8,12 +8,19 @@
                 Edit
             </router-link>
         </div>
-        <ProfileDetails :user="user"></ProfileDetails>
+        <ProfileDetails :user="user" class="mb-3"></ProfileDetails>
+        <div class="mb-3">
+            <button @click="openChangePasswordModal">
+                Change password
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
 import ProfileDetails from '../components/ProfileDetails';
+import Modal from '../modal';
+import ModalChangePassword from '../components/ModalChangePassword';
 
 export default {
     components: {
@@ -22,6 +29,13 @@ export default {
     computed: {
         user() {
             return this.$store.state.user.user
+        }
+    },
+    methods: {
+        openChangePasswordModal() {
+            Modal.openModal({
+                component: ModalChangePassword
+            });
         }
     }
 }
