@@ -112,6 +112,8 @@
 import moment from 'moment';
 import icons from '../config/icons';
 import UserBlock from './UserBlock';
+import Modal from '../modal';
+import ModalConfirmation from './ModalConfirmation';
 
 export default {
     components: {
@@ -142,8 +144,17 @@ export default {
         edit() {
             this.$emit('edit');
         },
-        deleteEvent() {
-            this.$emit('delete');
+        async deleteEvent() {
+            const confirmation = await Modal.openModal({
+                data: {
+                    question: 'Are you sure you want to delete this event?'
+                },
+                component: ModalConfirmation
+            });
+
+            if (confirmation) {
+                this.$emit('delete');
+            }
         },
         leave() {
             this.$emit('leave');

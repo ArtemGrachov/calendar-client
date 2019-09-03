@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import Modal from '../modal';
+import ModalConfirmation from './ModalConfirmation';
+
 export default {
     props: {
         user: Object,
@@ -48,8 +51,17 @@ export default {
         invite() {
             this.$emit('invite');
         },
-        remove() {
-            this.$emit('remove');
+        async remove() {
+            const confirmation = await Modal.openModal({
+                data: {
+                    question: 'Are you sure you want to remove this user from event?'
+                },
+                component: ModalConfirmation
+            });
+
+            if (confirmation) {
+                this.$emit('remove');
+            }
         }
     }
 }
