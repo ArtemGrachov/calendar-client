@@ -6,66 +6,80 @@
                 {{ grid.slice(-1)[0] | moment('MMMM Do YYYY') }}
             </div>
         </div>
-        <table class="week-table">
-            <thead>
-                <tr>
-                    <th class="hours"></th>
-                    <th v-for="day in 7" :key="day" class="p-2">
-                        <div class="day-date mb-1">
-                            {{grid[day - 1] | moment('DD')}}
-                        </div>
-                        <div class="day-of-week">
-                            {{grid[day - 1] | moment('dddd')}}
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="hours">
-                        <DayHours
-                            :start="start"
-                            :end="end"
-                            :stepMin="stepMin"
-                            :stepHeightPx="stepHeightPx"
-                            :date="date"
-                        ></DayHours>
-                    </td>
-                    <td v-for="i in 7" :key="i">
-                        <MouseCatcher
-                            :date="grid[i - 1]"
-                            :selectionController="selectionController"
-                        ></MouseCatcher>
-                        <EventBlock
-                            class="event"
-                            :style="getEventPos(grid[i - 1], event)"
-                            v-for="event in getDateEvents(grid[i - 1])"
-                            :key="event.id"
-                            :event="event"
-                        ></EventBlock>
-                        <DayGrid
-                            :start="start"
-                            :end="end"
-                            :stepMin="stepMin"
-                            :stepHeightPx="stepHeightPx"
-                            :date="grid[i - 1]"
-                        ></DayGrid>
-                        <component
-                            :is="selectionComponent"
-                            v-if="selection && isSelectionInRange(grid[i - 1], selection)"
-                            :style="getEventPos(grid[i - 1], selection)"
-                            :selectionController="selectionController"
-                            :date="grid[i - 1]"
-                            :selection="selection"
-                            :start="start"
-                            :end="end"
-                            @close="closeSelection"
-                        >
-                        </component>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-outer">
+
+            <div class="table-wrap">
+                <table class="week-table">
+                    <thead>
+                        <tr>
+                            <th class="hours-cell"></th>
+                            <th
+                                class="week-table-header-cell"
+                                v-for="day in 7"
+                                :key="day"
+                            >
+                                <div class="day-date mb-1">
+                                    {{grid[day - 1] | moment('DD')}}
+                                </div>
+                                <div class="day-of-week">
+                                    {{grid[day - 1] | moment('dddd')}}
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="week-table-body">
+                        <tr>
+                            <td class="hours-cell">
+                                <DayHours
+                                    class="hours"
+                                    :start="start"
+                                    :end="end"
+                                    :stepMin="stepMin"
+                                    :stepHeightPx="stepHeightPx"
+                                    :date="date"
+                                ></DayHours>
+                            </td>
+                            <td
+                                class="week-table-cell"
+                                v-for="i in 7"
+                                :key="i"
+                            >
+                                <MouseCatcher
+                                    :date="grid[i - 1]"
+                                    :selectionController="selectionController"
+                                ></MouseCatcher>
+                                <EventBlock
+                                    class="event"
+                                    :style="getEventPos(grid[i - 1], event)"
+                                    v-for="event in getDateEvents(grid[i - 1])"
+                                    :key="event.id"
+                                    :event="event"
+                                ></EventBlock>
+                                <DayGrid
+                                    :start="start"
+                                    :end="end"
+                                    :stepMin="stepMin"
+                                    :stepHeightPx="stepHeightPx"
+                                    :date="grid[i - 1]"
+                                ></DayGrid>
+                                <component
+                                    :is="selectionComponent"
+                                    v-if="selection && isSelectionInRange(grid[i - 1], selection)"
+                                    :style="getEventPos(grid[i - 1], selection)"
+                                    :selectionController="selectionController"
+                                    :date="grid[i - 1]"
+                                    :selection="selection"
+                                    :start="start"
+                                    :end="end"
+                                    @close="closeSelection"
+                                >
+                                </component>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -104,24 +118,53 @@ export default {
 
     .week-table {
         width: 100%;
-        table-layout: fixed;
+        min-width: 800px;
         border-collapse: collapse;
+        table-layout: fixed;
 
-        th {
-            font-weight: normal;
+        &-cell,
+        &-header-cell {
+            border: 1px solid $lightgrey;
+
+            &:nth-child(2) {
+                border-left: none;
+            }
+
+            &:last-child {
+                border-right: none;
+            }
         }
 
-        td, th {
-            border: 1px solid #f3f3f3;
-        }
-
-        td {
+        &-cell {
             position: relative;
+        }
+
+        &-header-cell {
+            font-weight: normal;
         }
     }
 
     .hours {
         width: 70px;
+        left: 0;
+        top: auto;
+        position: absolute;
+    }
+
+    .hours-cell {
+        width: 0;
+        vertical-align: top;
+    }
+
+    .table-outer {
+        position: relative;
+    }
+
+    .table-wrap {
+        overflow-x: auto;
+        margin-left: 70px;
+        border-left: 1px solid $lightgrey;
+        border-right: 1px solid $lightgrey;
     }
 
     .event {
