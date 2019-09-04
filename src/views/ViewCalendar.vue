@@ -11,7 +11,8 @@
             :date="date"
             :events="events"
             :selectionComponent="selectionComponent"
-            @loadEvents="loadEvents($event)"
+            @loadEvents="setRange($event)"
+            @setDateAndMode="setDateAndMode($event.date, $event.mode)"
         ></router-view>
     </div>
 </template>

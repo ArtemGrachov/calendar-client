@@ -34,14 +34,22 @@
             <tbody>
                 <tr v-for="row in rows" :key="row">
                     <td v-for="i in 7" :key="i">
-                        <div class="date">
-                            {{ grid[i - 1 + (row - 1) * 7] | moment('DD') }}
+                        <div class="wrap" v-overflowed>
+                            <div class="date">
+                                {{ grid[i - 1 + (row - 1) * 7] | moment('DD') }}
+                            </div>
+                            <EventBlockSmall
+                                v-for="event in getDateEvents(grid[i - 1 + (row - 1) * 7])"
+                                :key="event.id"
+                                :event="event"
+                            ></EventBlockSmall>
+                            <a
+                                href="#" class="week-link"
+                                @click.prevent="goToWeek(grid[i - 1])"
+                            >
+                                View all
+                            </a>
                         </div>
-                        <EventBlock
-                            v-for="event in getDateEvents(grid[i - 1 + (row - 1) * 7])"
-                            :key="event.id"
-                            :event="event"
-                        ></EventBlock>
                     </td>
                 </tr>
             </tbody>
@@ -52,12 +60,15 @@
 <script>
 import fillMonth from '../utils/fill-month';
 import calendarViewMixin from '../mixins/calendar-view-mixin';
-
-import EventBlock from './EventBlock';
+import overflowed from '../directives/overflowed-directive';
+import EventBlockSmall from './EventBlockSmall';
 
 export default {
     components: {
-        EventBlock
+        EventBlockSmall
+    },
+    directives: {
+        overflowed
     },
     mixins: [calendarViewMixin],
     computed: {
@@ -67,12 +78,18 @@ export default {
         rows() {
             return this.grid.length / 7;
         }
+    },
+    methods: {
+        goToWeek(date) {
+            this.setDateAndMode(date, 'day');
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
     @import '../styles/variables';
+    $cellHeight: 150px;
 
     .month-table {
         width: 100%;
@@ -84,14 +101,41 @@ export default {
         }
 
         td {
-            height: 150px;
             vertical-align: top;
         }
+    }
+
+    .wrap {
+        height: $cellHeight;
+        overflow: hidden;
     }
 
     .date {
         font-size: 18px;
         color: #ccc;
         text-align: right;
+    }
+
+    @media (max-width: 991px) {
+        .month-table {
+            display: block;
+
+            tbody, tr, td {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+        }
+
+        .wrap {
+            height: auto;
+            min-height: $cellHeight;
+        }
+
+        .event {
+            font-size: 14px;
+        }
     }
 </style>
