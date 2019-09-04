@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 col-lg-6">
-                <div class="block">
+                <div class="block px-4 py-3">
                     <h1>Registration</h1>
                     <FormRegistration></FormRegistration>
                 </div>
