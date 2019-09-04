@@ -1,14 +1,14 @@
 <template>
     <div class="controls">
         <button
-            class="button-transparent button-green button-flat px-0"
+            class="button-link button-green button-flat px-0"
             @click="invite()"
             v-if="role === 'user'"
         >
             Invite
         </button>
         <button
-            class="button-transparent button-red button-flat px-0"
+            class="button-link button-red button-flat px-0"
             @click="remove()"
             v-else-if="role === 'member'"
         >

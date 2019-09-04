@@ -9,7 +9,7 @@
         </div>
         <div class="controls">
             <button
-                class="button-round button-transparent mr-2"
+                class="button-round button-link mr-2"
                 @click="openCreateEventModal"
             >
                 <i class="material-icons">
@@ -17,7 +17,7 @@
                 </i>
             </button>
             <button
-                class="button-round button-transparent"
+                class="button-round button-link"
                 @click="close"
             >
                 <i class="material-icons">

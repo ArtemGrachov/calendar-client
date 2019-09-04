@@ -4,7 +4,7 @@
             <router-link to="/profile">
                 <UserAvatar :user="user"></UserAvatar>
             </router-link>
-            <div class="username ml-3">
+            <div class="username ml-3 d-none d-md-block">
                 {{ user.firstname }}
                 {{ user.lastname }}
             </div>
@@ -14,13 +14,13 @@
                     :boundaries-selector="'body'"
                 >
                     <NotificationsList></NotificationsList>
-                    <button class="button-transparent button-round" slot="reference">
+                    <button class="button-link button-round" slot="reference">
                         <i class="material-icons">
                             notifications_none
                         </i>
                     </button>
                 </popper>
-                <button class="button-transparent button-round ml-4" @click="logout">
+                <button class="button-link button-round ml-4" @click="logout">
                     <i class="material-icons">
                         exit_to_app
                     </i>

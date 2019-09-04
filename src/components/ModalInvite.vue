@@ -5,7 +5,7 @@
                 <div class="title px-4 py-3">Invite user to event</div>
                 <button
                     @click="close"
-                    class="button-round button-transparent button-grey button-small"
+                    class="button-round button-link button-grey button-small"
                 >
                     <i class="material-icons">
                         clear

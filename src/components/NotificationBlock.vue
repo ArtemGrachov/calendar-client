@@ -12,7 +12,7 @@
             </div>
         </div>
         <button
-            class="button-transparent notification-close"
+            class="button-link notification-close"
             @click="deleteNotification"
         >
             <i class="material-icons">

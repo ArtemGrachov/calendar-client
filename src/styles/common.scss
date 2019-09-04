@@ -30,7 +30,7 @@
     }
 }
 
-@mixin buttonTransparent($textColor) {
+@mixin buttonLink($textColor) {
     background: none;
     color: $textColor;
     box-shadow: none;
@@ -58,6 +58,38 @@
         background: none;
         box-shadow: none;
         color: lighten($color: $textColor, $amount: 20);
+    }
+}
+
+@mixin buttonTransparent($color) {
+    background: none;
+    color: $color;
+    box-shadow: 0 2px 5px 0 rgba(black, .075);
+
+
+    &:hover,
+    &:focus {
+        box-shadow: 0 2px 3px 0 rgba(black, .15);
+    }
+
+    &:hover {
+        color: darken($color: $color, $amount: 10);
+    }
+
+    &:focus {
+        background: none;
+        color: darken($color: $color, $amount: 15);
+    }
+
+    &:active {
+        background: none;
+        color: lighten($color: $color, $amount: 20);
+    }
+
+    &:disabled {
+        background: none;
+        box-shadow: none;
+        color: lighten($color: $color, $amount: 20);
     }
 }
 
