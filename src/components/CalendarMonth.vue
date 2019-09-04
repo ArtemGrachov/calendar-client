@@ -43,12 +43,6 @@
                                 :key="event.id"
                                 :event="event"
                             ></EventBlockSmall>
-                            <a
-                                href="#" class="week-link"
-                                @click.prevent="goToWeek(grid[i - 1])"
-                            >
-                                View all
-                            </a>
                         </div>
                     </td>
                 </tr>
@@ -78,11 +72,6 @@ export default {
         rows() {
             return this.grid.length / 7;
         }
-    },
-    methods: {
-        goToWeek(date) {
-            this.setDateAndMode(date, 'day');
-        }
     }
 }
 </script>
@@ -102,12 +91,28 @@ export default {
 
         td {
             vertical-align: top;
+            height: $cellHeight;
+            position: relative;
         }
     }
 
     .wrap {
         height: $cellHeight;
         overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+
+        &.overflowed {
+            &:hover {
+                height: auto;
+                box-shadow: $shadow;
+                background: white;
+                z-index: 1;
+            }
+        }
+
     }
 
     .date {
@@ -124,6 +129,10 @@ export default {
                 display: block;
             }
 
+            td {
+                height: auto;
+            }
+
             thead {
                 display: none;
             }
@@ -132,6 +141,7 @@ export default {
         .wrap {
             height: auto;
             min-height: $cellHeight;
+            position: static;
         }
 
         .event {
