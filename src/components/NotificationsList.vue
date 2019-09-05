@@ -1,5 +1,13 @@
 <template>
     <ul class="notifications">
+        <li v-if="!notifications.length" class="empty p-3 text-center">
+            <i class="material-icons d-block mb-2">
+                notifications_none
+            </i>
+            <p class="mb-0">
+                There are no notifications
+            </p>
+        </li>
         <li
             v-for="notification in notifications"
             :key="notification.id"
@@ -53,5 +61,10 @@ export default {
         max-height: 400px;
         overflow-y: auto;
         z-index: 200;
+    }
+
+    .empty {
+        font-size: 16px;
+        color: $blue;
     }
 </style>

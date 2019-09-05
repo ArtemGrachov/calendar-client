@@ -14,10 +14,20 @@
                     :boundaries-selector="'body'"
                 >
                     <NotificationsList></NotificationsList>
-                    <button class="button-link button-round" slot="reference">
+                    <button
+                        class="button-link button-round notifications-button"
+                        slot="reference"
+                    >
                         <i class="material-icons">
-                            notifications_none
+                            {{
+                                notifications.length ?
+                                    'notifications' :
+                                    'notifications_none'
+                            }}
                         </i>
+                        <div class="notifications-counter" v-if="notifications.length">
+                            {{ notifications.length }}
+                        </div>
                     </button>
                 </popper>
                 <button class="button-link button-round ml-4" @click="logout">
@@ -50,6 +60,9 @@ export default {
     computed: {
         user() {
             return this.$store.state.user.user;
+        },
+        notifications() {
+            return this.$store.state.notifications.items;
         }
     },
     methods: {
@@ -66,7 +79,32 @@ export default {
     .header {
         box-shadow: $shadow;
     }
+
     .username {
         font-weight: bold;
+    }
+
+    .notifications {
+        &-button {
+            position: relative;
+        }
+
+        &-counter {
+            $size: 20px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            font-size: 10px;
+            background: $violet;
+            color: white;
+            width: $size;
+            height: $size;
+            line-height: $size;
+            padding-left: 2px;
+            padding-top: 1px;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: $shadow;
+        }
     }
 </style>
