@@ -16,7 +16,7 @@
 }
 
 .block {
-    border-radius: $borderRadius * 3;
+    border-radius: $borderRadius;
     box-shadow: $shadow;
 }
 
@@ -221,4 +221,15 @@
 .content {
     line-height: $contentLineHeight;
     color: $grey;
+}
+
+.block {
+    &-600 {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+.align-middle {
+    vertical-align: middle;
 }

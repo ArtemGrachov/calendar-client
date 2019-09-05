@@ -1,18 +1,26 @@
 <template>
     <div class="profile-view">
         <div class="mb-3">
-            <router-link
-                class="button button-link"
-                to="/profile/edit"
-            >
-                Edit
+            <router-link to="/">
+                <i class="material-icons align-middle">
+                    arrow_back
+                </i>
+                Go to calendar
             </router-link>
         </div>
-        <ProfileDetails :user="user" class="mb-3"></ProfileDetails>
-        <div class="mb-3">
-            <button @click="openChangePasswordModal">
-                Change password
-            </button>
+        <div class="block block-600 mx-auto px-4 py-3">
+            <ProfileDetails :user="user" class="mb-3"></ProfileDetails>
+            <div class="mb-3">
+                <router-link
+                    class="button button-link mr-2"
+                    to="/profile/edit"
+                >
+                    Edit
+                </router-link>
+                <button @click="openChangePasswordModal" class="button-violet">
+                    Change password
+                </button>
+            </div>
         </div>
     </div>
 </template>

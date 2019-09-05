@@ -1,8 +1,16 @@
 <template>
-    <div
-        class="avatar"
-        :style="{ backgroundImage: avatarStyle }"
-    >
+    <div class="avatar">
+        <img
+            class="avatar-img"
+            v-if="user.avatarUrl"
+            :src="user.avatarUrl"
+        />
+        <img
+            class="avatar-img"
+            v-else
+            src="../assets/avatar-blank.png"
+            alt="No avatar"
+        >
     </div>
 </template>
 
@@ -29,9 +37,13 @@ export default {
         display: inline-block;
         vertical-align: middle;
         border-radius: $borderRadius;
-        background-size: cover;
-        background-position: center;
         box-shadow: $shadow;
         border: 1px solid #dedede;
+
+        &-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>
