@@ -7,9 +7,9 @@
         >
             <div class="decoration"></div>
         </div>
-        <div class="controls">
+        <div class="controls" v-if="includeStart">
             <button
-                class="button-round button-link mr-2"
+                class="button-round button-transparent mx-2"
                 @click="openCreateEventModal"
             >
                 <i class="material-icons">
@@ -17,7 +17,7 @@
                 </i>
             </button>
             <button
-                class="button-round button-link"
+                class="button-round button-transparent mx-2"
                 @click="close"
             >
                 <i class="material-icons">
@@ -114,7 +114,7 @@ export default {
 
     .selection {
         position: absolute;
-        background: rgba(blue, .2);
+        background: rgba($orange, .2);
         width: 100%;
         left: 0;
         z-index: 3;
@@ -154,5 +154,9 @@ export default {
         position: absolute;
         bottom: 100%;
         left: 0;
+
+        button {
+            background: rgba($blue, .2);
+        }
     }
 </style>
