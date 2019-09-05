@@ -1,6 +1,6 @@
 <template>
     <div class="calendar">
-        <div class="mb-2 title-sm">
+        <div class="mb-2 title-sm month">
             {{ date | moment('MMMM') }}
         </div>
         <table class="month-table">

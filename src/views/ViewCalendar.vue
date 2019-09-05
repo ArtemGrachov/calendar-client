@@ -50,6 +50,9 @@ export default {
                 end: end.toJSON()
             });
         }
+    },
+    created() {
+        this.mode = this.$router.currentRoute.name;
     }
 }
 </script>

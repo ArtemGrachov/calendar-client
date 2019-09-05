@@ -1,7 +1,7 @@
 <template>
     <div>
         <UserHeader></UserHeader>
-        <div class="container py-3">
+        <div class="container pt-3 py-5">
             <router-view></router-view>
         </div>
     </div>

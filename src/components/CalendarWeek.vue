@@ -174,12 +174,13 @@ export default {
         z-index: 2;
     }
 
-    .day-of-week {
-        color: orange;
-    }
-
     .day-date {
         font-size: 20px;
+        font-weight: bold;
+        color: $orange;
+    }
+
+    .day-of-week {
         font-weight: bold;
     }
 </style>

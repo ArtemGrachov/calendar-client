@@ -37,6 +37,8 @@ export default {
         text-align: center;
         font-size: 12px;
         overflow: hidden;
+        transition: $transition;
+        cursor: pointer;
 
         &-time {
             color: $grey;
@@ -54,6 +56,10 @@ export default {
             width: 1em;
             height: 1em;
             vertical-align: top;
+        }
+
+        &:hover {
+            background: $background;
         }
     }
 </style>
