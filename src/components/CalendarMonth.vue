@@ -32,14 +32,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="row in rows" :key="row">
-                    <td v-for="i in 7" :key="i">
+                <tr v-for="(week, wIndex) in weekGrid" :key="wIndex">
+                    <td v-for="(day, dIndex) in week" :key="dIndex">
                         <div class="wrap" v-overflowed>
                             <div class="date">
-                                {{ grid[i - 1 + (row - 1) * 7] | moment('DD') }}
+                                {{ day | moment('DD') }}
                             </div>
                             <EventBlockSmall
-                                v-for="event in getDateEvents(grid[i - 1 + (row - 1) * 7])"
+                                v-for="event in getDateEvents(day)"
                                 :key="event.id"
                                 :event="event"
                             ></EventBlockSmall>
@@ -69,8 +69,16 @@ export default {
         grid() {
             return fillMonth(this.date);
         },
-        rows() {
-            return this.grid.length / 7;
+        weekGrid() {
+            return this.grid.reduce((acc, curr) => {
+                if (acc[acc.length - 1].length === 7) {
+                    acc.push([]);
+                }
+
+                acc[acc.length - 1].push(curr);
+
+                return acc;
+            }, [[]]);
         }
     }
 }
