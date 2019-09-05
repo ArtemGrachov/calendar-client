@@ -1,6 +1,6 @@
 <template>
     <div
-        class="notification py-3 px-4 d-flex align-items-stretch"
+        class="notification py-3 px-3 pr-2 d-flex align-items-center"
         :class="notification.type"
     >
         <div class="notification-body mr-3">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <button
-            class="button-link notification-close"
+            class="button-round button-link button-grey notification-close flex-shrink-0"
             @click="deleteNotification"
         >
             <i class="material-icons">
@@ -36,40 +36,57 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '../styles/variables';
+
     .notification {
+        border-left: 10px solid transparent;
+        border-bottom: 1px dotted transparent;
+
         &-title {
             font-weight: bold;
             font-size: 16px;
         }
 
         &.success {
+            border-color: $green;
+
             .notification {
+
                 &-title {
-                    color: green;
+                    color: $green;
                 }
             }
         }
 
         &.info {
+            border-color: $blue;
+
             .notification {
+
                 &-title {
-                    color: blue;
+                    color: $blue;
                 }
             }
         }
 
         &.danger {
+            border-color: $red;
+
             .notification {
+
                 &-title {
-                    color: red;
+                    color: $red;
                 }
             }
         }
 
         &.warning {
+            border-color: $orange;
+
             .notification {
+
                 &-title {
-                    color: orangered;
+                    color: $orange;
                 }
             }
         }

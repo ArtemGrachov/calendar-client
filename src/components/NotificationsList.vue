@@ -14,7 +14,7 @@
 
 <script>
 import NotificationBlock from './NotificationBlock';
-import{ NOTIFICATIONS_ACTIONS_DELETE_NOTIFICATION, NOTIFICATIONS_ACTIONS_GET_NOTIFICATIONS } from '../store/notifications/action-types';
+import { NOTIFICATIONS_ACTIONS_DELETE_NOTIFICATION, NOTIFICATIONS_ACTIONS_GET_NOTIFICATIONS } from '../store/notifications/action-types';
 
 export default {
     components: {
