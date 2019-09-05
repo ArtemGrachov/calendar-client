@@ -1,14 +1,7 @@
-import moment from 'moment';
+import sortEvents from '../../utils/sort-events';
 
 export default {
-    byRange: state => range => state.items.filter(
-        (event) => {
-            const start = moment(event.start);
-            const end = moment(event.end);
-
-            return start.isBefore(range.end) && end.isAfter(range.start);
-        }
-    ),
+    sorted: state => state.items.sort(sortEvents),
     iAmOwner: (state, getters, rootState) => event =>
         rootState.user.user.id === event.owner
 }

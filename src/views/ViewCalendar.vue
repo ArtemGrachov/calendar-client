@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         events() {
-            return this.$store.state.events.items;
+            return this.$store.getters['events/sorted'];
         }
     },
     watch: {
