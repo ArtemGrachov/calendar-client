@@ -3,6 +3,7 @@
         class="event px-2 py-1"
         :style="{ borderColor: event.color }"
     >
+        <div class="preloader" v-if="pending"></div>
         <a
             class="details-link"
             href="#"
@@ -44,6 +45,7 @@ export default {
         text-align: center;
         font-size: 14px;
         overflow: hidden;
+        position: relative;
 
         &-time {
             font-size: 12px;
@@ -66,5 +68,12 @@ export default {
 
     .details-link {
         color: black;
+    }
+
+    .preloader {
+        position: absolute;
+        font-size: 4px;
+        top: 2px;
+        left: 2px;
     }
 </style>

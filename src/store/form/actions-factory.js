@@ -2,7 +2,8 @@ import {
     FORM_ACTIONS_SUBMIT,
     FORM_ACTIONS_SUCCESS,
     FORM_ACTIONS_CLEAR,
-    FORM_ACTIONS_FAIL
+    FORM_ACTIONS_FAIL,
+    FORM_ACTIONS_DID_SUBMIT
 } from './action-types';
 import {
     FORM_MUTATIONS_SET_PROCESSING,
@@ -16,6 +17,8 @@ export default function(httpClient, methodSelector) {
     return {
         async [FORM_ACTIONS_SUBMIT](context, payload) {
             try {
+                context.dispatch(FORM_ACTIONS_DID_SUBMIT, payload);
+
                 context.commit(
                     FORM_MUTATIONS_SET_PROCESSING,
                     { processing: processing.PROCESSING_PENDING }
@@ -64,7 +67,7 @@ export default function(httpClient, methodSelector) {
                     }
                 }
 
-                context.dispatch(FORM_ACTIONS_FAIL, data);
+                context.dispatch(FORM_ACTIONS_FAIL, { data, payload });
 
                 throw error;
             }
@@ -73,6 +76,7 @@ export default function(httpClient, methodSelector) {
             context.commit(FORM_MUTATIONS_CLEAR);
         },
         [FORM_ACTIONS_SUCCESS]() { },
-        [FORM_ACTIONS_FAIL]() { }
+        [FORM_ACTIONS_FAIL]() { },
+        [FORM_ACTIONS_DID_SUBMIT]() { }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" class="relative">
         <div class="mb-3">
             <label for="firstname" class="mb-2">First name:</label>
             <input
@@ -22,6 +22,7 @@
         >
             Update
         </button>
+        <div class="preloader form-preloader" v-if="pending"></div>
     </form>
 </template>
 

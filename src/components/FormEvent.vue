@@ -1,5 +1,9 @@
 <template>
-    <form class="relative" @submit.prevent="submit">
+    <form
+        class="relative"
+        @submit.prevent="submit"
+    >
+        <div class="preloader form-preloader" v-if="pending"></div>
         <div class="row mb-3">
             <div class="col-12">
                 <label for="title" class="mb-2">Title:</label>
@@ -8,6 +12,7 @@
                     name="title"
                     id="title"
                     v-model="form.title"
+                    :disabled="pending"
                 >
             </div>
         </div>
@@ -19,6 +24,7 @@
                     name="start"
                     id="start"
                     v-model="form.start"
+                    :disabled="pending"
                 >
             </div>
             <div class="col-12 col-sm-6">
@@ -28,6 +34,7 @@
                     name="end"
                     id="end"
                     v-model="form.end"
+                    :disabled="pending"
                 >
             </div>
         </div>
@@ -39,6 +46,7 @@
                     id="description"
                     rows="10"
                     v-model="form.description"
+                    :disabled="pending"
                 ></textarea>
             </div>
         </div>
@@ -52,6 +60,7 @@
                     :trackBy="'label'"
                     :label="'label'"
                     v-model="formIcon"
+                    :disabled="pending"
                 >
                     <template slot="singleLabel" slot-scope="props">
                         <i class="em" :class="props.option.class" v-if="props.option.class"></i>
@@ -70,6 +79,7 @@
                     name="color"
                     id="color"
                     v-model="form.color"
+                    :disabled="pending"
                 >
             </div>
         </div>
@@ -84,7 +94,13 @@
             v-if="errors.length"
             class="mb-3"
         ></FormErrors>
-        <button type="submit" class="button-success">Submit</button>
+        <button
+            type="submit"
+            class="button-success"
+            :disabled="pending"
+        >
+            Submit
+        </button>
     </form>
 </template>
 

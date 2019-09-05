@@ -83,7 +83,7 @@ export default {
         }
     },
     [LIST_MUTATIONS_SET_PROCESSING](state, payload) {
-        state.processing = payload.processing;
+        state.processing = payload;
     },
     [LIST_MUTATIONS_CLEAR](state) {
         state.items = [];

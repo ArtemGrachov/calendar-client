@@ -1,8 +1,9 @@
 <template>
     <div
-        class="notification py-3 px-3 pr-2 d-flex align-items-center"
+        class="relative notification py-3 px-3 pr-2 d-flex align-items-center"
         :class="notification.type"
     >
+        <div class="preloader" v-if="pending"></div>
         <div class="notification-body mr-3">
             <div class="notification-title mb-2">
                 {{ notification.title }}
@@ -14,6 +15,7 @@
         <button
             class="button-round button-link button-grey notification-close flex-shrink-0"
             @click="deleteNotification"
+            :disabled="pending"
         >
             <i class="material-icons">
                 clear
@@ -23,9 +25,16 @@
 </template>
 
 <script>
+import { PROCESSING_PENDING } from '../config/processing';
+
 export default {
     props: {
         notification: Object
+    },
+    computed: {
+        pending() {
+            return this.notification.processing === PROCESSING_PENDING;
+        }
     },
     methods: {
         deleteNotification() {
@@ -90,5 +99,12 @@ export default {
                 }
             }
         }
+    }
+
+    .preloader {
+        position: absolute;
+        font-size: 4px;
+        right: 8px;
+        top: 8px;
     }
 </style>

@@ -1,7 +1,12 @@
 <template>
-    <form @submit.prevent="submit">
+    <form @submit.prevent="submit" class="relative">
         <div class="mb-3">
-            <label for="firstname" class="mb-2">New password:</label>
+            <label
+                for="firstname"
+                class="mb-2"
+            >
+                New password:
+            </label>
             <input
                 id="password"
                 name="password"
@@ -11,7 +16,12 @@
             >
         </div>
         <div class="mb-3">
-            <label for="passwordConfirmation" class="mb-2">New password confirmation:</label>
+            <label
+                for="passwordConfirmation"
+                class="mb-2"
+            >
+                New password confirmation:
+            </label>
             <input
                 id="passwordConfirmation"
                 name="passwordConfirmation"
@@ -27,6 +37,7 @@
         >
             Update
         </button>
+        <div class="preloader form-preloader" v-if="pending"></div>
     </form>
 </template>
 

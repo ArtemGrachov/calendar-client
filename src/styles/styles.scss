@@ -168,19 +168,6 @@
     position: relative;
 }
 
-.form-preloader {
-    bottom: 0;
-    right: 0;
-}
-
-.preloader-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(white, .5);
-}
-
 .calendar-header {
     color: $grey;
     border-bottom: 1px dotted $blue;

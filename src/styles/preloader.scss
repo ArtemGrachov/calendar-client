@@ -1,82 +1,38 @@
 @import './variables.scss';
+$size: 5em;
+$borderSize: .5em;
+
+.preloader,
+.preloader:after {
+    border-radius: 50%;
+    width: $size;
+    height: $size;
+}
 
 .preloader {
+    position: relative;
+    border-top: $borderSize solid rgba($grey, .2);
+    border-right: $borderSize solid rgba($grey, .2);
+    border-bottom: $borderSize solid rgba($grey, .2);
+    border-left: $borderSize solid $blue;
+    transform: translateZ(0);
+    animation: preloader 1s infinite linear;
+}
+
+.form-preloader {
     position: absolute;
-    width: 60px;
-    height: 30px;
-    animation-name: loader-rotate;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
-    background: lime;
-
-    &:before {
-        top: 0;
-        left: 0;
-        background: greenyellow;
-        animation-name: loader-before;
-    }
-
-    &:after {
-        bottom: 0;
-        right: 0;
-        background: lawngreen;
-        animation-name: loader-after;
-    }
-
-    &:before,
-    &:after {
-        content: '';
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        animation-duration: 2s;
-        animation-iteration-count: infinite;
-    }
+    top: 50%;
+    left: 50%;
+    margin-top: -($size / 2);
+    margin-left: -($size / 2);
+    z-index: 3;
 }
 
-@keyframes loader-rotate {
-    25% {
-        transform: rotate(90deg);
-    }
-    50% {
-        transform: rotate(-90deg);
-    }
-}
-
-@keyframes loader-before {
-    25% {
-        top: 100%;
-        left: 0%;
-    }
-    50% {
-        top: 100%;
-        left: 100%;
-    }
-    75% {
-        top: 0%;
-        left: 100%;
+@keyframes preloader {
+    0% {
+        transform: rotate(0deg);
     }
     100% {
-        top: 0%;
-        left: 0%;
-    }
-}
-
-@keyframes loader-after {
-    25% {
-        bottom: 100%;
-        right: 0%;
-    }
-    50% {
-        bottom: 100%;
-        right: 100%;
-    }
-    75% {
-        bottom: 0%;
-        right: 100%;
-    }
-    100% {
-        bottom: 0%;
-        right: 0%;
+        transform: rotate(360deg);
     }
 }

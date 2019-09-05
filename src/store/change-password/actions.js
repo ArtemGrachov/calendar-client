@@ -12,7 +12,7 @@ export default {
     [FORM_ACTIONS_FAIL](context, payload) {
         context.dispatch(
             'alerts/' + ALERTS_ACTIONS_DANGER,
-            { description: payload.message },
+            { description: payload.data.message },
             { root: true }
         );
     }

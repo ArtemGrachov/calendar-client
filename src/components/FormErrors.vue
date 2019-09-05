@@ -1,5 +1,5 @@
 <template>
-    <ul class="errors">
+    <ul class="errors p-3">
         <li
             class="mb-2"
             v-for="(error, index) in errors"

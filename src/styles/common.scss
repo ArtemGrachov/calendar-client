@@ -114,6 +114,10 @@
     line-height: 1.2;
     cursor: pointer;
     @include buttonStyle($blue, white, $blue);
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 }
 
 %input {

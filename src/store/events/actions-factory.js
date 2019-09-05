@@ -4,7 +4,8 @@ import {
     EVENTS_ACTIONS_DELETE_EVENT,
     EVENTS_ACTIONS_LEAVE_EVENT,
     EVENTS_ACTIONS_INVITE_USER_TO_EVENT,
-    EVENTS_ACTIONS_REMOVE_USER_FROM_EVENT
+    EVENTS_ACTIONS_REMOVE_USER_FROM_EVENT,
+    EVENTS_ACTIONS_EVENT_PROCESSING
 } from './action-types';
 import {
     LIST_MUTATIONS_SET_PROCESSING,
@@ -238,6 +239,15 @@ export default function (httpClient) {
                     { root: true }
                 );
             }
+        },
+        [EVENTS_ACTIONS_EVENT_PROCESSING](context, payload) {
+            context.commit(
+                LIST_MUTATIONS_SET_ITEM_PROCESSING,
+                {
+                    id: payload.id,
+                    processing: payload.processing
+                }
+            );
         }
     }
 }

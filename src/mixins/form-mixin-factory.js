@@ -23,7 +23,7 @@ export default function(moduleName, data) {
                 return this.$store.state.login.message;
             },
             pending() {
-                return this.$store.getters['login/pending'];
+                return this.$store.getters[moduleName + '/pending'];
             }
         },
         beforeCreate() {

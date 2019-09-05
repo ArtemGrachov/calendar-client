@@ -1,6 +1,7 @@
 import Modal from '../modal';
 import ModalEventDetails from '../components/ModalEventDetails';
 import icons from '../config/icons';
+import { PROCESSING_PENDING } from '../config/processing';
 
 export default {
     props: {
@@ -9,6 +10,9 @@ export default {
     computed: {
         icon() {
             return icons.find(icon => icon.name === this.event.icon);
+        },
+        pending() {
+            return this.event.processing === PROCESSING_PENDING
         }
     },
     methods: {
