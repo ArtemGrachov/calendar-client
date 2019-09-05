@@ -118,12 +118,21 @@ export default {
 <style lang="scss" scoped>
     @import '../styles/variables';
 
+    .left,
     .right {
         text-align: center;
     }
 
     .left {
-        text-align: center;
+        @media (min-width: 768px) {
+            text-align: left;
+        }
+    }
+
+    .right {
+        @media (min-width: 768px) {
+            text-align: right;
+        }
     }
 
     .mode-button {
