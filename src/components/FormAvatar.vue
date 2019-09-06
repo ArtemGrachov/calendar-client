@@ -51,17 +51,6 @@
                 </button>
             </div>
         </form>
-        <div
-            class="form-message mb-2 p-3"
-            v-if="message"
-        >
-            {{ message }}
-        </div>
-        <FormErrors
-            :errors="errors"
-            v-if="errors.length"
-            class="mb-3 p-3"
-        ></FormErrors>
     </div>
 </template>
 

@@ -16,24 +16,12 @@
                 v-model="form.lastname"
             >
         </div>
-        <div
-            class="form-message mb-2 p-3"
-            v-if="message"
-        >
-            {{ message }}
-        </div>
-        <FormErrors
-            :errors="errors"
-            v-if="errors.length"
-            class="mb-3 p-3"
-        ></FormErrors>
         <button
             type="submit"
             :disabled="pending"
         >
             Update
         </button>
-        <div class="preloader form-preloader" v-if="pending"></div>
     </form>
 </template>
 
