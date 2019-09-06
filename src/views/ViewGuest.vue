@@ -5,7 +5,9 @@
                 Calendar App
             </div>
         </header>
-        <router-view></router-view>
+        <transition name="slide-x" mode="out-in">
+            <router-view></router-view>
+        </transition>
         <footer class="footer p-3 mt-auto text-center">
             Developed by
             <a

@@ -9,13 +9,15 @@
             class="mb-3"
         ></CalendarNav>
         <div class="view-wrap">
-            <router-view
-                :date="date"
-                :events="events"
-                :selectionComponent="selectionComponent"
-                @loadEvents="loadEvents($event)"
-                @setDateAndMode="setDateAndMode($event.date, $event.mode)"
-            ></router-view>
+            <transition name="slide-x" mode="out-in">
+                <router-view
+                    :date="date"
+                    :events="events"
+                    :selectionComponent="selectionComponent"
+                    @loadEvents="loadEvents($event)"
+                    @setDateAndMode="setDateAndMode($event.date, $event.mode)"
+                ></router-view>
+            </transition>
         </div>
     </div>
 </template>

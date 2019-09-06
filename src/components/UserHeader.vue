@@ -78,6 +78,8 @@ export default {
 
     .header {
         box-shadow: $shadow;
+        animation-duration: 500ms;
+        animation-name: header-animation;
     }
 
     .username {
@@ -105,6 +107,15 @@ export default {
             border-radius: 50%;
             text-align: center;
             box-shadow: $shadow;
+        }
+    }
+
+    @keyframes header-animation {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(0);
         }
     }
 </style>
