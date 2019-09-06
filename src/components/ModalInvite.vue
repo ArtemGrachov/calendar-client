@@ -13,7 +13,7 @@
                 </button>
             </div>
             <div class="py-3">
-                <SearchUser>
+                <FormSearchUser>
                     <template v-slot:default="slotProps">
                         <UserInviteControls
                             :user="slotProps.user"
@@ -22,7 +22,7 @@
                             @remove="remove(slotProps.user.id)"
                         ></UserInviteControls>
                     </template>
-                </SearchUser>
+                </FormSearchUser>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
 
 <script>
 import modalWindowMixin from '../mixins/modal-window-mixin';
-import SearchUser from './SearchUser';
+import FormSearchUser from './FormSearchUser';
 import UserInviteControls from './UserInviteControls';
 import {
     EVENTS_ACTIONS_INVITE_USER_TO_EVENT,
@@ -40,7 +40,7 @@ import {
 export default {
     mixins: [modalWindowMixin],
     components: {
-        SearchUser,
+        FormSearchUser,
         UserInviteControls
     },
     computed: {

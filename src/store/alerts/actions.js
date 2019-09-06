@@ -17,10 +17,11 @@ export default {
         payload.id = context.state.counter;
         context.commit(LIST_MUTATIONS_ADD_ITEM, { item: payload });
 
+        const id = payload.id;
         setTimeout(() => {
             context.dispatch(
                 ALERTS_ACITONS_DELETE_ALERT,
-                { id: context.state.counter }
+                { id }
             );
         }, alertLifetime);
     },

@@ -28,31 +28,26 @@
 </template>
 
 <script>
-import { FORM_ACTIONS_SUBMIT } from '../store/form/action-types';
+import formMixinFactory from '../mixins/form-mixin-factory';
 import UserAvatar from './UserAvatar';
 
 export default {
+    mixins: [
+        formMixinFactory(
+            'usersSearch',
+            () => ({
+                form: {
+                    email: ''
+                }
+            })
+        )
+    ],
     components: {
         UserAvatar
-    },
-    data() {
-        return {
-            form: {
-                email: ''
-            }
-        }
     },
     computed: {
         users() {
             return this.$store.state.users.items
-        }
-    },
-    methods: {
-        submit() {
-            this.$store.dispatch(
-                'usersSearch/' + FORM_ACTIONS_SUBMIT,
-                this.form
-            );
         }
     }
 }
