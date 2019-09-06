@@ -10,7 +10,13 @@ export default class UserClient extends HttpClient {
         return this.client.get(this.path);
     }
 
-    async update(data) {
+    async update(form) {
+        const data = new FormData();
+        
+        for (let key in form) {
+            data.append(key, form[key]);
+        }
+
         return this.client.patch(this.path, data);
     }
 }

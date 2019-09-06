@@ -2,8 +2,8 @@
     <div class="avatar">
         <img
             class="avatar-img"
-            v-if="user.avatarUrl"
-            :src="user.avatarUrl"
+            v-if="avatar"
+            :src="avatar"
         />
         <img
             class="avatar-img"
@@ -15,13 +15,16 @@
 </template>
 
 <script>
+import { apiDomain } from '../config';
+
 export default {
     props: {
         user: Object
     },
     computed: {
-        avatarStyle() {
-            return `url(${this.user.avatarUrl})`;
+        avatar() {
+            const avatarUrl = this.user.avatarUrl;
+            return avatarUrl ? `${apiDomain}uploads/${avatarUrl}` : avatarUrl;
         }
     }
 }

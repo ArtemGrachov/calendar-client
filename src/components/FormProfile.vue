@@ -1,6 +1,15 @@
 <template>
     <form @submit.prevent="submit" class="relative">
         <div class="mb-3">
+            <label for="avatar" class="mb-2">Avatar:</label>
+            <input
+                type="file"
+                name="avatar"
+                id="avatar"
+                @change="fileOnChange($event, form)"
+            >
+        </div>
+        <div class="mb-3">
             <label for="firstname" class="mb-2">First name:</label>
             <input
                 type="text"
@@ -36,7 +45,8 @@ export default {
             () => ({
                 form: {
                     firstname: '',
-                    lastname: ''
+                    lastname: '',
+                    avatar: null
                 }
             })
         )
