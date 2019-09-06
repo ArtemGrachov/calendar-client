@@ -6,7 +6,7 @@ export default {
     namespaced: true,
     state,
     actions: {
-        ...actionsFactory(events, payload => payload.id ? 'updateEvent' : 'createEvent'),
+        ...actionsFactory(events, payload => payload.data.id ? 'updateEvent' : 'createEvent'),
         ...actions
     },
     mutations,

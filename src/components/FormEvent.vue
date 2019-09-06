@@ -84,7 +84,7 @@
             </div>
         </div>
         <div
-            class="form-message mb-2"
+            class="form-message mb-2 p-3"
             v-if="message"
         >
             {{ message }}
@@ -92,7 +92,7 @@
         <FormErrors
             :errors="errors"
             v-if="errors.length"
-            class="mb-3"
+            class="mb-3 p-3"
         ></FormErrors>
         <button
             type="submit"
@@ -105,16 +105,31 @@
 </template>
 
 <script>
-import {
-    FORM_ACTIONS_SUBMIT,
-    FORM_ACTIONS_CLEAR
-} from '../store/form/action-types';
+import { FORM_ACTIONS_CLEAR } from '../store/form/action-types';
 import Multiselect from 'vue-multiselect'
 import FormErrors from './FormErrors';
 import icons from '../config/icons';
 import moment from 'moment';
+import formMixinFactory from '../mixins/form-mixin-factory';
 
 export default {
+    mixins: [
+        formMixinFactory(
+            'editEvent',
+            () => ({
+                form: {
+                    title: '',
+                    start: '',
+                    end: '',
+                    description: '',
+                    icon: '',
+                    color: ''
+                },
+                formIcon: null,
+                icons
+            })
+        )
+    ],
     props: {
         event: Object,
     },
@@ -123,39 +138,11 @@ export default {
         FormErrors
     },
     computed: {
-        errors() {
-            return this.$store.state.editEvent.errors;
-        },
-        message() {
-            return this.$store.state.editEvent.message;
-        },
-        pending() {
-            return this.$store.getters['editEvent/pending'];
-        }
-    },
-    data() {
-        return {
-            form: {
-                title: '',
-                start: '',
-                end: '',
-                description: '',
-                icon: '',
-                color: ''
-            },
-            formIcon: null,
-            icons
-        }
-    },
-    methods: {
-        submit() {
-            this.$store.dispatch(
-                'editEvent/' + FORM_ACTIONS_SUBMIT,
-                {
-                    ...this.form,
-                    icon: this.formIcon ? this.formIcon.name : ''
-                }
-            );
+        formData() {
+            return {
+                ...this.form,
+                icon: this.formIcon ? this.formIcon.name : ''
+            }
         }
     },
     created() {

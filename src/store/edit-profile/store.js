@@ -3,9 +3,9 @@ import { actionsFactory, mutations, state, getters } from '../form';
 import { user } from '../../api';
 
 function submitHandler(payload) {
-    if (payload.avatar) {
+    if (payload.options.uploadAvatar) {
         return 'uploadAvatar';
-    } else if (payload.deleteAvatar) {
+    } else if (payload.options.deleteAvatar) {
         return 'deleteAvatar';
     }
     return 'update';

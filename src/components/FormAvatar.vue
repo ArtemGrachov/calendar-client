@@ -5,18 +5,20 @@
         </div>
         <button
             class="mb-3 mr-2"
+            :disabled="pending"
             @click="toggleUploadForm"
         >
             Upload new avatar
         </button>
         <button
             class="button-red mb-3"
+            :disabled="pending"
             @click="deleteAvatar"
         >
             Delete avatar
         </button>
         <form
-            @submit.prevent="prepareForm"
+            @submit.prevent="upload"
             v-show="showUploadForm"
         >
             <div class="d-block text-center">
@@ -35,6 +37,7 @@
                 <button
                     type="button"
                     class="button-red button-transparent m-2"
+                    :disabled="pending"
                     @click="clear()"
                 >
                     Clear
@@ -48,6 +51,17 @@
                 </button>
             </div>
         </form>
+        <div
+            class="form-message mb-2 p-3"
+            v-if="message"
+        >
+            {{ message }}
+        </div>
+        <FormErrors
+            :errors="errors"
+            v-if="errors.length"
+            class="mb-3 p-3"
+        ></FormErrors>
     </div>
 </template>
 
@@ -60,8 +74,7 @@ export default {
             'editProfile',
             () => ({
                 form: {
-                    avatar: null,
-                    deleteAvatar: false
+                    avatar: null
                 }
             })
         )
@@ -73,28 +86,20 @@ export default {
         }
     },
     methods: {
-        async prepareForm() {
+        async upload() {
             const avatar = await this.avatarCmp.promisedBlob();
             this.form.avatar = avatar;
-            this.form.deleteAvatar = false;
-            this.submit();
+            this.sendForm(this.form, { uploadAvatar: true });
         },
         clear() {
             this.avatarCmp.remove();
         },
         deleteAvatar() {
-            this.form.avatar = null;
-            this.form.deleteAvatar = true;
-            this.submit();
+            this.sendForm(null, { deleteAvatar: true });
         },
         toggleUploadForm() {
             this.showUploadForm = !this.showUploadForm;
         }
-    },
-    computed: {
-        formData() {
-            return this.form;
-        }
-    },
+    }
 }
 </script>

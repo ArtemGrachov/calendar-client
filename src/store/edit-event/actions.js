@@ -17,7 +17,7 @@ export default {
     [FORM_ACTIONS_DID_SUBMIT](context, payload) {
         context.dispatch(
             'events/' + EVENTS_ACTIONS_EVENT_PROCESSING,
-            { id: payload.id, processing: PROCESSING_PENDING },
+            { id: payload.data.id, processing: PROCESSING_PENDING },
             { root: true }
         );
     },

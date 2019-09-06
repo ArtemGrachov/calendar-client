@@ -18,6 +18,7 @@ export default function(httpClient, methodSelector) {
         async [FORM_ACTIONS_SUBMIT](context, payload) {
             try {
                 context.dispatch(FORM_ACTIONS_DID_SUBMIT, payload);
+                context.commit(FORM_MUTATIONS_CLEAR);
 
                 context.commit(
                     FORM_MUTATIONS_SET_PROCESSING,
@@ -25,7 +26,7 @@ export default function(httpClient, methodSelector) {
                 );
 
                 const method = methodSelector(payload);
-                const { data } = await httpClient[method](payload);
+                const { data } = await httpClient[method](payload.data);
 
                 context.commit(
                     FORM_MUTATIONS_SET_PROCESSING,

@@ -12,7 +12,13 @@ export default function(moduleName, data) {
         data,
         methods: {
             submit() {
-                this.$store.dispatch(moduleName + '/' + FORM_ACTIONS_SUBMIT, this.formData);
+                this.sendForm(this.formData);
+            },
+            sendForm(data, options) {
+                this.$store.dispatch(
+                    moduleName + '/' + FORM_ACTIONS_SUBMIT,
+                    { data, options }
+                );
             },
             fileOnChange(event, form) {
                 const fieldName = event.target.name;
@@ -28,13 +34,16 @@ export default function(moduleName, data) {
         },
         computed: {
             errors() {
-                return this.$store.state.login.errors;
+                return this.$store.state[moduleName].errors;
             },
             message() {
-                return this.$store.state.login.message;
+                return this.$store.state[moduleName].message;
             },
             pending() {
                 return this.$store.getters[moduleName + '/pending'];
+            },
+            formData() {
+                return this.$data.form
             }
         },
         beforeCreate() {
