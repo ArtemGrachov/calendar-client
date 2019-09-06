@@ -11,12 +11,18 @@ export default class UserClient extends HttpClient {
     }
 
     async update(form) {
-        const data = new FormData();
-        
-        for (let key in form) {
-            data.append(key, form[key]);
-        }
+        return this.client.patch(this.path, form);
+    }
 
-        return this.client.patch(this.path, data);
+    async uploadAvatar(form) {
+        const data = new FormData();
+
+        data.append('avatar', form.avatar);
+
+        return this.client.post(this.path + 'avatar', data);
+    }
+
+    async deleteAvatar() {
+        return this.client.delete(this.path + 'avatar');
     }
 }

@@ -220,3 +220,10 @@
 .align-middle {
     vertical-align: middle;
 }
+
+.image-clip {
+    border: 1px solid $lightgrey;
+    box-shadow: $shadow;
+    margin: auto;
+    cursor: move;
+}

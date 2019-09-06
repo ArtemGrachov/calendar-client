@@ -1,14 +1,5 @@
 <template>
-    <form @submit.prevent="submit" class="relative">
-        <div class="mb-3">
-            <label for="avatar" class="mb-2">Avatar:</label>
-            <input
-                type="file"
-                name="avatar"
-                id="avatar"
-                @change="fileOnChange($event, form)"
-            >
-        </div>
+    <form @submit.prevent="submit">
         <div class="mb-3">
             <label for="firstname" class="mb-2">First name:</label>
             <input
@@ -45,15 +36,14 @@ export default {
             () => ({
                 form: {
                     firstname: '',
-                    lastname: '',
-                    avatar: null
+                    lastname: ''
                 }
             })
         )
     ],
     computed: {
         formData() {
-            return this.$data.form
+            return this.form;
         }
     },
     created() {
