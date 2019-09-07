@@ -11,7 +11,7 @@ import './styles/main.scss';
 
 Vue.config.productionTip = false
 
-const webSocketClient = new WebSocketClient('ws://localhost:3000', store);
+const webSocketClient = new WebSocketClient(process.env.VUE_APP_WS_DOMAIN, store);
 
 const guard = new RouterGuard(
     router,
