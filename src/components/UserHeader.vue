@@ -13,7 +13,7 @@
                     trigger="click"
                     :boundaries-selector="'body'"
                 >
-                    <NotificationsList></NotificationsList>
+                    <NotificationsDropdown></NotificationsDropdown>
                     <button
                         class="button-link button-round notifications-button"
                         slot="reference"
@@ -44,12 +44,12 @@
 import { USER_ACTIONS_CLEAR } from '../store/user/action-types';
 import Popper from 'vue-popperjs';
 import UserAvatar from './UserAvatar';
-import NotificationsList from './NotificationsList';
+import NotificationsDropdown from './NotificationsDropdown';
 
 export default {
     components: {
         UserAvatar,
-        NotificationsList,
+        NotificationsDropdown,
         Popper
     },
     data() {

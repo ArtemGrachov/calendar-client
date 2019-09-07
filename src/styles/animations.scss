@@ -14,6 +14,21 @@ $slideTransition: 300ms;
                 transition: opacity $slideTransition, transform $slideTransition;
             }
         }
+
+        &-reverse {
+            &-enter,
+            &-leave-to {
+                opacity: 0;
+                transform: translateX(50%);
+            }
+        
+            &-enter,
+            &-leave {
+                &-active {
+                    transition: opacity $slideTransition, transform $slideTransition;
+                }
+            }
+        }
     }
 
     &-y {
