@@ -47,6 +47,14 @@ export default {
                         return start.isBefore(range.end) && end.isAfter(range.start);
                     })
         },
+        isDateInRange(date, range) {
+            return range.start.isBefore(date) && range.end.isAfter(date);
+        },
+        isSelectionInRange(date, selection) {
+            const { start, end } = this.dateRange(date);
+
+            return selection.start.isBefore(end) && selection.end.isAfter(start);
+        },
         loadEvents() {
             this.$emit('loadEvents', this.gridRange());
         }

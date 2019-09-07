@@ -11,6 +11,7 @@
         <table class="day-table">
             <tr>
                 <td class="hours">
+                    <div class="now" :style="getMomentPos(now, now)"></div>
                     <DayHours
                         :start="start"
                         :end="end"
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import DayGrid from './DayGrid';
 import DayHours from './DayHours';
 import EventBlock from './EventBlock';
@@ -82,6 +84,11 @@ export default {
         grid() {
             return [this.date]
         }
+    },
+    data() {
+        return {
+            now: moment()
+        }
     }
 }
 </script>
@@ -91,6 +98,7 @@ export default {
         width: 100%;
         table-layout: fixed;
         border-collapse: collapse;
+        position: relative;
 
         td, th {
             border: 1px solid #f3f3f3;
@@ -98,6 +106,10 @@ export default {
 
         td {
             position: relative;
+
+            &.hours {
+                position: static;
+            }
         }
     }
 

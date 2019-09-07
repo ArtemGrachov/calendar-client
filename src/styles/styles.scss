@@ -231,3 +231,13 @@
 .overflow-hidden {
     overflow: hidden;
 }
+
+.now {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: $blue;
+    z-index: 5;
+    pointer-events: none;
+}

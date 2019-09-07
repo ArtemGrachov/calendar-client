@@ -28,11 +28,6 @@ export default {
         updateSelection(selection) {
             this.selection = selection;
         },
-        isSelectionInRange(date, selection) {
-            const { start, end } = this.dateRange(date);
-
-            return selection.start.isBefore(end) && selection.end.isAfter(start);
-        },
         closeSelection() {
             this.selection = null;
         }
