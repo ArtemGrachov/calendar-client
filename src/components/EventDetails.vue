@@ -15,7 +15,7 @@
         <div class="mb-3 px-3" v-if="!diffDates">
             <div class="date date-lg">
                 <span class="date-inner">
-                    {{ event.start | moment('MMMM Do, YYYY') }}
+                    {{ event.start | moment('MMMM D, YYYY') }}
                 </span>
             </div>
         </div>
@@ -160,7 +160,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../styles/variables';
+    @import '../styles/variables';
 
     .date {
         color: $grey;

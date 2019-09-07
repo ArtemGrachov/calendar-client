@@ -2,8 +2,8 @@
     <div class="calendar">
         <div class="calendar-header mb-3">
             <div class="calendar-header-date">
-                {{ grid[0] | moment('MMMM Do YYYY') }} -
-                {{ grid.slice(-1)[0] | moment('MMMM Do YYYY') }}
+                {{ grid[0] | moment('MMMM D, YYYY') }} -
+                {{ grid.slice(-1)[0] | moment('MMMM D, YYYY') }}
             </div>
         </div>
         <div class="table-outer">

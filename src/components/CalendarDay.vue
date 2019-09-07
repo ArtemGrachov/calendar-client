@@ -2,7 +2,7 @@
     <div class="calendar">
         <div class="calendar-header mb-3">
             <div class="calendar-header-date">
-                {{ date | moment('MMMM Do YYYY') }}
+                {{ date | moment('MMMM D, YYYY') }}
             </div>
             <div class="calendar-header-day">
                 {{ date | moment('dddd') }}
