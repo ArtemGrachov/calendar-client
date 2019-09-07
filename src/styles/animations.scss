@@ -1,0 +1,97 @@
+$slideTransition: 300ms;
+
+.slide {
+    &-x {
+        &-enter,
+        &-leave-to {
+            opacity: 0;
+            transform: translateX(-50%);
+        }
+    
+        &-enter,
+        &-leave {
+            &-active {
+                transition: opacity $slideTransition, transform $slideTransition;
+            }
+        }
+
+        &-reverse {
+            &-enter,
+            &-leave-to {
+                opacity: 0;
+                transform: translateX(50%);
+            }
+        
+            &-enter,
+            &-leave {
+                &-active {
+                    transition: opacity $slideTransition, transform $slideTransition;
+                }
+            }
+        }
+    }
+
+    &-y {
+        &-enter,
+        &-leave-to {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+    
+        &-enter,
+        &-leave {
+            &-active {
+                transition: opacity $slideTransition * 10, transform $slideTransition * 10;
+            }
+        }
+    }
+}
+
+.fade {
+    &-enter,
+    &-leave-to {
+        opacity: 0;
+    }
+
+    &-enter,
+    &-leave {
+        &-active {
+            transition: opacity 200ms;
+        }
+    }
+}
+
+.accordion {
+    &-enter-active,
+    &-leave-active {
+        transition-duration: 300ms;
+        transition-timing-function: ease-in;
+    }
+
+    &-enter-to,
+    &-leave {
+        max-height: 1000px;
+        overflow: hidden;
+    }
+    
+    &-enter,
+    &-leave-to {
+        overflow: hidden;
+        max-height: 0;
+    }
+}
+
+.modal {
+    &-enter,
+    &-leave-to {
+        top: -100%;
+        opacity: 0;
+    }
+
+    &-enter,
+    &-leave {
+        &-active {
+            transition: $slideTransition;
+        }
+    }
+}

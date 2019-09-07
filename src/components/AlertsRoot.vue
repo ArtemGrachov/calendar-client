@@ -1,12 +1,14 @@
 <template>
-    <div class="alerts-root p-4" v-if="alerts.length">
-        <AlertBlock
-            class="mb-3"
-            v-for="alert in alerts"
-            :key="alert.id"
-            :alert="alert"
-            @close="close(alert.id)"
-        ></AlertBlock>
+    <div class="alerts-root p-4">
+        <transition-group name="slide-x-reverse">
+            <AlertBlock
+                class="mb-3"
+                v-for="alert in alerts"
+                :key="alert.id"
+                :alert="alert"
+                @close="close(alert.id)"
+            ></AlertBlock>
+        </transition-group>
     </div>
 </template>
 

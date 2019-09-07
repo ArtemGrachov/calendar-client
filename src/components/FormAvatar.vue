@@ -17,40 +17,42 @@
         >
             Delete avatar
         </button>
-        <form
-            @submit.prevent="upload"
-            v-show="showUploadForm"
-        >
-            <div class="d-block text-center">
-                <div class="mb-2">
-                    <croppa
-                        class="image-clip d-inline-block"
-                        v-model="avatarCmp"
-                        :file-size-limit="102400"
-                        :quality="1"
-                        :show-remove-button="false"
-                        :placeholder-font-size="16"
-                        :width="200"
-                        :height="200"
-                    ></croppa>
+        <transition name="accordion">
+            <form
+                @submit.prevent="upload"
+                v-show="showUploadForm"
+            >
+                <div class="d-block text-center">
+                    <div class="mb-2">
+                        <croppa
+                            class="image-clip d-inline-block"
+                            v-model="avatarCmp"
+                            :file-size-limit="102400"
+                            :quality="1"
+                            :show-remove-button="false"
+                            :placeholder-font-size="16"
+                            :width="200"
+                            :height="200"
+                        ></croppa>
+                    </div>
+                    <button
+                        type="button"
+                        class="button-red button-transparent m-2"
+                        :disabled="pending"
+                        @click="clear()"
+                    >
+                        Clear
+                    </button>
+                    <button
+                        class="m-2"
+                        type="submit"
+                        :disabled="pending"
+                    >
+                        Upload
+                    </button>
                 </div>
-                <button
-                    type="button"
-                    class="button-red button-transparent m-2"
-                    :disabled="pending"
-                    @click="clear()"
-                >
-                    Clear
-                </button>
-                <button
-                    class="m-2"
-                    type="submit"
-                    :disabled="pending"
-                >
-                    Upload
-                </button>
-            </div>
-        </form>
+            </form>
+        </transition>
     </div>
 </template>
 

@@ -1,6 +1,8 @@
 <template>
     <div id="app" class="wrapper">
-        <router-view></router-view>
+        <transition name="fade" mode="out-in">
+            <router-view></router-view>
+        </transition>
         <ModalRoot></ModalRoot>
         <AlertsRoot></AlertsRoot>
     </div>

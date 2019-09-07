@@ -13,16 +13,20 @@
                 <button type="submit">Search</button>
             </div>
         </form>
-        <div
-            class="user-block py-2 px-3 d-flex align-items-center mb-2"
-            v-for="user in users"
-            :key="user.id"
-        >
-            <UserAvatar class="mr-3" :user="user"></UserAvatar>
-            <div class="mr-auto">
-                {{user.firstname}} {{user.lastname}}
-            </div>
-            <slot v-if="user" :user="user"></slot>
+        <div class="overflow-hidden">
+            <transition-group name="slide-x">
+                <div
+                    class="user-block py-2 px-3 d-flex align-items-center mb-2"
+                    v-for="user in users"
+                    :key="user.id"
+                >
+                    <UserAvatar class="mr-3" :user="user"></UserAvatar>
+                    <div class="mr-auto">
+                        {{user.firstname}} {{user.lastname}}
+                    </div>
+                    <slot v-if="user" :user="user"></slot>
+                </div>
+            </transition-group>
         </div>
     </div>
 </template>
