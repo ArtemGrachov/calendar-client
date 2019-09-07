@@ -6,18 +6,22 @@ import Vuelidate from 'vuelidate';
 import router from './router';
 import store from './store';
 import RouterGuard from './router-guard';
+import WebSocketClient from './socket';
 import './styles/main.scss';
 
 Vue.config.productionTip = false
 
+const webSocketClient = new WebSocketClient('ws://localhost:3000', store);
+
 const guard = new RouterGuard(
     router,
     store,
+    webSocketClient,
     {
         'guest': '/auth/login',
         'user': '/'
     }
-)
+);
 
 guard.init();
 
@@ -29,4 +33,4 @@ new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
