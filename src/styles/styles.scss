@@ -241,3 +241,8 @@
     z-index: 5;
     pointer-events: none;
 }
+
+.field-error {
+    font-size: 12px;
+    color: $red;
+}
