@@ -30,7 +30,8 @@ import ModalInvite from './ModalInvite';
 import modalWindowMixin from '../mixins/modal-window-mixin';
 import {
     EVENTS_ACTIONS_DELETE_EVENT,
-    EVENTS_ACTIONS_LEAVE_EVENT
+    EVENTS_ACTIONS_LEAVE_EVENT,
+    EVENTS_ACTIONS_STORE_DELETE_EVENT
 } from '../store/events/action-types';
 
 export default {
@@ -78,6 +79,7 @@ export default {
             switch (action.type) {
                 case 'events/' + EVENTS_ACTIONS_DELETE_EVENT:
                 case 'events/' + EVENTS_ACTIONS_LEAVE_EVENT:
+                case 'events/' + EVENTS_ACTIONS_STORE_DELETE_EVENT:
                     this.close();
                     break;
             }

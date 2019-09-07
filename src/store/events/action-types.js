@@ -6,3 +6,6 @@ export const EVENTS_ACTIONS_INVITE_USER_TO_EVENT = '[Events actions] Invite user
 export const EVENTS_ACTIONS_REMOVE_USER_FROM_EVENT = '[Events actions] Remove user from event';
 export const EVENTS_ACTIONS_LEAVE_EVENT = '[Events actions] Leave event';
 export const EVENTS_ACTIONS_EVENT_PROCESSING = '[Events actions] Event processing';
+export const EVENTS_ACTIONS_STORE_DELETE_EVENT = '[Events actions] Store delete event';
+export const EVENTS_ACTIONS_ADD_EVENT = '[Events actions] Add event';
+export const EVENTS_ACTIONS_STORE_REMOVE_USER_FROM_EVENT = '[Events actions] Store remove user from event';

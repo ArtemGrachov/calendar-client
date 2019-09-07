@@ -1,12 +1,14 @@
 import {
     NOTIFICATIONS_ACTIONS_GET_NOTIFICATIONS,
-    NOTIFICATIONS_ACTIONS_DELETE_NOTIFICATION
+    NOTIFICATIONS_ACTIONS_DELETE_NOTIFICATION,
+    NOTIFICATIONS_ACTIONS_ADD_NOTIFICATION
 } from './action-types';
 import {
     LIST_MUTATIONS_SET_ITEMS,
     LIST_MUTATIONS_SET_PROCESSING,
     LIST_MUTATIONS_REMOVE_ITEM,
-    LIST_MUTATIONS_SET_ITEM_PROCESSING
+    LIST_MUTATIONS_SET_ITEM_PROCESSING,
+    LIST_MUTATIONS_ADD_ITEM
 } from '../list/mutation-types';
 import {
     ALERTS_ACTIONS_DANGER
@@ -19,7 +21,7 @@ import {
 
 export default function(httpClient) {
     return {
-        async [NOTIFICATIONS_ACTIONS_GET_NOTIFICATIONS](context, payload) {
+        async [NOTIFICATIONS_ACTIONS_GET_NOTIFICATIONS](context) {
             try {
                 context.commit(LIST_MUTATIONS_SET_PROCESSING, PROCESSING_PENDING);
     
@@ -63,6 +65,12 @@ export default function(httpClient) {
                     { root: true }
                 );
             }
+        },
+        [NOTIFICATIONS_ACTIONS_ADD_NOTIFICATION](context, payload) {
+            context.commit(
+                LIST_MUTATIONS_ADD_ITEM,
+                payload
+            )
         }
     }
 }

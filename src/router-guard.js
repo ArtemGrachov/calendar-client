@@ -12,9 +12,12 @@ export default class RouterGuard {
 
     resolveInitPromise = null;
 
-    constructor(router, store, redirects) {
+    socket = null;
+
+    constructor(router, store, socket, redirects) {
         this.router = router;
         this.store = store;
+        this.socket = socket;
         this.redirects = redirects;
 
         this.initPromise = new Promise(res => {
@@ -43,7 +46,10 @@ export default class RouterGuard {
                 if (this.isAuth) {
                     return this.store
                         .dispatch('user/' + USER_ACTIONS_GET_OWN_DATA)
-                        .then(() => this.resolveInitPromise())
+                        .then(() => {
+                            this.resolveInitPromise();
+                            this.socket.connect(this.store.state.user.token);
+                        })
                         .catch(() => {
                             this.isAuth = false;
                             this.resolveInitPromise();

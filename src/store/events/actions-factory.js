@@ -5,7 +5,11 @@ import {
     EVENTS_ACTIONS_LEAVE_EVENT,
     EVENTS_ACTIONS_INVITE_USER_TO_EVENT,
     EVENTS_ACTIONS_REMOVE_USER_FROM_EVENT,
-    EVENTS_ACTIONS_EVENT_PROCESSING
+    EVENTS_ACTIONS_EVENT_PROCESSING,
+    EVENTS_ACTIONS_UPDATE_EVENT,
+    EVENTS_ACTIONS_STORE_DELETE_EVENT,
+    EVENTS_ACTIONS_ADD_EVENT,
+    EVENTS_ACTIONS_STORE_REMOVE_USER_FROM_EVENT
 } from './action-types';
 import {
     LIST_MUTATIONS_SET_PROCESSING,
@@ -13,7 +17,8 @@ import {
     LIST_MUTATIONS_UPSERT_ITEM,
     LIST_MUTATIONS_SET_ITEM_PROCESSING,
     LIST_MUTATIONS_REMOVE_ITEM,
-    LIST_MUTATIONS_UPDATE_ITEM
+    LIST_MUTATIONS_UPDATE_ITEM,
+    LIST_MUTATIONS_ADD_ITEM
 } from '../list/mutation-types';
 import {
     PROCESSING_PENDING,
@@ -62,6 +67,9 @@ export default function (httpClient) {
                     { root: true }
                 );
             }
+        },
+        [EVENTS_ACTIONS_UPDATE_EVENT](context, payload) {
+            context.commit(LIST_MUTATIONS_UPDATE_ITEM, payload);
         },
         [EVENTS_ACTIONS_UPSERT_EVENT](context, payload) {
             context.commit(LIST_MUTATIONS_UPSERT_ITEM, payload);
@@ -246,6 +254,36 @@ export default function (httpClient) {
                 {
                     id: payload.id,
                     processing: payload.processing
+                }
+            );
+        },
+        [EVENTS_ACTIONS_STORE_DELETE_EVENT](context, payload) {
+            context.commit(
+                LIST_MUTATIONS_REMOVE_ITEM,
+                {
+                    id: payload.id
+                }
+            )
+        },
+        [EVENTS_ACTIONS_ADD_EVENT](context, payload) {
+            context.commit(
+                LIST_MUTATIONS_ADD_ITEM,
+                payload
+            );
+        },
+        [EVENTS_ACTIONS_STORE_REMOVE_USER_FROM_EVENT](context, payload) {
+            context.commit(
+                LIST_MUTATIONS_UPDATE_ITEM,
+                {
+                    id: payload.eventId,
+                    update: function(event) {
+                        return {
+                            ...event,
+                            users: event
+                                .users
+                                .filter(userId => userId !== payload.userId)
+                        }
+                    }
                 }
             );
         }
