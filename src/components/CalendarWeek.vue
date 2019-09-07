@@ -2,12 +2,11 @@
     <div class="calendar">
         <div class="calendar-header mb-3">
             <div class="calendar-header-date">
-                {{ grid[0] | moment('MMMM Do YYYY') }} -
-                {{ grid.slice(-1)[0] | moment('MMMM Do YYYY') }}
+                {{ grid[0] | moment('MMMM D, YYYY') }} -
+                {{ grid.slice(-1)[0] | moment('MMMM D, YYYY') }}
             </div>
         </div>
         <div class="table-outer">
-
             <div class="table-wrap">
                 <table class="week-table">
                     <thead>
@@ -30,6 +29,7 @@
                     <tbody class="week-table-body">
                         <tr>
                             <td class="hours-cell">
+                                <div class="now" :style="getMomentPos(now, now)"></div>
                                 <DayHours
                                     class="hours"
                                     :start="start"
@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import fillWeek from '../utils/fill-week';
 import DayGrid from './DayGrid';
 import DayHours from './DayHours';
@@ -99,6 +100,11 @@ export default {
         calendarWithHoursMixin,
         calendarViewSelectionMixin
     ],
+    data() {
+        return {
+            now: moment()
+        }
+    },
     components: {
         DayGrid,
         DayHours,

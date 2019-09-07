@@ -15,6 +15,26 @@ export default {
         }
     },
     methods: {
+        getMomentPos(date, time) {
+            const range = this.dateRange(date);
+            const start = date.clone()
+                .startOf('day')
+                .hours(this.start);
+
+            const posTime = time.isSameOrAfter(range.start) ?
+                time :
+                range.start;
+
+            const diffM = moment.duration(
+                posTime.diff(start)
+            ).asMinutes();
+
+            const topPx = diffM * this.minutePx;
+
+            const result = { top: topPx + 'px' };
+
+            return result;
+        },
         getEventPos(date, event) {
             const range = this.dateRange(date);
             const start = date.clone()

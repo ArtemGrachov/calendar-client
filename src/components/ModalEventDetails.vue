@@ -1,7 +1,7 @@
 <template>
     <div class="modal-backdrop px-5 py-4" @click.self="close">
-        <div class="modal">
-            <div class="text-right mb-3">
+        <div class="modal" :style="{ 'border-color': event.color }">
+            <div class="text-right mb-3 modal-event-header">
                 <button
                     @click="close"
                     class="button-round button-link button-grey button-small"
@@ -88,3 +88,10 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .modal {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+</style>

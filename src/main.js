@@ -2,8 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueMoment from 'vue-moment';
 import Croppa from 'vue-croppa';
-import router from './router'
-import store from './store'
+import Vuelidate from 'vuelidate';
+import router from './router';
+import store from './store';
 import RouterGuard from './router-guard';
 import './styles/main.scss';
 
@@ -22,6 +23,7 @@ guard.init();
 
 Vue.use(VueMoment);
 Vue.use(Croppa);
+Vue.use(Vuelidate);
 
 new Vue({
     router,

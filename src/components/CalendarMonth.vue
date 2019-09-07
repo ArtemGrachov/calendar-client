@@ -33,7 +33,11 @@
             </thead>
             <tbody>
                 <tr v-for="(week, wIndex) in weekGrid" :key="wIndex">
-                    <td v-for="(day, dIndex) in week" :key="dIndex">
+                    <td
+                        v-for="(day, dIndex) in week"
+                        :key="dIndex"
+                        :class="{ 'other-month': !dateInMonth(day) }"
+                    >
                         <div class="wrap" v-overflowed>
                             <div class="date">
                                 {{ day | moment('DD') }}
@@ -80,6 +84,19 @@ export default {
                 return acc;
             }, [[]]);
         }
+    },
+    methods: {
+        dateInMonth(date) {
+            const start = this.date
+                .clone()
+                .startOf('month');
+            const end = this.date
+                .clone()
+                .endOf('month');
+            const range = { start, end };
+
+            return this.isDateInRange(date, range);
+        }
     }
 }
 </script>
@@ -101,6 +118,10 @@ export default {
             vertical-align: top;
             height: $cellHeight;
             position: relative;
+
+            &.other-month {
+                opacity: .25;
+            }
         }
     }
 
@@ -125,7 +146,7 @@ export default {
 
     .date {
         font-size: 18px;
-        color: #ccc;
+        color: $grey;
         text-align: right;
     }
 
