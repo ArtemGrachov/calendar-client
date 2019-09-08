@@ -4,93 +4,88 @@
         @submit.prevent="submit"
     >
         <div class="preloader form-preloader" v-if="pending"></div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <label for="title" class="mb-2">
-                    Title:
-                    <span class="required">
-                        *
-                    </span>
-                </label>
-                <input
-                    class="mb-2"
-                    type="text"
-                    name="title"
-                    id="title"
-                    v-model="form.title"
-                    @blur="$v.form.title.$touch()"
-                    :disabled="pending"
-                >
-                <template v-if="$v.form.title.$error">
-                    <p class="field-error" v-if="!$v.form.title.required">
-                        Title is required
-                    </p>
-                </template>
-            </div>
+        <div class="mb-3">
+            <label for="title" class="mb-2">
+                Title:
+                <span class="required">
+                    *
+                </span>
+            </label>
+            <input
+                class="mb-2"
+                type="text"
+                name="title"
+                id="title"
+                v-model="form.title"
+                @blur="$v.form.title.$touch()"
+                :disabled="pending"
+            >
+            <template v-if="$v.form.title.$error">
+                <p class="field-error" v-if="!$v.form.title.required">
+                    Title is required
+                </p>
+            </template>
         </div>
-        <div class="row mb-3">
-            <div class="col-12 col-sm-6">
-                <label for="start" class="mb-2">
-                    Starts at:
-                    <span class="required">
-                        *
-                    </span>
-                </label>
-                <input
-                    class="mb-2"
-                    type="datetime-local"
-                    name="start"
-                    id="start"
-                    v-model="form.start"
-                    @blur="$v.form.start.$touch()"
-                    :disabled="pending"
-                >
-                <template v-if="$v.form.start.$error">
-                    <p class="field-error" v-if="!$v.form.start.required">
-                        'Starts at' field is required
-                    </p>
-                    <p class="field-error" v-if="!$v.form.start.dateCompare">
-                        'Starts at' time must be before 'Ends at'
-                    </p>
-                </template>
-            </div>
-            <div class="col-12 col-sm-6">
-                <label for="end" class="mb-2">
-                    Ends at:
-                    <span class="required">
-                        *
-                    </span>
-                </label>
-                <input
-                    class="mb-2"
-                    type="datetime-local"
-                    name="end"
-                    id="end"
-                    v-model="form.end"
-                    @blur="$v.form.end.$touch()"
-                    :disabled="pending"
-                >
-                <template v-if="$v.form.end.$error">
-                    <p class="field-error" v-if="!$v.form.end.required">
-                        'Ends at' field is required
-                    </p>
-                    <p class="field-error" v-if="!$v.form.end.dateCompare">
-                        'Ends at' time must be after 'Starts at'
-                    </p>
-                </template>
-            </div>
+        <div class="mb-3">
+            <label for="start" class="mb-2">
+                Starts at:
+                <span class="required">
+                    *
+                </span>
+            </label>
+            <input
+                class="mb-2"
+                type="datetime-local"
+                name="start"
+                id="start"
+                v-model="form.start"
+                @blur="$v.form.start.$touch()"
+                :disabled="pending"
+            >
+            <template v-if="$v.form.start.$error">
+                <p class="field-error" v-if="!$v.form.start.required">
+                    'Starts at' field is required
+                </p>
+                <p class="field-error" v-if="!$v.form.start.dateCompare">
+                    'Starts at' time must be before 'Ends at'
+                </p>
+            </template>
         </div>
-        <div class="row mb-3">
-            <div class="col-12">
-                <label for="description" class="mb-2">Description:</label>
-                <textarea
-                    name="description"
-                    id="description"
-                    rows="10"
-                    v-model="form.description"
-                    :disabled="pending"
-                ></textarea>
-            </div>
+        <div class="mb-3">
+
+            <label for="end" class="mb-2">
+                Ends at:
+                <span class="required">
+                    *
+                </span>
+            </label>
+            <input
+                class="mb-2"
+                type="datetime-local"
+                name="end"
+                id="end"
+                v-model="form.end"
+                @blur="$v.form.end.$touch()"
+                :disabled="pending"
+            >
+            <template v-if="$v.form.end.$error">
+                <p class="field-error" v-if="!$v.form.end.required">
+                    'Ends at' field is required
+                </p>
+                <p class="field-error" v-if="!$v.form.end.dateCompare">
+                    'Ends at' time must be after 'Starts at'
+                </p>
+            </template>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="mb-2">Description:</label>
+            <textarea
+                name="description"
+                id="description"
+                rows="10"
+                v-model="form.description"
+                :disabled="pending"
+            ></textarea>
         </div>
         <div class="row mb-3">
             <div class="col-12 col-sm-6">
