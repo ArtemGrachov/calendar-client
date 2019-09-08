@@ -11,7 +11,11 @@
         <table class="day-table">
             <tr>
                 <td class="hours">
-                    <div class="now" :style="getMomentPos(now, now)"></div>
+                    <div
+                        class="now"
+                        :style="getMomentPos(now, now)"
+                        v-if="isDateInRange(now, dateRange(now))"
+                    ></div>
                     <DayHours
                         :start="start"
                         :end="end"

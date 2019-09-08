@@ -15,8 +15,6 @@
 </template>
 
 <script>
-import { apiDomain } from '../config';
-
 export default {
     props: {
         user: Object

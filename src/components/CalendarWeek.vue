@@ -29,7 +29,11 @@
                     <tbody class="week-table-body">
                         <tr>
                             <td class="hours-cell">
-                                <div class="now" :style="getMomentPos(now, now)"></div>
+                                <div
+                                    class="now"
+                                    :style="getMomentPos(now, now)"
+                                    v-if="isDateInRange(now, dateRange(now))"
+                                ></div>
                                 <DayHours
                                     class="hours"
                                     :start="start"
