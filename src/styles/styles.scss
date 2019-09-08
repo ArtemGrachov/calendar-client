@@ -242,7 +242,15 @@
     pointer-events: none;
 }
 
-.field-error {
+.field-error,
+.field-details {
     font-size: 12px;
+}
+
+.field-error {
     color: $red;
+}
+
+.field-details {
+    color: $mediumgrey;
 }

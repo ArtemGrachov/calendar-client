@@ -25,7 +25,7 @@
                 <div class="d-block text-center">
                     <div class="mb-2">
                         <croppa
-                            class="image-clip d-inline-block"
+                            class="image-clip d-inline-block mb-2"
                             v-model="avatarCmp"
                             :file-size-limit="102400"
                             :quality="1"
@@ -34,6 +34,12 @@
                             :width="200"
                             :height="200"
                         ></croppa>
+                        <p class="field-details">
+                            Max: 100KB
+                        </p>
+                        <p class="field-error" v-if="noAvatarError">
+                            Please, select avatar image
+                        </p>
                     </div>
                     <button
                         type="button"
@@ -73,14 +79,21 @@ export default {
     data() {
         return {
             avatarCmp: null,
-            showUploadForm: false
+            showUploadForm: false,
+            noAvatarError: false
         }
     },
     methods: {
         async upload() {
             const avatar = await this.avatarCmp.promisedBlob();
             this.form.avatar = avatar;
-            this.sendForm(this.form, { uploadAvatar: true });
+
+            if (avatar) {
+                this.sendForm(this.form, { uploadAvatar: true });
+                this.noAvatarError = false;
+            } else {
+                this.noAvatarError = true;
+            }
         },
         clear() {
             this.avatarCmp.remove();
