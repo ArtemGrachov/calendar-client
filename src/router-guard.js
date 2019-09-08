@@ -2,6 +2,7 @@ import {
     USER_ACTIONS_GET_STORAGE_TOKENS,
     USER_ACTIONS_GET_OWN_DATA
 } from "./store/user/action-types";
+import { APP_ACTIONS_SET_INITIALIZED } from "./store/app/action-types";
 
 export default class RouterGuard {
     isAuth = false;
@@ -23,6 +24,10 @@ export default class RouterGuard {
         this.initPromise = new Promise(res => {
             this.initialized = true
             this.resolveInitPromise = res;
+        })
+        .then(value => {
+            this.store.dispatch(APP_ACTIONS_SET_INITIALIZED);
+            return value;
         });
     }
 

@@ -1,5 +1,6 @@
 <template>
     <div id="app" class="wrapper">
+        <div class="preloader app-preloader m-auto" v-if="!initialized"></div>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
@@ -16,6 +17,11 @@ export default {
     components: {
         ModalRoot,
         AlertsRoot
+    },
+    computed: {
+        initialized() {
+            return this.$store.state.app.initialized
+        }
     }
 }
 </script>

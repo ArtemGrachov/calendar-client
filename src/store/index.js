@@ -11,6 +11,7 @@ import usersSearch from './users-search/store';
 import users from './users/store';
 import editProfile from './edit-profile/store';
 import changePassword from './change-password/store';
+import app from './app/store';
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
         usersSearch,
         users,
         editProfile,
-        changePassword
+        changePassword,
+        app
     }
 })
