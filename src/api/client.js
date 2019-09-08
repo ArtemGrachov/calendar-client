@@ -12,4 +12,13 @@ export default class HttpClient {
             .common
             .Authorization = `Bearer ${token}`;
     }
+
+    removeToken() {
+        delete this
+            .client
+            .defaults
+            .headers
+            .common
+            .Authorization
+    }
 }
