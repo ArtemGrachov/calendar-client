@@ -14,20 +14,7 @@ const events = new EventsClient(apiDomain, axios);
 const notifications = new NotificationsClient(apiDomain, axios);
 const users = new UsersClient(apiDomain, axios);
 
-axios.interceptors.response.use(
-    null,
-    (error) => {
-        if (error.response && error.response.status === 401) {
-            delete axios
-                .defaults
-                .headers
-                .common
-                .Authorization;
-        }
-        throw error;
-    }
-)
-
+export { axios };
 export { auth };
 export { user };
 export { events };
