@@ -40,7 +40,9 @@ export default class AuthInterceptor {
 
                     throw error;
                 } catch (err) {
-                    store.dispatch('user/' + USER_ACTIONS_CLEAR_TOKENS);
+                    if (err.response.status === 401) {
+                        store.dispatch('user/' + USER_ACTIONS_CLEAR_TOKENS);
+                    }
                     throw err;
                 }
             }

@@ -185,6 +185,8 @@ export default {
         formData() {
             return {
                 ...this.form,
+                start: moment(this.form.start).toISOString(),
+                end: moment(this.form.end).toISOString(),
                 icon: this.formIcon ? this.formIcon.name : ''
             }
         }
