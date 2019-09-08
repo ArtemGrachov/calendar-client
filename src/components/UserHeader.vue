@@ -5,8 +5,10 @@
                 <UserAvatar :user="user"></UserAvatar>
             </router-link>
             <div class="username ml-3 d-none d-md-block">
-                {{ user.firstname }}
-                {{ user.lastname }}
+                <router-link to="/profile">
+                    {{ user.firstname }}
+                    {{ user.lastname }}
+                </router-link>
             </div>
             <div class="controls ml-auto">
                 <popper

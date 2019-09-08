@@ -34,8 +34,17 @@ a {
     text-decoration: none;
     transition: $transition;
 
-    &:hover {
+    &:hover,
+    &:focus {
         color: $violet;
+    }
+
+    &:active {
+        color: $blue;
+    }
+
+    &:focus {
+        text-decoration: underline dotted;
     }
 }
 
