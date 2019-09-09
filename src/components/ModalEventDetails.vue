@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop px-5 py-4" @click.self="close">
+    <div class="modal-backdrop px-1 py-4" @click.self="close">
         <div class="modal" :style="{ 'border-color': event.color }">
             <div class="text-right mb-3 modal-event-header">
                 <button

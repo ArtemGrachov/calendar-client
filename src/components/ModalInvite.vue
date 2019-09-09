@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop px-5 py-4" @click.self="close">
+    <div class="modal-backdrop px-1 py-4" @click.self="close">
         <div class="modal">
             <div class="mb-3 d-flex justify-content-between">
                 <div class="title px-4 py-3">Invite user to event</div>

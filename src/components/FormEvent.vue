@@ -88,7 +88,7 @@
             ></textarea>
         </div>
         <div class="row mb-3">
-            <div class="col-12 col-sm-6">
+            <div class="col-12 col-sm-6 mb-3 mb-sm-0">
                 <label for="icon" class="mb-2">Icon:</label>
                 <multiselect
                     name="icon"
