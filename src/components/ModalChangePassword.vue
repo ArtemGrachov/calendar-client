@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop px-5 py-4" @click.self="close">
+    <div class="modal-backdrop px-1 py-4" @click.self="close">
         <div class="modal">
             <div class="text-right">
                 <button

@@ -12,12 +12,12 @@
             <ProfileDetails :user="user" class="mb-3"></ProfileDetails>
             <div class="mb-3">
                 <router-link
-                    class="button button-link mr-2"
+                    class="button button-link m-2"
                     to="/profile/edit"
                 >
                     Edit
                 </router-link>
-                <button @click="openChangePasswordModal" class="button-violet">
+                <button @click="openChangePasswordModal" class="button-violet m-2">
                     Change password
                 </button>
             </div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop p-5">
+    <div class="modal-backdrop px-1 py-4">
         <div class="modal modal-small text-center px-4 py-3">
             <div class="mb-3">
                 {{ data.question }}

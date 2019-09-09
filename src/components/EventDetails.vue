@@ -70,28 +70,28 @@
         </div>
         <div class="mt-5 text-right border-top px-3 py-2">
             <button
-                class="button-red mx-1"
+                class="button-red m-2"
                 @click="leave"
                 v-if="!iAmOnwer"
             >
                 Leave
             </button>
             <button
-                class="mx-1"
+                class="m-2"
                 @click="invite"
                 v-if="iAmOnwer"
             >
                 Invite
             </button>
             <button
-                class="button-yellow mx-1"
+                class="button-yellow m-2"
                 @click="edit"
                 v-if="iAmOnwer"
             >
                 Edit
             </button>
             <button
-                class="button-red mx-1"
+                class="button-red m-2"
                 @click="deleteEvent"
                 v-if="iAmOnwer"
             >
